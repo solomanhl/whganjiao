@@ -1,0 +1,77 @@
+body{font-family: 微软雅黑}
+.x-panel .x-panel-top .x-titlebar-title{font-weight: normal;}
+
+/*头部标题栏*/
+
+.content_home .home_nav{height: 4rem;border:none;}
+.content_home .home_nav a{line-height: 4rem;padding: 0;color: #444;font-size: 1.25rem;font-weight: normal;}
+.content_home .home_nav a .this{color: #0087bc}
+.content_home .banner{height: 10rem;width: 100%}
+.tb-img1{ width:100%; height:133px;}
+.content_home .x-list li{background: #fff;border-bottom: 1px solid #ededed;padding: 0.8rem 3%;overflow: hidden;}
+.content_home .x-list li .x-output{padding: 0;}
+.content_home .x-list li .title{font-size: 1.2rem;color: #444;margin-bottom: 8px;line-height: 2rem}
+.content_home .x-list li .message{color: #666;font-size: 1rem;line-height: 1.6rem;margin-bottom: 10px}
+.content_home .x-list li .date{color: #959595;font-size: 1rem;}
+
+/*首页样式*/
+
+.x-panel-bottom .buttonGroup{height: 48px;padding: 3px 0;border-top: 1px solid #ededed;background: #fff}
+.x-panel-bottom .buttonGroup a{height: 38px;display: block;float: left;width: 25%;}
+.x-panel-bottom .buttonGroup a span{background:#fff url(./img/home2.png) no-repeat center top;background-size:18px;padding-top:22px;display:block;height:38px;width:100%;overflow:hidden;text-align:center;color:#959595;font-size:12px;font-weight: normal;}
+.x-panel-bottom .buttonGroup a .this{color: #1195db}
+.x-panel-bottom .buttonGroup a:nth-child(1) span{background:url(./img/home2.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(2) span{background:url(./img/study.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(3) span{background:url(./img/communication.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(4) span{background:url(./img/personal.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(1) .this{background:url(./img/home.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(2) .this{background:url(./img/study2.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(3) .this{background:url(./img/communication2.png) no-repeat center top;background-size:18px;}
+.x-panel-bottom .buttonGroup a:nth-child(4) .this{background:url(./img/personal2.png) no-repeat center top;background-size:18px;}
+
+/*底部导航*/
+
+.content_study .title{height: 3rem;line-height: 3rem;border-bottom:1px solid #ededed;margin-bottom: 1rem;}
+.content_study .title span{font-size: 1.2rem;color: #959595;background: url(./img/class.png) no-repeat left center;background-size: 1.6rem;margin: 0 3%;padding-left: 2rem;display: block;}
+.content_study .course_list table td{border:none;text-align: center;padding: 1rem 0;}
+.content_study .course_list{margin: 0 3%;width: 94%}
+.content_study .course_list table{border:none;width: 100%}
+.content_study .course_list table td img{width:6rem;height: 6rem;}
+.content_study .course_list table td span{display: block;margin-top: 5px;font-size: 1.2rem;}
+
+/*学习界面*/
+
+.content_comm .x-scroll-content{background: #f6f6f6;}
+.content_comm .x-scroll-content li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;margin-bottom: 10px}
+.content_comm .x-scroll-content li .media-left{width: 3.5rem;}
+.content_comm .x-scroll-content li .media-left img{width: 3.5rem;height: 3.5rem;border-radius: 100%}
+.content_comm .x-scroll-content li .media-body .author{font-size: 1.2rem;line-height: 2rem;padding:0}
+.content_comm .x-scroll-content li .media-body .date{font-size: 1rem;color: #959595;padding: 0;line-height:1.8rem}
+.content_comm .x-scroll-content li .detail{margin-top: 10px;background: #f6f6f6;padding: 5px;border:none;margin-bottom: 1rem}
+.content_comm .x-scroll-content li .detail .media-left{width: 4rem;height:4rem}
+.content_comm .x-scroll-content li .detail .media-left img{width: 4rem;height: 4rem;border-radius: 0}
+.content_comm .x-scroll-content li .detail .media-body{padding: 0.2rem 0;}
+.content_comm .x-scroll-content li .detail .media-body .title{font-size: 1.1rem;padding: 0;height: 1.8rem;overflow: hidden;line-height: 1.8rem}
+.content_comm .x-scroll-content li .detail .media-body .author2{color: #959595;font-size: 1rem;padding: 0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
+.content_comm .x-scroll-content li .operate{border:none;background: #fff;height: 3rem;line-height: 3rem}
+.content_comm .x-scroll-content li .operate a{height: 3rem;font-weight: normal;color: #959595;text-align: left;border:none}
+.content_comm .x-scroll-content li .operate a span{background: url(./img/zan.png) no-repeat left center;background-size:1.5rem;padding-left: 2rem;}
+.content_comm .x-scroll-content li .operate a:last-child span{background: url(./img/comment.png) no-repeat left center;background-size:1.5rem;}
+
+/*交流界面*/
+
+.content_me{background: #f6f6f6;padding-top: 1rem}
+.content_me .div_user{border-bottom:1px solid #ededed;border-top:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 6.2rem;background-size:0.8rem;margin-bottom: 1rem}
+.content_me .div_user img{width: 5rem;height: 5rem;border-radius: 100%;margin:0.6rem 14px 0.6rem 0;vertical-align: middle;float: left;}
+.content_me .div_user label{font-size: 1.24rem;font-weight: normal;height: 5rem;line-height: 5rem;margin: 0.6rem 0}
+.content_me .same_me{border-bottom:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 4rem;background-size:0.8rem;margin-bottom: 1rem;overflow: hidden;}
+.content_me .same_me img{height: 2rem;margin:1rem 14px 1rem 0;vertical-align: middle;float: left;}
+.content_me .same_me label{font-size: 1.24rem;font-weight: normal;line-height: 2rem;display:block;height: 2rem;margin: 1rem 0;float: left}
+.content_me .div_project{border-top:1px solid #ededed;}
+.content_me .div_peixun{border-top:1px solid #ededed;margin-bottom: 0}
+.content_me .div_banji{margin-bottom: 0}
+.content_me .div_huancun{margin-bottom: 0;border-top:1px solid #ededed;}
+.content_me .div_huancun img{width: 2rem;height: auto}
+.content_me .div_shezhi{border-top:1px solid #ededed;}
+
+/*个人中心*/

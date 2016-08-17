@@ -1,0 +1,7 @@
+.article_box{padding: 1rem 3%;font-size: 1rem;line-height: 1.4rem;color: #555}
+.article_box .x-output{padding: 0}
+.article_box .title{font-size: 1.2rem;line-height: 1.6rem;margin-bottom: 10px;color: #333}
+.article_box .date{color: #959595;font-size: 1rem;padding: 0;margin-bottom: 5px;}
+.article_box .date label{width: auto;margin-right: 5px}
+.article_box .date .x-edit{font-size: 1rem;color: #959595}
+

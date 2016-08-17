@@ -75,7 +75,7 @@ define(function(require){
 //		2、获取新闻列表
 //		
 		this.pageNo = 1;
-		this.getNews();
+		this.getNews(false);
 	};
 
 
@@ -89,7 +89,7 @@ define(function(require){
 //		2、获取新闻列表
 //		
 		this.pageNo = 1;
-		this.getNews();
+		this.getNews(false);
 	};
 	
 	//上拉加载下一页
@@ -97,7 +97,7 @@ define(function(require){
 //		alert(this.totalPage + "scrollView1PullUp" + this.pageNo);
 		if (this.totalPage > this.pageNo){
 			this.pageNo ++;
-			this.getNews();
+			this.getNews(true);
 		}
 	};
 
@@ -133,8 +133,14 @@ define(function(require){
 	};
 	
 	
-	//请求新闻数据
-	Model.prototype.getNews = function (){
+	/*请求新闻列表
+	*
+	*
+	*@param isApend 是否追加数据 boolean
+	*
+	*
+	*/
+	Model.prototype.getNews = function (isApend){
 		var me = this;
 		var news = this.comp("news");
 		$.ajax({
@@ -171,12 +177,12 @@ define(function(require){
 //	        	);
 	        	
 	        	if (pageNoObj > 0){
-		        	var str = JSON.stringify(contentsObj);
+//		        	var str = JSON.stringify(contentsObj);
 	//	        	var temp = "[{\"id\":4,\"title\":\"中共武汉市委组织部关于印发 2016年全市 干部教育培训工作要点 的通知\",\"description\":\"中共武汉市委组织部关于印发《2016年全市 干部教育培训工作要点》的通知\",\"date\":\"2016-08-16 08:56:54.0\"},{\"id\":4,\"title\":\"中共武汉市委组织部关于印发 2016年全市 干部教育培训工作要点 的通知\",\"description\":\"中共武汉市委组织部关于印发《2016年全市 干部教育培训工作要点》的通知\",\"date\":\"2016-08-16 08:56:54.0\"}]";
-		        	var strs= JSON.parse(str);
+//		        	var strs= JSON.parse(str);
 	//	        	alert(strs);			        	
-		        	json={"@type" : "table","news" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :strs };
-		        	news.loadData(json);
+		        	json={"@type" : "table","news" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
+		        	news.loadData(json, isApend);
 	//	        	alert(news.count());
 	        	}
 	        	
@@ -188,6 +194,23 @@ define(function(require){
 	    
 	    this.comp("list1").refresh();
 	}
+	
+
+
+	//点击首页新闻
+	Model.prototype.li1Click = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+		var url = require.toUrl("./newsContentActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        contentId : current.val("id"),
+	        data : {
+	            // 将data中的一行数据传给对话框
+//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+	        }
+	    }
+		justep.Shell.showPage(url, params);
+	};
 	
 
 

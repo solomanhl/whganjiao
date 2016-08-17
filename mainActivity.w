@@ -2,7 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:183px;left:513px;height:auto;"
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:120px;left:755px;"
     onModelConstruct="modelModelConstruct"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="news" idColumn="id"> 
@@ -88,9 +88,9 @@
               </div>  
               <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="news" limit="20"> 
                 <ul class="x-list-template" xid="listTemplateUl1"> 
-                  <li xid="li1"> 
+                  <li xid="li1" bind-click="li1Click"> 
                     <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title" bind-ref='ref("title")' />  
-                    <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_message" bind-ref='ref("description")' bind-visible="false" />  
+                    <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_message" bind-ref='ref("description")' bind-visible="false"/>  
                     <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_date" bind-ref='ref("date")' /> 
                   </li> 
                 </ul> 
@@ -182,7 +182,7 @@
             </div>  
             <div class="x-scroll-content" xid="div16">
               <div component="$UI/system/components/justep/list/list" class="x-list"
-                xid="list_comm" data="communicate"> 
+                xid="list_comm" data="communicate" limit="5"> 
                 <ul class="x-list-template" xid="listTemplateUl2"> 
                   <li xid="li2">
                     <div class="media" xid="media_comm1"> 
@@ -193,38 +193,19 @@
                         </a> 
                       </div>  
                       <div class="media-body" xid="mediaBody1"> 
-                        <div component="$UI/system/components/justep/output/output"
-                          class="x-output author" xid="output_comm_author" bind-ref="ref(&quot;author&quot;)"/>  
-                        <div component="$UI/system/components/justep/output/output"
-                          class="x-output date" xid="output_dateline" bind-ref="ref(&quot;dateline&quot;)"/>  
-                        <div class="media detail" xid="media_orien"> 
-                          <div class="media-left" xid="mediaLeft2"> 
-                            <a href="#" xid="a2"> 
-                              <img class="media-object" src="$UI/whganjiao/img/study2.png"
-                                alt="" xid="image_orien"/>
-                            </a> 
-                          </div>  
+                        <div xid="div_info" class="info">
+                          <div component="$UI/system/components/justep/output/output" class="x-output author" xid="output_comm_author" bind-ref="ref(&quot;author&quot;)" /><div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_dateline" bind-ref="ref(&quot;dateline&quot;)" />
+                        </div>  
+                          
+                        <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_txt" bind-ref='ref("message")'></div><div class="media detail" xid="media_orien"> 
                           <div class="media-body" xid="mediaBody2"> 
                             <div component="$UI/system/components/justep/output/output"
                               class="x-output title" xid="output_title1" bind-ref="ref(&quot;title&quot;)"/>  
-                            <div component="$UI/system/components/justep/output/output"
-                              class="x-output author2" xid="output_author2" bind-ref="ref(&quot;author2&quot;)"/>
-                          </div> 
+                            <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 author2" xid="labelEdit_author2">
+   <label class="x-label" xid="label_author2"><![CDATA[讲师：]]></label>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_author2" bind-ref='ref("author2")'></div></div></div> 
                         </div>  
-                        <div component="$UI/system/components/justep/button/buttonGroup"
-                          class="btn-group x-card btn-group-justified operate" tabbed="true"
-                          xid="buttonGroup_zan">
-                          <a component="$UI/system/components/justep/button/button"
-                            class="btn btn-default btn-icon-left" xid="button_zan"
-                            icon="linear linear-earth">
-                            <span xid="span21" bind-text="val(&quot;zanNum&quot;)"/>
-                          </a>  
-                          <a component="$UI/system/components/justep/button/button"
-                            class="btn btn-default" xid="button_pin" icon="linear linear-dice">
-                            <span xid="span22" bind-text=" val(&quot;pinNum&quot;)"/>
-                          </a>
-                        </div>
-                      </div> 
+                        </div> 
                     </div>
                   </li>
                 </ul> 
@@ -242,7 +223,7 @@
           </div>
           <div xid="div_project" class="div_project same_me">
             <img src="$UI/whganjiao/img/daohang.png" alt="" xid="image_projecticon"/>  
-            <label xid="label_project"><![CDATA[我的项目]]></label>  
+            <label xid="label_project"><![CDATA[我的课程]]></label>  
           </div>
           <div xid="div_peixun" class="div_peixun same_me">
             <img src="$UI/whganjiao/img/rili.png" alt="" xid="image_peixunicon"/>  

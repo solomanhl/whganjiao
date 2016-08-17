@@ -12,7 +12,7 @@ body{font-family: 微软雅黑}
 .content_home .x-list li .x-output{padding: 0;}
 .content_home .x-list li .title{font-size: 1.2rem;color: #444;margin-bottom: 8px;line-height: 2rem}
 .content_home .x-list li .message{color: #666;font-size: 1rem;line-height: 1.6rem;margin-bottom: 10px}
-.content_home .x-list li .date{color: #959595;font-size: 1rem;}
+.content_home .x-list li .date{color: #959595;font-size: 1rem;text-align: right;}
 
 /*首页样式*/
 
@@ -45,14 +45,18 @@ body{font-family: 微软雅黑}
 .content_comm .x-scroll-content li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;margin-bottom: 10px}
 .content_comm .x-scroll-content li .media-left{width: 3.5rem;}
 .content_comm .x-scroll-content li .media-left img{width: 3.5rem;height: 3.5rem;border-radius: 100%}
-.content_comm .x-scroll-content li .media-body .author{font-size: 1.2rem;line-height: 2rem;padding:0}
-.content_comm .x-scroll-content li .media-body .date{font-size: 1rem;color: #959595;padding: 0;line-height:1.8rem}
-.content_comm .x-scroll-content li .detail{margin-top: 10px;background: #f6f6f6;padding: 5px;border:none;margin-bottom: 1rem}
+.content_comm .x-scroll-content li .media-body .info{height: 2.5rem;line-height: 2.5rem;position: relative;overflow: hidden;}
+.content_comm .x-scroll-content li .media-body .author{font-size: 1.3rem;padding:0;line-height: 2.5rem}
+.content_comm .x-scroll-content li .media-body .date{font-size: 1rem;color: #959595;padding: 0;position: absolute;right: 0;top: 0;line-height: 2.5rem}
+.content_comm .x-scroll-content li .message{font-size:1.2rem;padding-top: 0.6rem;margin-bottom: 10px}
+.content_comm .x-scroll-content li .detail{background: #f6f6f6;padding: 8px;border:none;margin-bottom: 1rem}
 .content_comm .x-scroll-content li .detail .media-left{width: 4rem;height:4rem}
 .content_comm .x-scroll-content li .detail .media-left img{width: 4rem;height: 4rem;border-radius: 0}
-.content_comm .x-scroll-content li .detail .media-body{padding: 0.2rem 0;}
+.content_comm .x-scroll-content li .detail .media-body{padding: 0.2rem 0 0.2rem 3.6rem;background: url(./img/paly_icon.png) no-repeat left center;background-size: 3rem}
 .content_comm .x-scroll-content li .detail .media-body .title{font-size: 1.1rem;padding: 0;height: 1.8rem;overflow: hidden;line-height: 1.8rem}
-.content_comm .x-scroll-content li .detail .media-body .author2{color: #959595;font-size: 1rem;padding: 0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
+.content_comm .x-scroll-content li .detail .media-body .author2{color: #959595;font-size: 1.1rem;padding: 0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
+.content_comm .x-scroll-content li .detail .media-body .author2 label{width: auto;margin-right: 5px;padding:0;}
+.content_comm .x-scroll-content li .detail .media-body .author2 .x-edit{color: #959595;font-size: 1.1rem;}
 .content_comm .x-scroll-content li .operate{border:none;background: #fff;height: 3rem;line-height: 3rem}
 .content_comm .x-scroll-content li .operate a{height: 3rem;font-weight: normal;color: #959595;text-align: left;border:none}
 .content_comm .x-scroll-content li .operate a span{background: url(./img/zan.png) no-repeat left center;background-size:1.5rem;padding-left: 2rem;}

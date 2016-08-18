@@ -6,8 +6,13 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		//首页新闻
 		this.pageNo = 0;
 		this.totalPage = 0;
+		
+		//学习课程
+		this.pageNo_study = 0;
+		this.totalPage_study = 0;
 	};
 	
 	//路径转换
@@ -71,11 +76,18 @@ define(function(require){
 		}
 		
 		
-//		
-//		2、获取新闻列表
-//		
+	
+		//2、获取新闻列表
+		
 		this.pageNo = 1;
 		this.getNews(false);
+		
+		//3.获取课程
+		this.pageNo_study = 1;
+		this.getCourse(false);
+		
+		//4.获取课程分类
+		this.getCourseGroup();
 	};
 
 
@@ -117,12 +129,129 @@ define(function(require){
 		this.comp("titleBar").set({"title" : "干部教育"});
 	};
 	
-
+	
+	//学习激活
 	Model.prototype.content_studyActive = function(event){
 		this.comp("titleBar").set({"title" : "学习广场"});
 	};
 	
+	//下拉刷新课程
+	Model.prototype.scrollView_studyPullDown = function(event){
+		this.pageNo_study = 1;
+		this.getCourse(false);
+	};
+	
+	//上拉加载更多课程
+	Model.prototype.scrollView_studyPullUp = function(event){
+		if (this.totalPage_study > this.pageNo_study){
+			this.pageNo_study ++;
+			this.getCourse(true);
+		}
+	};
+	
+	//获取课程列表
+	Model.prototype.getCourse = function (isApend){
+		var me = this;
+		var study_course = this.comp("study_course");
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/course-list.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"pageNo" : me.pageNo_study,
+	        	"typeId" : "1"
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	var coursesObj, pageNoObj, totalPageObj;	
+	        	coursesObj = resultData.courses;
+	        	pageNoObj = resultData.pageNo;
+	        	totalPageObj = resultData.totalPage;
+	        	
+	        	me.pageNo_study = pageNoObj;
+	        	me.totalPage_study = totalPageObj;
+//	        	alert(me.totalPage_study);
+//	        	alert(contentsObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	if (pageNoObj > 0){
+		        	json={"@type" : "table","study_course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
+		        	study_course.loadData(json, isApend);
+		        	
+	//	        	alert(news.count());
+	        	}
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	}
 
+
+	//获取课程分类
+	Model.prototype.getCourseGroup = function (isApend){
+		var me = this;
+		var course_group = this.comp("course_group");
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/course-type-list.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"pageNo" : "1"
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	var typesObj, pageNoObj;	
+	        	pageNoObj = resultData.pageNo;
+	        	typesObj = resultData.types;
+	        	
+//	        	alert(me.totalPage_study);
+//	        	alert(contentsObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	if (pageNoObj > 0){
+		        	json={"@type" : "table","course_group" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :typesObj };
+		        	course_group.loadData(json, false);
+		        	
+	//	        	alert(news.count());
+	        	}
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	}
+
+
+	//弹出课程分类
+	Model.prototype.button_studyMoreClick = function(event){
+		var popOver_moreCourse = this.comp("popOver_moreCourse");
+		popOver_moreCourse.show();
+	};
+	
+	
 	Model.prototype.content_commActive = function(event){
 		this.comp("titleBar").set({"title" : "交流广场"});
 	};

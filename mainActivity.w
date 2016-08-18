@@ -2,7 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:120px;left:755px;"
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:72px;left:573px;"
     onModelConstruct="modelModelConstruct"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="news" idColumn="id"> 
@@ -12,7 +12,15 @@
   <column label="正文" name="message" type="String" xid="xid3"></column>
   <data xid="default1">[]</data>
   <column label="时间" name="date" type="String" xid="xid4"></column></div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
+    <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="study_course" idColumn="id"><column label="课程id" name="id" type="Integer" xid="xid16"></column>
+  <column label="课程名" name="name" type="String" xid="xid17"></column>
+  <column label="课程截图" name="titleImg" type="String" xid="xid18"></column>
+  <column label="讲师" name="teachers" type="String" xid="xid19"></column>
+  <column label="选课人数" name="users" type="Integer" xid="xid20"></column>
+  <column label="日期" name="cdate" type="String" xid="xid21"></column></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course_group" idColumn="id" limit="-1"><column label="课程分类id" name="id" type="Integer" xid="xid22"></column>
+  <column label="课程分类名" name="name" type="String" xid="xid23"></column>
+  <data xid="default3">[{&quot;id&quot;:1,&quot;name&quot;:&quot;11&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;22&quot;}]</data></div><div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="imgData" onCustomRefresh="imgDataCustomRefresh" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid5"/>  
       <column label="图片" name="fImgUrl" type="String" xid="xid6"/>  
@@ -101,78 +109,50 @@
             </div> 
           </div></div>
    </div></div>  
-        <div class="x-contents-content content_study" xid="content_study" onActive="content_studyActive"> 
-          <div xid="div4" class="title">          
-            <span xid="span9"><![CDATA[课程频道]]></span> 
-          </div>  
-          <div xid="div5" class="course_list"> 
-            <table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table"
-              xid="table1"> 
-              <tbody class="x-list-template" xid="listTemplate1"> 
-                <tr xid="tr1"> 
-                  <td xid="td1"> 
-                    <div xid="div6"> 
-                      <img src="$UI/whganjiao/img/class1.png" alt="" xid="image3"/>  
-                      <span xid="span10"><![CDATA[时事热点]]></span> 
-                    </div> 
-                  </td>  
-                  <td xid="td2"> 
-                    <div xid="div7"> 
-                      <img src="$UI/whganjiao/img/class2.png" alt="" xid="image4"/>  
-                      <span xid="span11"><![CDATA[政治理论]]></span> 
-                    </div> 
-                  </td>  
-                  <td xid="td3"> 
-                    <div xid="div8"> 
-                      <img src="$UI/whganjiao/img/class3.png" alt="" xid="image5"/>  
-                      <span xid="span12"><![CDATA[公共管理]]></span> 
-                    </div> 
-                  </td> 
-                </tr>  
-                <tr xid="tr2"> 
-                  <td xid="td4"> 
-                    <div xid="div9"> 
-                      <img src="$UI/whganjiao/img/class4.png" alt="" xid="image6"/>  
-                      <span xid="span13"><![CDATA[经济管理]]></span> 
-                    </div> 
-                  </td>  
-                  <td xid="td5"> 
-                    <div xid="div10"> 
-                      <img src="$UI/whganjiao/img/class5.png" alt="" xid="image7"/>  
-                      <span xid="span14"><![CDATA[企业管理]]></span> 
-                    </div> 
-                  </td>  
-                  <td xid="td6"> 
-                    <div xid="div11"> 
-                      <img src="$UI/whganjiao/img/class6.png" alt="" xid="image8"/>  
-                      <span xid="span15"><![CDATA[党史建设]]></span> 
-                    </div> 
-                  </td> 
-                </tr>  
-                <tr xid="tr3"> 
-                  <td xid="td7"> 
-                    <div xid="div12"> 
-                      <img src="$UI/whganjiao/img/class7.png" alt="" xid="image9"/>  
-                      <span xid="span16"><![CDATA[法律法规]]></span> 
-                    </div> 
-                  </td>  
-                  <td xid="td8"> 
-                    <div xid="div13"> 
-                      <img src="$UI/whganjiao/img/class8.png" alt="" xid="image10"/>  
-                      <span xid="span17"><![CDATA[领导科学]]></span> 
-                    </div> 
-                  </td>  
-                  <td xid="td9"> 
-                    <div xid="div14"> 
-                      <img src="$UI/whganjiao/img/class9.png" alt="" xid="image11"/>  
-                      <span xid="span18"><![CDATA[人文素养]]></span> 
-                    </div> 
-                  </td> 
-                </tr> 
-              </tbody> 
-            </table> 
-          </div> 
-        </div>  
+        <div class="x-contents-content content_study  x-scroll-view" xid="content_study" onActive="content_studyActive" onactive="content_studyActive"> 
+          
+  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel2">
+   <div class="x-panel-top" xid="top3"><div xid="div_studyMore"><a component="$UI/system/components/justep/button/button" class="btn btn-default" label="更多课程，设计一下，可以用图片的形式显示,可以放在中间，和头部连城一体图案" xid="button_studyMore" onClick="button_studyMoreClick">
+   <i xid="i2"></i>
+   <span xid="span11">更多课程，设计一下，可以用图片的形式显示,可以放在中间，和头部连城一体图案</span></a><div component="$UI/system/components/justep/popOver/popOver" class="x-popOver" direction="auto" xid="popOver_moreCourse" anchor="button_studyMore" opacity="0.8">
+   <div class="x-popOver-overlay" xid="div9"></div>
+   <div class="x-popOver-content" xid="div10"><table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table_courseGroup">
+   
+   <tbody class="x-list-template" xid="listTemplate1">
+    <tr xid="tr1">
+     <td xid="td1">
+  <label xid="label_course1"><![CDATA[时事热点]]></label></td>
+     <td xid="td2"><label xid="label_course2"><![CDATA[政治理论]]></label></td>
+     <td xid="td3"><label xid="label_course3"><![CDATA[公共管理]]></label></td>
+     <td xid="td4"><label xid="label_course4"><![CDATA[经济管理]]></label></td>
+  </tr> 
+  <tr xid="tr2"><td xid="td5"><label xid="label_course5"><![CDATA[企业管理]]></label></td>
+  <td xid="td6"><label xid="label_course6"><![CDATA[党政建设]]></label></td>
+  <td xid="td7"><label xid="label_course7"><![CDATA[法律法规]]></label></td>
+  <td xid="td8"><label xid="label_course8"><![CDATA[领导科学]]></label></td>
+  </tr></tbody> </table>
+  </div></div></div></div>
+   <div class="x-panel-content" xid="content3"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown">
+   <div class="x-content-center x-pull-down container" xid="div4">
+    <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"></i>
+    <span class="x-pull-down-label" xid="span9">下拉刷新...</span></div> 
+   <div class="x-scroll-content" xid="div5"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_study" data="study_course">
+   <ul class="x-list-template" xid="listTemplateUl_study">
+    <li xid="li_study"><div class="media" xid="media_sdudy">
+   <div class="media-left" xid="mediaLeft_study">
+    <img src="" alt="" xid="image_study" bind-attr-src='val("titleImg")' style="height:90px;width:140px;" height="90px"></img></div> 
+   <div class="media-body" xid="mediaBody_study">
+    <div component="$UI/system/components/justep/output/output" class="x-output" xid="output_courseTille" bind-ref='ref("name")'></div>
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_courseTeacher">
+   <label class="x-label" xid="label_courseTeacher"><![CDATA[讲师：]]></label>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_courseTeacher" bind-ref='ref("teachers")'></div></div>
+  <div xid="div_courseInfo"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_courseCount">
+   <label class="x-label" xid="label_courseCount"><![CDATA[选课人数]]></label>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_courseCount" bind-ref='ref("users")'></div></div>
+  </div></div> </div></li></ul> </div></div>
+   <div class="x-content-center x-pull-up" xid="div6">
+    <span class="x-pull-up-label" xid="span10">加载更多...</span></div> </div></div>
+   </div></div>  
         <div class="x-contents-content  x-scroll-view content_comm" xid="content_comm" onActive="content_commActive">
           <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
             xid="scrollView_comm"> 

@@ -112,11 +112,11 @@
         <div class="x-contents-content content_study  x-scroll-view" xid="content_study" onActive="content_studyActive" onactive="content_studyActive"> 
           
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel2">
-   <div class="x-panel-top" xid="top3"><div xid="div_studyMore"><a component="$UI/system/components/justep/button/button" class="btn btn-default" label="更多课程，设计一下，可以用图片的形式显示,可以放在中间，和头部连城一体图案" xid="button_studyMore" onClick="button_studyMoreClick">
-   <i xid="i2"></i>
-   <span xid="span11">更多课程，设计一下，可以用图片的形式显示,可以放在中间，和头部连城一体图案</span></a><div component="$UI/system/components/justep/popOver/popOver" class="x-popOver" direction="auto" xid="popOver_moreCourse" anchor="button_studyMore" opacity="0.8">
-   <div class="x-popOver-overlay" xid="div9"></div>
-   <div class="x-popOver-content" xid="div10"><table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table_courseGroup">
+   <div class="x-panel-top studyTop" xid="top3"><div xid="div_studyMore" class="studyMore"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn_more" label="更多课程" xid="button_studyMore" onClick="button_studyMoreClick">
+   <span xid="span11">更多课程</span>
+   <img src="img/arrow2.png" alt=""/>
+  </a><div component="$UI/system/components/justep/popOver/popOver" class="moreCourse" direction="auto" xid="popOver_moreCourse" anchor="button_studyMore" style="display:none">
+   <div class="" xid="div10"><table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table_courseGroup" >
    
    <tbody class="x-list-template" xid="listTemplate1">
     <tr xid="tr1">
@@ -132,27 +132,32 @@
   <td xid="td8"><label xid="label_course8"><![CDATA[领导科学]]></label></td>
   </tr></tbody> </table>
   </div></div></div></div>
-   <div class="x-panel-content" xid="content3"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown">
+
+   <div class="x-panel-content study_box" xid="content3"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown">
    <div class="x-content-center x-pull-down container" xid="div4">
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"></i>
     <span class="x-pull-down-label" xid="span9">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div5"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_study" data="study_course">
    <ul class="x-list-template" xid="listTemplateUl_study">
-    <li xid="li_study"><div class="media" xid="media_sdudy">
+    <li xid="li_study" bind-click="li_studyClick"><div class="media media_study" xid="media_sdudy">
    <div class="media-left" xid="mediaLeft_study">
-    <img src="" alt="" xid="image_study" bind-attr-src='val("titleImg")' style="height:90px;width:140px;" height="90px"></img></div> 
+    <span xid="span12"></span><img src="" alt="" xid="image_study" bind-attr-src='val("titleImg")' style="" ></img>
+  </div> 
    <div class="media-body" xid="mediaBody_study">
-    <div component="$UI/system/components/justep/output/output" class="x-output" xid="output_courseTille" bind-ref='ref("name")'></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_courseTeacher">
+    <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_courseTille" bind-ref='ref("name")'></div>
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit_courseTeacher">
    <label class="x-label" xid="label_courseTeacher"><![CDATA[讲师：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_courseTeacher" bind-ref='ref("teachers")'></div></div>
-  <div xid="div_courseInfo"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_courseCount">
-   <label class="x-label" xid="label_courseCount"><![CDATA[选课人数]]></label>
+  <div xid="div_courseInfo"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 count" xid="labelEdit_courseCount">
+   <label class="x-label" xid="label_courseCount"><![CDATA[选课人数：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_courseCount" bind-ref='ref("users")'></div></div>
   </div></div> </div></li></ul> </div></div>
    <div class="x-content-center x-pull-up" xid="div6">
     <span class="x-pull-up-label" xid="span10">加载更多...</span></div> </div></div>
-   </div></div>  
+   </div>
+  <div id="blackbg"></div>
+ </div> 
+
         <div class="x-contents-content  x-scroll-view content_comm" xid="content_comm" onActive="content_commActive">
           <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
             xid="scrollView_comm"> 

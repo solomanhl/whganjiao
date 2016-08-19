@@ -1,0 +1,45 @@
+.x-panel .x-panel-top .x-titlebar-title{font-weight: normal;}
+.comm_btn a{background: none;border:none;}
+.comm_btn span{background: url(./img/comm.png) no-repeat;background-size: 26px;display: block;width: 26px;height: 26px}
+
+/*头部标题栏*/
+
+.userComment{background:#f6f6f6;}
+.userComment .comm_top{background: #fff;padding: 15px 6% 0;position: relative;overflow: hidden;height:170px;}
+.userComment .comm_top img{width: 100%;height: auto;}
+.userComment .comm_top ins{display: block;width: 88%;height: 170px;background:#000 url(./img/play1.png)no-repeat center center;opacity: 0.6;position: absolute;left: 6%;top: 15px;background-size: 60px;}
+
+/*头部图像*/
+
+.userComment .top_title{display: block;background: #fff;padding: 1rem 6%;font-size: 1.3rem;text-align: center;color: #333}
+.userComment .div_info{background: #fff;padding:0 6% 1.5rem;overflow: hidden;border-bottom: 1px solid #dfdfdf;margin-bottom: 10px}
+.userComment .div_info .div_left{width: 50%;padding:5px 4%;float: left;color: #959595;font-size: 1rem}
+.userComment .div_info label{width: auto;margin-right: 5px;padding: 0;}
+.userComment .div_info .x-label-edit{padding:0;margin-bottom: 5px}
+.userComment .div_info .x-output{color: #959595;font-size: 1rem;padding: 0;}
+.userComment .div_info .div_left .teacher{color: #1195db}
+.userComment .div_info .div_right{width: 50%;padding:5px 4%;float: right;color: #959595;font-size: 1rem;border-left: 1px solid #dfdfdf;}
+.userComment .div_info .div_right label{font-weight: normal;padding-right: 70px;background: url(./img/block.gif) no-repeat right center;background-size: 65px;}
+
+/*视频详情*/
+
+.userComment .courseInfo{background: #fff;border-bottom: 1px solid #dfdfdf;padding: 1rem 3%;margin-bottom: 10px}
+.userComment .courseInfo label{font-size: 1.3rem;font-weight: normal;}
+.userComment .courseInfo .x-output{font-size: 1rem;line-height: 1.6rem;text-indent: 2rem;color: #666}
+
+/*课程简介*/
+
+.userComment .comm_title{background: #fff;padding: 1rem 3% 0;}
+.userComment .comm_title label{font-size: 1.3rem;font-weight: normal;}
+.userComment .comm_list{background: #fff;padding: 0 3%;border-bottom: 1px solid #dfdfdf;}
+.userComment .comm_list li{border-bottom: 1px dashed #dfdfdf;padding: 1rem 0;}
+.userComment .comm_list li:last-child{border-bottom: none}
+.userComment .comm_list li .media-left{width: 70px;height: 70px;overflow: hidden;}
+.userComment .comm_list li .media-left img{width:50px;height: 50px;border-radius: 100%;}
+.userComment .comm_list li .media-body{padding: 5px 0;}
+.userComment .comm_list li .media-body .media_head{height: 20px;line-height: 20px;position: relative;font-size: 1.2rem;margin-bottom: 5px;}
+.userComment .comm_list li .media-body .media_head .user{padding: 0;}
+.userComment .comm_list li .media-body .media_head .date{padding: 0;position: absolute;right: 0;top: 0;color: #959595}
+.userComment .comm_list li .media-body .text{padding: 0;font-size: 1rem;line-height: 1.5rem;color: #959595;height: 35px;overflow: hidden;}
+
+/*课程列表*/

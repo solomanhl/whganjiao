@@ -343,6 +343,24 @@ define(function(require){
 	
 
 
+	//点击课程列表
+	Model.prototype.li_studyClick = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+		var url = require.toUrl("./course_showActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        courseId : current.val("id"),
+	        userId : "53",
+	        data : {
+	            // 将data中的一行数据传给对话框
+//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+	        }
+	    }
+		justep.Shell.showPage(url, params);
+	};
+	
+
+
 
 	return Model;
 });
@@ -368,6 +386,31 @@ $(function(){
 	})
 
 	// 底部导航切换
+
+	// var n=0;
+
+	// $(".content_study .studyMore .btn_more").click(function(){
+	// 	if (n%2==0){
+	// 		$(".content_study .studyMore .moreCourse").show();
+	// 		$("#blackbg").show();
+	// 	}else{
+	// 		$(".content_study .studyMore .moreCourse").hide();
+	// 		$("#blackbg").hide();
+	// 	}
+	// 	n++;
+	// })
+
+	$(".content_study .studyMore .btn_more").click(function(){
+		$(".content_study .studyMore .moreCourse").show();
+		$("#blackbg").show();
+	})
+
+	$("#blackbg").click(function(){
+		$("#blackbg").hide();
+		$(".content_study .studyMore .moreCourse").hide();
+	})
+
+	// 更多课程弹窗
 
 
 })

@@ -31,13 +31,37 @@ body{font-family: 微软雅黑}
 
 /*底部导航*/
 
-.content_study .title{height: 3rem;line-height: 3rem;border-bottom:1px solid #ededed;margin-bottom: 1rem;}
+/*.content_study .title{height: 3rem;line-height: 3rem;border-bottom:1px solid #ededed;margin-bottom: 1rem;}
 .content_study .title span{font-size: 1.2rem;color: #959595;background: url(./img/class.png) no-repeat left center;background-size: 1.6rem;margin: 0 3%;padding-left: 2rem;display: block;}
 .content_study .course_list table td{border:none;text-align: center;padding: 1rem 0;}
 .content_study .course_list{margin: 0 3%;width: 94%}
 .content_study .course_list table{border:none;width: 100%}
 .content_study .course_list table td img{width:6rem;height: 6rem;}
-.content_study .course_list table td span{display: block;margin-top: 5px;font-size: 1.2rem;}
+.content_study .course_list table td span{display: block;margin-top: 5px;font-size: 1.2rem;}*/
+.content_study{background:#f6f6f6;}
+.content_study .studyTop{z-index: 999;height: auto;margin-bottom: 10px}
+.content_study .studyMore{height:auto;overflow: hidden;background: #fff;border-bottom:1px solid #ededed;}
+.content_study .studyMore .btn_more{text-align: center;padding:0;color: #444;border:none;display: block;width: auto;height: 3.2rem;line-height: 3.2rem;background: none}
+.content_study .studyMore .btn_more img{width: 1rem}
+.content_study .study_box li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;}
+.content_study .study_box li .media_study{height:74px;overflow: hidden;}
+.content_study .study_box li .media_study .media-left{width: 115px;height: 74px;position: relative;overflow: hidden;}
+.content_study .study_box li .media_study .media-left img{width: 115px;height: 74px;}
+.content_study .study_box li .media_study .media-left span{display: block;overflow: hidden;background:url(./img/video.png) no-repeat center center;position: absolute;left: 0;top: 0;z-index: 900;width: 115px;height: 74px;}
+.content_study .study_box li .media_study .media-body{padding: 3px 0;}
+.content_study .study_box li .media_study .media-body .title{padding: 0;font-size: 1.22rem;margin-bottom:8px;height: 24px;line-height: 24px;overflow: hidden;}
+.content_study .study_box li .media_study .media-body .courseTeacher{padding: 0;margin-bottom: 2px}
+.content_study .study_box li .media_study .media-body .courseTeacher label{width: auto;color: #959595;font-size: 1rem;padding-right: 3px;}
+.content_study .study_box li .media_study .media-body .courseTeacher .x-edit{color: #959595;font-size: 1rem;}
+.content_study .study_box li .media_study .media-body .count{padding: 0;}
+.content_study .study_box li .media_study .media-body .count label{width: auto;color: #959595;font-size: 1rem;padding-right: 3px;}
+.content_study .study_box li .media_study .media-body .count .x-edit{color: #1195db;font-size: 1rem;}
+.content_study .studyMore .moreCourse {padding: 10px 3% 30px;width: 100%;background: #fff;}
+.content_study .studyMore .moreCourse table{border-collapse: collapse;margin-bottom: 0;border:none;}
+.content_study .studyMore .moreCourse table td{padding: 5px;text-align: center;border:none;height: 32px;line-height: 32px}
+.content_study .studyMore .moreCourse table td label{border:1px solid #1195db;border-radius: 5px;display: block;color: #1195db;font-weight: normal;font-size: 1.1rem}
+.content_study .studyMore .moreCourse table td label:hover{background: #1195db;color: #fff}
+#blackbg{height: 100%;background: #000;position: fixed;top: 0;left: 0;width: 100%;z-index:998;opacity: 0.7;display: none}
 
 /*学习界面*/
 

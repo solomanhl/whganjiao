@@ -2,18 +2,18 @@
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:110px;left:16px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="课程id" name="id" type="Integer" xid="xid1"></column>
-  <column label="申请量" name="users" type="Integer" xid="xid2"></column>
-  <column label="状态" name="status" type="Integer" xid="xid3"></column>
-  <column label="评论数" name="speaks" type="Integer" xid="xid19"></column>
+  <column label="申请量" name="users" type="String" xid="xid2"></column>
+  <column label="状态" name="status" type="String" xid="xid3"></column>
+  <column label="评论数" name="speaks" type="String" xid="xid19"></column>
   <column label="讲师" name="teachers" type="String" xid="xid11"></column>
   <column label="课程介绍" name="absract" type="String" xid="xid12"></column>
-  <column label="完成人数" name="completes" type="Integer" xid="xid13"></column>
+  <column label="完成人数" name="completes" type="String" xid="xid13"></column>
   <column label="课程分类" name="typeName" type="String" xid="xid14"></column>
-  <column label="课时" name="classhour" type="Integer" xid="xid15"></column>
-  <column label="学时" name="times" type="Integer" xid="xid16"></column>
+  <column label="课时" name="classhour" type="String" xid="xid15"></column>
+  <column label="学时" name="times" type="String" xid="xid16"></column>
   <column label="课程名" name="name" type="String" xid="xid4"></column>
-  <column label="点击量" name="clicks" type="Integer" xid="xid17"></column>
-  <column label="学习人数" name="learns" type="Integer" xid="xid18"></column>
+  <column label="点击量" name="clicks" type="String" xid="xid17"></column>
+  <column label="学习人数" name="learns" type="String" xid="xid18"></column>
   <column label="课程图片" name="titleImg" type="String" xid="xid5"></column>
   <data xid="default1">[]</data></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="comment" idColumn="id"><column label="评论id" name="id" type="Integer" xid="xid6"></column>

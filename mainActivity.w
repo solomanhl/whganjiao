@@ -36,8 +36,7 @@
       <column label="原帖作者" name="author2" type="String" xid="xid13"/>  
       <column label="点赞数" name="zanNum" type="Integer" xid="xid14"/>  
       <column label="评论数" name="pinNum" type="Integer" xid="xid15"/>  
-      <data xid="default2">[{"id":"1","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"2","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"3","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"4","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"5","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"6","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"7","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"8","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"9","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"10","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"11","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"12","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"13","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"14","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7},{"id":"15","author":"李萌","dateline":"4分钟前","message":"在网络学习中，除了聆听教育专家和优秀老师的讲座，更可喜的是进一步加强和巩固我薄弱的课程。","title":"发展互联网工业，促进工业转型升级（上）","author2":"李某某","zanNum":144,"pinNum":7}]</data>
-    </div>
+      <data xid="default2">[]</data></div>
   </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
@@ -116,22 +115,10 @@
    <span xid="span11">更多课程</span>
    <img src="img/arrow2.png" alt=""/>
   </a><div component="$UI/system/components/justep/popOver/popOver" class="moreCourse" direction="auto" xid="popOver_moreCourse" anchor="button_studyMore" style="display:none">
-   <div class="" xid="div10"><table class="table table-bordered table-hover table-striped" component="$UI/system/components/bootstrap/table/table" xid="table_courseGroup" >
-   
-   <tbody class="x-list-template" xid="listTemplate1">
-    <tr xid="tr1">
-     <td xid="td1">
-  <label xid="label_course1"><![CDATA[时事热点]]></label></td>
-     <td xid="td2"><label xid="label_course2"><![CDATA[政治理论]]></label></td>
-     <td xid="td3"><label xid="label_course3"><![CDATA[公共管理]]></label></td>
-     <td xid="td4"><label xid="label_course4"><![CDATA[经济管理]]></label></td>
-  </tr> 
-  <tr xid="tr2"><td xid="td5"><label xid="label_course5"><![CDATA[企业管理]]></label></td>
-  <td xid="td6"><label xid="label_course6"><![CDATA[党政建设]]></label></td>
-  <td xid="td7"><label xid="label_course7"><![CDATA[法律法规]]></label></td>
-  <td xid="td8"><label xid="label_course8"><![CDATA[领导科学]]></label></td>
-  </tr></tbody> </table>
-  </div></div></div></div>
+   <div class="" xid="div10">
+  <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_courseGroup" data="course_group">
+   <ul class="x-list-template" xid="listTemplateUl_courseGroup">
+    <li xid="li_courseGroup" bind-click="li_courseGroupClick"><label xid="label_groupname" bind-text='ref("name")'><![CDATA[]]></label></li></ul> </div></div></div></div></div>
 
    <div class="x-panel-content study_box" xid="content3"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown">
    <div class="x-content-center x-pull-down container" xid="div4">

@@ -13,6 +13,7 @@ define(function(require){
 		//学习课程
 		this.pageNo_study = 0;
 		this.totalPage_study = 0;
+		this.typeId_study = 1; //课程分类默认1
 	};
 	
 	//路径转换
@@ -163,7 +164,7 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 	        	"pageNo" : me.pageNo_study,
-	        	"typeId" : "1"
+	        	"typeId" : me.typeId_study,
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -222,7 +223,7 @@ define(function(require){
 	        	typesObj = resultData.types;
 	        	
 //	        	alert(me.totalPage_study);
-//	        	alert(contentsObj);
+//	        	alert(JSON.stringify(typesObj));
 	        	        	
 //	        	$.each(resultData,function(name,value) { 
 //	        		alert(name); 
@@ -361,6 +362,18 @@ define(function(require){
 	
 
 
+	//点击课程分类
+	Model.prototype.li_courseGroupClick = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+		this.typeId_study = current.val("id");	//分类id
+		this.pageNo_study = 1;
+		this.getCourse(false);		
+		this.comp("popOver_moreCourse").hide();
+		$("#blackbg").hide();
+	};
+	
+
+
 
 	return Model;
 });
@@ -403,7 +416,7 @@ $(function(){
 	$(".content_study .studyMore .btn_more").click(function(){
 		$(".content_study .studyMore .moreCourse").show();
 		$("#blackbg").show();
-	})
+	})	
 
 	$("#blackbg").click(function(){
 		$("#blackbg").hide();

@@ -56,11 +56,10 @@ body{font-family: 微软雅黑}
 .content_study .study_box li .media_study .media-body .count{padding: 0;}
 .content_study .study_box li .media_study .media-body .count label{width: auto;color: #959595;font-size: 1rem;padding-right: 3px;}
 .content_study .study_box li .media_study .media-body .count .x-edit{color: #1195db;font-size: 1rem;}
-.content_study .studyMore .moreCourse {padding: 10px 3% 30px;width: 100%;background: #fff;}
-.content_study .studyMore .moreCourse table{border-collapse: collapse;margin-bottom: 0;border:none;}
-.content_study .studyMore .moreCourse table td{padding: 5px;text-align: center;border:none;height: 32px;line-height: 32px}
-.content_study .studyMore .moreCourse table td label{border:1px solid #1195db;border-radius: 5px;display: block;color: #1195db;font-weight: normal;font-size: 1.1rem}
-.content_study .studyMore .moreCourse table td label:hover{background: #1195db;color: #fff}
+.content_study .studyMore .moreCourse{padding: 10px 3% 30px;width: 100%;background: #fff;overflow: hidden;}
+.content_study .studyMore .moreCourse li{margin: 0 1% 10px;float: left;text-align: center;line-height: 1.4rem;border:1px solid #1195db;border-radius: 5px;color: #1195db;padding: 10px}
+.content_study .studyMore .moreCourse li label{font-weight: normal;font-size: 1.1rem}
+.content_study .studyMore .moreCourse li:hover{background: #1195db;color: #fff}
 #blackbg{height: 100%;background: #000;position: fixed;top: 0;left: 0;width: 100%;z-index:998;opacity: 0.7;display: none}
 
 /*学习界面*/

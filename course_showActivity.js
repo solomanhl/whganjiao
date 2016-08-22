@@ -26,7 +26,8 @@ define(function(require){
 	};
 	
 	Model.prototype.modelModelConstruct = function(event){
-		this.getComment(false);
+//		this.getCourse();
+//		this.getComment(false);
 	};
 	
 	//获取课程信息
@@ -37,13 +38,16 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course.jspx",
+//	        url: "http://whce.whgky.cn/app/course.jspx",
+	        url: "http://192.168.1.23:8080/app/course.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-	        	"courseId" : me.courseId,
-	        	"userId" : me.userId
+//	        	"courseId" : me.courseId,
+//	        	"userId" : me.userId
+	        	"courseId" : 1,
+	        	"userId" : 53
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -58,14 +62,18 @@ define(function(require){
 //	        		}
 //	        	);
 	        	
-	        	json={"@type" : "table", "course" : {"idColumnName" : "id", "idColumnType" : "Integer", },"rows" : resultData };
+//	        	var str = "{\"course\":[{\"id\":13,\"absract\":\"123143234234\"}]}";
+//	        	var strObj = JSON.parse(str);
+	        	var courseObj = resultData.courses;
+	        	json={"@type" : "table", "course" : {"idColumnName" : "id", "idColumnType" : "Integer", },"rows" : courseObj };
 	        	course.loadData(json, false);
+	        	course.last();
 	        	
-//	        	alert(course.count());
+//	        	alert("课程数据" + course.count());
 	        	
 	        },
-	         error:function (){  
-	        	 alert("服务器数据错误");
+	         error:function (msg){  
+	        	 alert("服务器数据错误" + JSON.stringify(msg));
 	         }
 	    });
 	}
@@ -84,7 +92,7 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 	        	"courseId" : me.courseId,
-	        	"pageNo" : "1"
+	        	"pageNo" : me.pageNo_comment
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -110,7 +118,7 @@ define(function(require){
         		comment.loadData(json, isApend);
 	        	
 	        	
-//	        	alert(comment.count());
+//	        	alert("评论数据" + comment.count());
 	        	
 	        },
 	         error:function (){  

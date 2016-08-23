@@ -1,0 +1,13 @@
+.myCourse{background:#f6f6f6;}
+.myCourse .x-titlebar-title{font-weight: normal;}
+.myCourse .course_box li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;}
+.myCourse .course_box li .media_study{height:74px;overflow: hidden;}
+.myCourse .course_box li .media_study .media-left{width: 115px;height: 74px;position: relative;overflow: hidden;}
+.myCourse .course_box li .media_study .media-left img{width: 115px;height: 74px;}
+.myCourse .course_box li .media_study .media-left span{display: block;overflow: hidden;background:url(./img/video.png) no-repeat center center;position: absolute;left: 0;top: 0;z-index: 900;width: 115px;height: 74px;}
+.myCourse .course_box li .media_study .media-body{padding: 3px 0;}
+.myCourse .course_box li .media_study .media-body .title{padding: 0;font-size: 1.22rem;margin-bottom:8px;height: 42px;line-height: 1.9rem;overflow: hidden;}
+.myCourse .course_box li .media_study .media-body .count{padding: 0;}
+.myCourse .course_box li .media_study .media-body .count label{width: auto;color: #959595;font-size: 1.1rem;padding-right: 3px;}
+.myCourse .course_box li .media_study .media-body .count .x-edit{color: #1195db;font-size: 1.1rem;}
+

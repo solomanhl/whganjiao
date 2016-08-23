@@ -68,14 +68,15 @@ body{font-family: 微软雅黑}
 .content_comm .x-scroll-content li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;margin-bottom: 10px}
 .content_comm .x-scroll-content li .media-left{width: 3.5rem;}
 .content_comm .x-scroll-content li .media-left img{width: 3.5rem;height: 3.5rem;border-radius: 100%}
-.content_comm .x-scroll-content li .media-body .info{height: 2.5rem;line-height: 2.5rem;position: relative;overflow: hidden;}
-.content_comm .x-scroll-content li .media-body .author{font-size: 1.3rem;padding:0;line-height: 2.5rem}
+.content_comm .x-scroll-content li .media-body .info{height: 2.5rem;line-height: 2.5rem;position: relative;overflow: hidden;margin-bottom: 5px}
+.content_comm .x-scroll-content li .media-body .author{font-size: 1.25rem;padding:0;line-height: 2.5rem}
 .content_comm .x-scroll-content li .media-body .date{font-size: 1rem;color: #959595;padding: 0;position: absolute;right: 0;top: 0;line-height: 2.5rem}
-.content_comm .x-scroll-content li .message{font-size:1.2rem;padding-top: 0.6rem;margin-bottom: 10px}
+.content_comm .x-scroll-content li .message{font-size:1.1rem;margin-bottom: 10px;padding: 0;color: #666}
 .content_comm .x-scroll-content li .detail{background: #f6f6f6;padding: 8px;border:none;margin-bottom: 1rem}
-.content_comm .x-scroll-content li .detail .media-left{width: 4rem;height:4rem}
+.content_comm .x-scroll-content li .detail .media-left{width: 4rem;height:4rem;overflow: hidden;position: relative;}
+.content_comm .x-scroll-content li .detail .media-left span{display: block;overflow: hidden;background:#000 url(./img/pause.png) no-repeat center center;background-size: 2.5rem;position: absolute;left: 0;top: 0;z-index: 900;width: 4rem;height: 4rem;opacity: 0.6}
 .content_comm .x-scroll-content li .detail .media-left img{width: 4rem;height: 4rem;border-radius: 0}
-.content_comm .x-scroll-content li .detail .media-body{padding: 0.2rem 0 0.2rem 3.6rem;background: url(./img/paly_icon.png) no-repeat left center;background-size: 3rem}
+.content_comm .x-scroll-content li .detail .media-body{padding: 0.2rem 0;background-size: 3rem}
 .content_comm .x-scroll-content li .detail .media-body .title{font-size: 1.1rem;padding: 0;height: 1.8rem;overflow: hidden;line-height: 1.8rem}
 .content_comm .x-scroll-content li .detail .media-body .author2{color: #959595;font-size: 1.1rem;padding: 0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
 .content_comm .x-scroll-content li .detail .media-body .author2 label{width: auto;margin-right: 5px;padding:0;}

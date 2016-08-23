@@ -1,0 +1,17 @@
+.peixun .x-titlebar-title{font-weight: normal;}
+.peixun{background: #f6f6f6}
+.peixun .x-scroll-content{overflow: hidden;padding-top: 0.8rem}
+.peixun .x-scroll-content li{float: left;margin: 0 0.75% 0.8rem 1.5%;width: 47.75%;border: 1px solid #dfdfdf;background: #fff;padding-bottom: 5px}
+.peixun .x-scroll-content li:nth-child(2n){margin: 0 1.5% 0.8rem 0.75%}
+.peixun .x-scroll-content li img{width: 100%;border-bottom: 1px solid #dfdfdf;margin-bottom: 3px} 
+.peixun .x-scroll-content li label{font-weight: normal;color: #959595;font-size: 1rem;}
+.peixun .x-scroll-content li span{font-weight: normal;color: #959595;font-size: 1rem;}
+.peixun .x-scroll-content li .title{padding:0 3%;display: block;color: #333;font-size: 1.25rem;margin-bottom: 5px;color: #007fb1}
+.peixun .x-scroll-content li ins{display: block;font-style: normal;margin-bottom: 2px;padding: 0 3%;text-decoration: none;}
+
+
+
+
+
+
+

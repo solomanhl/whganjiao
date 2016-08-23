@@ -6,6 +6,11 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		//用户登录信息
+		this.username = "";
+		this.userid = "";
+		this.status = 0;
+		
 		//首页新闻
 		this.pageNo = 0;
 		this.totalPage = 0;
@@ -14,6 +19,10 @@ define(function(require){
 		this.pageNo_study = 0;
 		this.totalPage_study = 0;
 		this.typeId_study = 1; //课程分类默认1
+		
+		//交流页
+		this.pageNo_communicate = 0;
+    	this.totalPage_communicate = 0;
 	};
 	
 	//路径转换
@@ -89,8 +98,20 @@ define(function(require){
 		
 		//4.获取课程分类
 		this.getCourseGroup();
+		
+		//5.获取交流
+		this.getCommunicate(false);
+		
+		//6.获取用户状态
+		this.getUserStatus();
 	};
 
+
+	Model.prototype.getUserStatus = function(){
+		this.username = localStorage.getItem('username');
+		this.userid = localStorage.getItem('userid');
+		this.status = localStorage.getItem('status');
+	};
 
 	// 下划刷新
 	Model.prototype.scrollView1PullDown = function(event){
@@ -372,6 +393,140 @@ define(function(require){
 		$("#blackbg").hide();
 	};
 	
+	//交流页，获取课程评论
+	Model.prototype.getCommunicate = function (isApend){
+		var me = this;
+		var communicate = this.comp("communicate");
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+//	        url: "http://whce.whgky.cn/app/course-experience-list.jspx",
+	        url: "http://192.168.1.23:8080/app/course-experience-list.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"pageNo" : me.pageNo_comment
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+	        	var experiencesObj = resultData.experiences;
+	        	var pageNoObj = resultData.pageNo;
+	        	var totalPageObj = resultData.totalPage;
+	        	
+	        	me.pageNo_communicate = pageNoObj;
+	        	me.totalPage_communicate = totalPageObj;
+//	        	alert(me.totalPage_study);
+//	        	alert(experiencesObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	json={"@type" : "table","communicate" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :experiencesObj };
+	        	
+        		communicate.loadData(json, isApend);
+	        	
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	}
+
+	//点击交流页的一条评论
+	Model.prototype.li_commClick = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+		var url = require.toUrl("./course_showActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        courseId : current.val("id"),
+	        userId : "",
+	        data : {
+	            // 将data中的一行数据传给对话框
+//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+	        }
+	    }
+		justep.Shell.showPage(url, params);
+	};
+
+	//下拉交流页
+	Model.prototype.scrollView_commPullDown = function(event){
+		this.getCommunicate(false);
+	};
+
+	//上拉交流页
+	Model.prototype.scrollView_commPullUp = function(event){	
+		if (this.pageNo_communicate < this.totalPage_communicate){
+			this.pageNo_communicate++;
+		}
+	};
+
+
+	//点击登录
+	Model.prototype.div_userClick = function(event){
+//		alert(this.username + this.userid + this.status);
+		if (this.username != ""  && this.userid != "" && this.status =="1"){
+//			$("label_username").val(this.username);
+			var url = require.toUrl("./personalActivity.w");
+			var params = {
+		        from : "mainActivity",
+		        username : this.username,
+		        userid : this.userid,
+		        status : this.status
+		    }
+			justep.Shell.showPage(url, params);
+		}else{
+//			$("label_username").val("请登录");
+			var url = require.toUrl("./loginActivity.w");
+			var params = {
+		        from : "mainActivity",
+		    }
+			justep.Shell.showPage(url, params);
+		}
+	};
+
+
+	//我的课程
+	Model.prototype.div_projectClick = function(event){
+		var url = require.toUrl("./myCoursesActivity.w");
+			var params = {
+		        from : "mainActivity",
+		        userId : 53
+		    }
+			justep.Shell.showPage(url, params);
+	};
+	
+	
+	//考试列表
+	Model.prototype.div_banjiClick = function(event){
+		
+		var url = require.toUrl("./examActivity.w");
+			var params = {
+		        from : "mainActivity",
+		    }
+			justep.Shell.showPage(url, params);
+	};
+
+
+	//我的培训计划
+	Model.prototype.div_peixunClick = function(event){
+		var url = require.toUrl("./peixunActivity.w");
+			var params = {
+		        from : "mainActivity",
+		    }
+			justep.Shell.showPage(url, params);
+	};
+
+
 
 
 

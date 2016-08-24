@@ -138,5 +138,15 @@ define(function(require){
 		}
 	};
 
+
+	//点击播放
+	Model.prototype.div1Click = function(event){
+		var url = require.toUrl("./playActivity.w");
+			var params = {
+		        from : "course_showActivity",
+		    }
+			justep.Shell.showPage(url, params);
+	};
+
 	return Model;
 });

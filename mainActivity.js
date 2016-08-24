@@ -529,6 +529,27 @@ define(function(require){
 
 
 
+	//咨询答疑
+	Model.prototype.div_dayiClick = function(event){
+		var url = require.toUrl("./helpIndexActivity.w");
+			var params = {
+		        from : "mainActivity",
+		    }
+			justep.Shell.showPage(url, params);
+	};
+
+	//学习档案
+	Model.prototype.div_danganClick = function(event){
+		var url = require.toUrl("./xuexidanganActivity.w");
+			var params = {
+		        from : "mainActivity",
+		    }
+			justep.Shell.showPage(url, params);
+	};
+
+
+
+
 
 	return Model;
 });

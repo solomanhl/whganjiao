@@ -1,8 +1,8 @@
 {"rows":[
-{"id":"1","fImgUrl":"./main/img/carouselBox61.jpg","fUrl":"./detail.w"},
-{"id":"2","fImgUrl":"./main/img/carouselBox63.jpg","fUrl":"./detail.w"},
-{"id":"3","fImgUrl":"./main/img/carouselBox62.jpg","fUrl":"./detail.w"}
-
+{"id":"1","fImgUrl":"./main/img/carouselBox61.jpg","fUrl":"./newsContentActivity.ww"},
+{"id":"2","fImgUrl":"./main/img/carouselBox63.jpg","fUrl":"./newsContentActivity.w"},
+{"id":"3","fImgUrl":"./main/img/carouselBox62.jpg","fUrl":"./newsContentActivity.w"},
+{"id":"4","fImgUrl":"./main/img/carouselBox64.jpg","fUrl":"./newsContentActivity.w"}
 ]}
 
 

@@ -51,7 +51,7 @@
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i2"></i>
     <span class="x-pull-down-label" xid="span3">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div8">
-    <div class="comm_top">
+    <div class="comm_top" bind-click="div1Click">
     <img src="" alt="" xid="image_title" bind-attr-src=' $model.course.val("titleImg")'></img><ins></ins>
     </div>
     <span xid="span_title" bind-text='$model.course.val("name")' class="top_title"></span>    

@@ -294,7 +294,7 @@
             <img src="$UI/whganjiao/img/laba.png" alt="" xid="image_banjiicon"/>  
             <label xid="label_banji"><![CDATA[我的考试]]></label> 
           </div>  
-          <div xid="div_dangan" class="div_dangan same_me"> 
+          <div xid="div_dangan" class="div_dangan same_me" bind-click="div_danganClick"> 
             <img src="$UI/whganjiao/img/wenjianjia.png" alt="" xid="image_danganicon"/>  
             <label xid="label_dangan"><![CDATA[学习档案]]></label> 
           </div>  
@@ -302,7 +302,7 @@
             <img src="$UI/whganjiao/img/huancun.png" alt="" xid="image_huancunicon"/>  
             <label xid="label_huancun"><![CDATA[离线缓存]]></label> 
           </div>  
-          <div xid="div_dayi" class="div_dayi same_me"> 
+          <div xid="div_dayi" class="div_dayi same_me" bind-click="div_dayiClick"> 
             <img src="$UI/whganjiao/img/zixun.png" alt="" xid="image_dayiicon"/>  
             <label xid="label_dayi"><![CDATA[咨询答疑]]></label> 
           </div>  

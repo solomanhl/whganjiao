@@ -4,6 +4,22 @@ define(function(require){
 
 	var Model = function(){
 		this.callParent();
+		
+		this.userId = 53;
+	};
+
+	//修改信息
+	Model.prototype.div_xinxiClick = function(event){
+		this.edit();
+	};
+	
+	Model.prototype.edit = function(){
+		var url = require.toUrl("./editUserActivity.w");
+			var params = {
+		        from : "personalActivity",
+		        userId : this.userId
+		    }
+			justep.Shell.showPage(url, params);
 	};
 
 	return Model;

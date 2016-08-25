@@ -37,7 +37,7 @@
           </div>  
           <div class="x-titlebar-title">课程详情</div>  
           <div class="x-titlebar-right reverse comm_btn"> 
-          <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="" xid="button_comment">
+          <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="" xid="button_comment" bind-click="button_commentClick">
           <span xid="span1"></span></a></div>
         </div> 
       </div>  

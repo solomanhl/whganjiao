@@ -1,0 +1,15 @@
+body{font-family: 微软雅黑}
+.x-panel .x-panel-top .x-titlebar-title{font-weight: normal;}
+.files{background:#f6f6f6;}
+.files .x-panel-content .title{margin-bottom: 10px;background: #fff;padding: 1rem 3%;border-bottom: 1px solid #e6e6e6;}
+.files .x-panel-content .title .username{font-size: 1.4rem;font-weight: normal;margin-bottom: 0.6rem}
+.files .x-panel-content .title .text{font-size: 1.1rem;line-height: 1.6rem;}
+.files .x-panel-content .title .text b{color: #dd0000;}
+.files .x-panel-content .same{margin-bottom: 10px;background: #fff;padding: 1rem 3%;border-bottom: 1px solid #e6e6e6;}
+.files .x-panel-content .same label{font-size: 1.25rem;font-weight: normal;margin-bottom: 0.6rem}
+.files .x-panel-content .same table{width: 100%}
+.files .x-panel-content .same table td,.files .x-panel-content .same table th{border:1px solid #e6e6e6;text-align: center;background: #fff;font-size: 1.1rem;padding:6px 0;color: #666}
+.files .x-panel-content .same table th{background: #f8f5f0 none repeat scroll 0 0;color: #ac6531;font-weight: normal;}
+
+
+  

@@ -23,7 +23,7 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C7322F424B60000193BE164010802A60" style="bottom: 0px;">
+    <div class="x-panel-content  x-scroll-view help" xid="content1" _xid="C7322F424B60000193BE164010802A60" style="bottom: 0px;">
   <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1">
    <div class="x-content-center x-pull-down container" xid="div2">
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"></i>
@@ -35,4 +35,6 @@
    <div class="x-content-center x-pull-up" xid="div4">
     <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>
   </div> 
+    <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
+  <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource>
 </div>

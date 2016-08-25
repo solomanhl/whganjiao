@@ -1,0 +1,10 @@
+body{font-family: 微软雅黑}
+.x-panel .x-panel-top .x-titlebar-title{font-weight: normal;}
+.help{background: #f6f6f6;}
+.help li{padding: 0 0 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 4rem;line-height: 4rem;overflow: hidden;background-size: 0.6rem;color: #959595;}
+.help li .x-output{padding: 0;color: #666;border-bottom:1px solid #eee;height: 4rem;line-height: 4rem;}
+.help li:last-child .x-output{border:none;}
+.help li:last-child{border-bottom:1px solid #eee;}
+
+
+

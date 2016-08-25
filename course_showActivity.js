@@ -39,7 +39,7 @@ define(function(require){
 	        type: "get",
 	        "async" : false,
 //	        url: "http://whce.whgky.cn/app/course.jspx",
-	        url: "http://192.168.1.23:8080/app/course.jspx",
+	        url: "http://192.168.1.22:8080/app/course.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -144,6 +144,17 @@ define(function(require){
 		var url = require.toUrl("./playActivity.w");
 			var params = {
 		        from : "course_showActivity",
+		    }
+			justep.Shell.showPage(url, params);
+	};
+
+	//点击写评论
+	Model.prototype.button_commentClick = function(event){
+		var url = require.toUrl("./editActivity.w");
+			var params = {
+		        from : "course_showActivity",
+		        courseId : this.courseId,
+		        userId : this.userId
 		    }
 			justep.Shell.showPage(url, params);
 	};

@@ -33,7 +33,7 @@ define(function(require){
 	        type: "get",
 	        "async" : false,
 //	        url: "http://whce.whgky.cn/app/user-archives.jspx",
-	        url: "http://192.168.1.23:8080/app/user-archives.jspx",
+	        url: "http://192.168.1.22:8080/app/user-archives.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -68,6 +68,9 @@ define(function(require){
 					+ "</b>学时，您的学时在全市排名<b>" +  dangan.getValue("rank") + "</b>，祝您学有所成！";
 					
 				outTitle.set({value : titleValue});
+				$("b").css("color","#dd0000");
+				$("b").css("font-weight","normal");
+				
 	        	dataTables1.reload();
 	        	dataTables2.reload();
 	        	dataTables3.reload();

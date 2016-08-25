@@ -1,0 +1,4 @@
+.x-panel-content{width: 100%;height: 100%;background: #000}
+.x-panel-content #div1{width: 100%;position: fixed;left: 0;top: 50%;margin-top: -150px;overflow: hidden;display: block;clear: both;height: 300px}
+.x-panel-content #div1 #a1{height: 300px;width: 100%}
+

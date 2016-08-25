@@ -402,7 +402,7 @@ define(function(require){
 	        type: "get",
 	        "async" : false,
 //	        url: "http://whce.whgky.cn/app/course-experience-list.jspx",
-	        url: "http://192.168.1.23:8080/app/course-experience-list.jspx",
+	        url: "http://192.168.1.22:8080/app/course-experience-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

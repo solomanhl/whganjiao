@@ -32,7 +32,7 @@
   <span xid="span_tongzhi"><![CDATA[我的通知]]></span></div>
   <div xid="div_xinxi" class="same div_xinxi" bind-click="div_xinxiClick"><img src="$UI/whganjiao/img/personal_icon3.png" alt="" xid="image_xinxi"></img>
   <span xid="span_xinxi"><![CDATA[修改信息]]></span></div>
-  <div xid="div_mima" class="same div_mima"><img src="$UI/whganjiao/img/personal_icon4.png" alt="" xid="image_mima"></img>
+  <div xid="div_mima" class="same div_mima" bind-click="div_mimaClick"><img src="$UI/whganjiao/img/personal_icon4.png" alt="" xid="image_mima"></img>
   <span xid="span_mima"><![CDATA[修改密码]]></span></div>
   <div xid="div_banghzu" class="same div_banghzu"><img src="$UI/whganjiao/img/personal_icon5.png" alt="" xid="image_bangzhu"></img>
   <span xid="span_bangzhu"><![CDATA[帮助咨询]]></span></div></div>

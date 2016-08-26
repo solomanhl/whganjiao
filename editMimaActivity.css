@@ -1,0 +1,15 @@
+body{font-family: 微软雅黑}
+.x-panel .x-panel-top .x-titlebar-title{font-weight: normal;}
+.change_pass .x-panel-content{background: #f6f6f6;padding: 1rem 0;overflow: hidden;}
+.change_pass .x-panel-content label{color: #959595;padding-left: 5%;display: block;margin-bottom: 0.8rem}
+.change_pass .x-panel-content .x-label-edit{display: block;}
+.change_pass .x-panel-content input{display: block;background: #fff;border-top: 1px solid #eee;border-bottom: 1px solid #eee;padding: 1rem 5%;width: 100%;border-radius: 0;height: auto;}
+.change_pass .x-panel-content .btn{width: 90%;height: 3rem;line-height: 3rem;border:none;margin: 2rem auto 0;border-radius: 3px;padding: 0;display: block;font-size: 1.3rem;}
+
+
+
+
+
+
+
+

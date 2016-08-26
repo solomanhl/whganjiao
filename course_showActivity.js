@@ -2,6 +2,8 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 
+	require("cordova!cordova-plugin-screen-orientation");
+ 
 	var Model = function(){
 		this.callParent();
 		
@@ -38,8 +40,8 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-//	        url: "http://whce.whgky.cn/app/course.jspx",
-	        url: "http://192.168.1.22:8080/app/course.jspx",
+	        url: "http://whce.whgky.cn/app/course.jspx",
+//	        url: "http://192.168.1.22:8080/app/course.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -67,7 +69,7 @@ define(function(require){
 	        	var courseObj = resultData.courses;
 	        	json={"@type" : "table", "course" : {"idColumnName" : "id", "idColumnType" : "Integer", },"rows" : courseObj };
 	        	course.loadData(json, false);
-	        	course.last();
+	        	course.first();
 	        	
 //	        	alert("课程数据" + course.count());
 	        	
@@ -141,6 +143,8 @@ define(function(require){
 
 	//点击播放
 	Model.prototype.div1Click = function(event){
+		//去播放之前先切换成横屏模式
+		cordova.plugins.screenorientation.setOrientation('landscape');//横屏模式
 		var url = require.toUrl("./playActivity.w");
 			var params = {
 		        from : "course_showActivity",

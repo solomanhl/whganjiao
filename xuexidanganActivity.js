@@ -8,15 +8,15 @@ define(function(require){
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
-		this.getData(false);
-		this.comp("dataTables1").reload();
+		
 		
 		
 	};
 	
 	
 	Model.prototype.modelLoad = function(event){
-		
+		this.getData(false);
+		this.comp("dataTables1").reload();
 	};
 	
 	
@@ -32,8 +32,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-//	        url: "http://whce.whgky.cn/app/user-archives.jspx",
-	        url: "http://192.168.1.22:8080/app/user-archives.jspx",
+	        url: "http://whce.whgky.cn/app/user-archives.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

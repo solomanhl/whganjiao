@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onParamsReceive="modelParamsReceive"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:109px;left:92px;height:auto;" onParamsReceive="modelParamsReceive"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="content" idColumn="id"><column label="contentID" name="id" type="Integer" xid="xid1"></column>
   <column label="作者" name="author" type="String" xid="xid2"></column>
   <column label="标题" name="title" type="String" xid="xid3"></column>
@@ -31,11 +31,11 @@
         <label class="x-label" xid="label_date"><![CDATA[发布时间]]></label>
         <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_date"></div>
       </div>
-      <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 date" xid="labelEdit_author">
+      <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 date author" xid="labelEdit_author">
         <label class="x-label" xid="label_author"><![CDATA[作者]]></label>
         <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_author"></div>
       </div>
-      <div component="$UI/system/components/justep/output/output" class="x-output" xid="output_content"></div>
+      <div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_content"></div>
   </div>
   </div> 
 </div>

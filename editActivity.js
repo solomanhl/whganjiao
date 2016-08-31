@@ -4,6 +4,7 @@ define(function(require){
 	
 	require("$UI/system/lib/cordova/cordova");
 	require("cordova!cordova-plugin-x-toast");
+	require("cordova!cordova-plugin-screen-orientation");
 
 	var Model = function(){
 		this.callParent();
@@ -17,6 +18,9 @@ define(function(require){
 		var me = this;
 	    this.courseId = event.params.courseId;
 	    this.userId = event.params.userId;
+	    
+	    if (justep.Browser.isX5App) 
+	    cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 	};
 
 	Model.prototype.button1Click = function(event){
@@ -36,10 +40,10 @@ define(function(require){
 		        dataType: "jsonp",
 		        jsonp: "CallBack",
 		        data: {
-	//	        	"courseId" : me.courseId,
-	//	        	"userId" : me.userId
-		        	"courseId" : 1,
-		        	"userId" : 53,
+		        	"courseId" : me.courseId,
+		        	"userId" : me.userId,
+//		        	"courseId" : 1,
+//		        	"userId" : 53,
 		        	"content" : txt
 		        },
 		        success: function(resultData) {

@@ -3,7 +3,7 @@
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:64px;left:326px;"
-    onModelConstruct="modelModelConstruct"> 
+    onModelConstruct="modelModelConstruct" onLoad="modelLoad" onunLoad="modelUnLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="news" idColumn="id"> 
       <column label="ID" name="id" type="Integer" xid="xid1"/>  
@@ -36,17 +36,16 @@
     </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="communicate" idColumn="id"> 
-      <column label="id" name="id" type="String" xid="xid8"/>  
-      <column label="评论者" name="userName" type="String" xid="xid9"/>  
-      <column label="评论者头像" name="userImg" type="String" xid="xid10"/>  
-      <column label="评论内容" name="content" type="String" xid="xid11"/>  
-      <column label="评论时间" name="date" type="String" xid="xid12"/>  
-      <column label="课程图像" name="titleImg" type="String" xid="xid13"/>  
-      <column label="课程讲师" name="teacher" type="Integer" xid="xid14"/>  
-      <column label="课程标题" name="title" type="Integer" xid="xid15"/>  
-      <column label="课程id" name="courseId" type="String" xid="xid24"/>  
-      <data xid="default2">[]</data>
-    </div> 
+      <column label="id" name="id" type="String" xid="xid8"></column>
+  <column label="评论者" name="realname" type="String" xid="xid9"></column>
+  <column label="评论者头像" name="userImg" type="String" xid="xid10"></column>
+  <column label="评论内容" name="content" type="String" xid="xid11"></column>
+  <column label="评论时间" name="date" type="String" xid="xid12"></column>
+  <column label="课程图像" name="titleImg" type="String" xid="xid13"></column>
+  <column label="课程讲师" name="teacher" type="Integer" xid="xid14"></column>
+  <column label="课程标题" name="title" type="Integer" xid="xid15"></column>
+  <column label="课程id" name="courseId" type="String" xid="xid24"></column>
+  <data xid="default2">[]</data></div> 
   </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
@@ -139,34 +138,18 @@
             </div> 
           </div>
         </div>  
-        <div class="x-contents-content content_study  x-scroll-view" xid="content_study"
+        <div class="x-panel-content x-contents-content content_study  x-scroll-view " xid="content_study"
           onActive="content_studyActive" onactive="content_studyActive"> 
           <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
             xid="panel2"> 
             <div class="x-panel-top studyTop" xid="top3">
-              <div xid="div_studyMore" class="studyMore">
-                <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default btn_more" label="更多课程" xid="button_studyMore"
-                  onClick="button_studyMoreClick"> 
+              
+            <div xid="div_studyMore"  class="studyMore">
+                
+                <a component="$UI/system/components/justep/button/button" class="btn btn-default btn_more" label="更多课程" xid="button_studyMore" onClick="button_studyMoreClick"> 
                   <span xid="span11">更多课程</span>  
-                  <img src="img/arrow2.png" alt=""/> 
-                </a>
-                <div component="$UI/system/components/justep/popOver/popOver"
-                  class="moreCourse" direction="auto" xid="popOver_moreCourse" anchor="button_studyMore"
-                  style="display:none"> 
-                  <div class="" xid="div10"> 
-                    <div component="$UI/system/components/justep/list/list"
-                      class="x-list" xid="list_courseGroup" data="course_group"> 
-                      <ul class="x-list-template" xid="listTemplateUl_courseGroup"> 
-                        <li xid="li_courseGroup" bind-click="li_courseGroupClick">
-                          <label xid="label_groupname" bind-text="ref(&quot;name&quot;)"><![CDATA[]]></label>
-                        </li>
-                      </ul> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>  
+                  <img src="img/arrow2.png" alt="" /> 
+                </a></div></div>  
             <div class="x-panel-content study_box" xid="content3">
               <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown"> 
@@ -216,7 +199,7 @@
               </div>
             </div> 
           </div>  
-          <div id="blackbg"/> 
+         <!--  <div id="blackbg"/>  -->
         </div>  
         <div class="x-contents-content  x-scroll-view content_comm" xid="content_comm"
           onActive="content_commActive"> 
@@ -234,14 +217,14 @@
                     <div class="media" xid="media_comm1"> 
                       <div class="media-left" xid="mediaLeft1"> 
                         <a href="#" xid="a1"> 
-                          <img class="media-object" alt="" xid="image12" bind-attr-src=" val(&quot;userImg&quot;)"/>  
+                          <img class="media-object" alt="" xid="image12" src="$UI/whganjiao/img/user_pic.png"/>  
                           <span/> 
                         </a> 
                       </div>  
                       <div class="media-body" xid="mediaBody1"> 
                         <div xid="div_info" class="info"> 
                           <div component="$UI/system/components/justep/output/output"
-                            class="x-output author" xid="output_comm_author" bind-ref="ref(&quot;userName&quot;)"/>
+                            class="x-output author" xid="output_comm_author" bind-ref='ref("realname")'/>
                           <div component="$UI/system/components/justep/output/output"
                             class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)"/> 
                         </div>  
@@ -279,8 +262,8 @@
         </div>  
         <div class="x-contents-content content_me" xid="content_me" onActive="content_meActive"> 
           <div xid="div_user" class="div_user" bind-click="div_userClick"> 
-            <img src="$UI/whganjiao/img/user.png" alt="" xid="image_usericon"/>  
-            <label xid="label_username" bind-text="localStorage['username']"><![CDATA[请登录]]></label> 
+            <img alt="" xid="image_usericon" id="image_usericon"/>  
+            <label xid="label_username" id="label_username" bind-text="localStorage['username']"><![CDATA[请登录]]></label> 
           </div>  
           <div xid="div_project" class="div_project same_me" bind-click="div_projectClick"> 
             <img src="$UI/whganjiao/img/daohang.png" alt="" xid="image_projecticon"/>  
@@ -314,22 +297,26 @@
       </div> 
     </div>  
     <div class="x-panel-bottom" xid="bottom1"> 
-      <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group x-card btn-group-justified buttonGroup"
-        tabbed="true" xid="buttonGroup1"> 
+      <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group x-card btn-group-justified"
+        tabbed="true" xid="buttonGroup1" selected="button_home"> 
         <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-icon-top"
-          label="首页" xid="button_home" icon="linear linear-envelope" target="content_home"> 
+          xid="button_home" target="content_home" icon="linear linear-envelope" label="首页"> 
+          <i xid="i1" class="linear linear-envelope"/>  
           <span xid="span1" class="this">首页</span> 
         </a>  
         <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-icon-top"
           label="学习" xid="button_study" icon="linear linear-code" target="content_study"> 
+          <i xid="i2" class="linear linear-code"/>  
           <span xid="span2">学习</span> 
         </a>  
         <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-icon-top"
           label="交流" xid="button_comm" icon="linear linear-dice" target="content_comm"> 
+          <i xid="i3" class="linear linear-dice"/>
           <span xid="span3">交流</span> 
         </a>  
         <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-icon-top"
           label="个人" xid="button_user" icon="linear linear-chevronrightcircle" target="content_me"> 
+          <i xid="i4" class="linear linear-chevronrightcircle"/>
           <span xid="span4">个人</span> 
         </a> 
       </div> 
@@ -339,4 +326,12 @@
     <require xid="require1" url="css!$UI/whganjiao/base"/>  
     <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"/>
   </resource>
-</div>
+<div component="$UI/system/components/justep/popOver/popOver" class="x-popOver" direction="auto" xid="popOver_moreCourse" anchor="titleBar" opacity="0.2">
+   <div class="x-popOver-overlay" xid="div7"></div>
+   <div class="x-popOver-content" xid="div8"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_courseGroup" data="course_group"> 
+                      <ul class="x-list-template" xid="listTemplateUl_courseGroup"> 
+                        <li xid="li_courseGroup" bind-click="li_courseGroupClick">
+                          <label xid="label_groupname" bind-text="ref(&quot;name&quot;)"><![CDATA[]]></label>
+                        </li>
+                      </ul> 
+                    </div></div></div></div>

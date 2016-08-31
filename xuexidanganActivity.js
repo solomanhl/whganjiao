@@ -1,16 +1,21 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+	require("cordova!cordova-plugin-screen-orientation");
 
 	var Model = function(){
 		this.callParent();
-		
+		this.userId;
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
 		
+		var context = this.getContext();
+		var me = this;
+	    this.userId = event.params.userId;
 		
-		
+		if (justep.Browser.isX5App) 
+		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 	};
 	
 	
@@ -31,7 +36,7 @@ define(function(require){
 		
 		$.ajax({
 	        type: "get",
-	        "async" : false,
+	        "async" : true,//异步
 	        url: "http://whce.whgky.cn/app/user-archives.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
@@ -39,6 +44,7 @@ define(function(require){
 	        data: {
 //	        	"pageNo" : me.pageNo_exam
 //	        	"trainingclassId" : 1
+	        	"userId" : me.userId
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);

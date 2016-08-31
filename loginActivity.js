@@ -4,6 +4,7 @@ define(function(require){
 	
 	require("$UI/system/lib/cordova/cordova");
 	require("cordova!cordova-plugin-x-toast");
+	require("cordova!cordova-plugin-screen-orientation");
 
 	var Model = function(){
 		this.callParent();
@@ -65,7 +66,7 @@ define(function(require){
 	        	}
 	        	
 //	        	window.plugins.toast.show(msg, "long", "center");
-	        	me.saveLocal(username, userId, status);
+	        	me.saveLocal(username, userId, pwd, status);
 	        	if (status == 1){
 	        		justep.Shell.closePage();
 	        	}
@@ -81,10 +82,22 @@ define(function(require){
 	};
 	
 	//保存到本地
-	Model.prototype.saveLocal = function (username, userid, status){
+	Model.prototype.saveLocal = function (username, userid, password, status){
 		localStorage.setItem('username',username); 
 		localStorage.setItem('userid',userid); 
+		localStorage.setItem('password',password);
 		localStorage.setItem('status',status); 
+	};
+	
+	Model.prototype.modelLoad = function(event){
+		if (justep.Browser.isX5App) 
+		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+	};
+	
+	Model.prototype.modelUnLoad = function(event){
+		setTimeout(function(){
+			justep.Shell.fireEvent("onRefreshUser", {});
+		},5);
 	};
 	
 	return Model;

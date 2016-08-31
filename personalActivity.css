@@ -1,5 +1,5 @@
 .user_center{background:#f6f6f6;}
-.user_center .panel-top{height: 40px;background: #44bbea}
+.user_center .panel-top{background: #44bbea}
 .user_center .panel-top .x-titlebar{height: 40px;background: #44bbea}
 .user_center .panel-content .user_head{background: #44bbea;text-align: center;padding-bottom: 30px;overflow: hidden;}
 .user_center .panel-content .user_head ins{width: 96px;height: 96px;border:3px solid #fff;border-radius: 100%;display: inline-block;margin-bottom: 10px}
@@ -8,15 +8,14 @@
 
 /*头部图像*/
 
-.user_center .panel-content .same{border-bottom:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 4.6rem;background-size:0.8rem;overflow: hidden;}
-.user_center .panel-content .same img{height: 2.6rem;margin:1rem 14px 1rem 0;vertical-align: middle;float: left;}
-.user_center .panel-content .same span{font-size: 1.28rem;font-weight: normal;line-height: 2.6rem;display:block;height: 2.6rem;margin: 1rem 0;float: left}
+.user_center .panel-content .same{border-bottom:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 4rem;background-size:0.8rem;overflow: hidden;}
+.user_center .panel-content .same img{height: 2rem;margin:1rem 14px 1rem 0;vertical-align: middle;float: left;}
+.user_center .panel-content .same span{font-size: 1.28rem;font-weight: normal;line-height: 2rem;display:block;height: 2rem;margin: 1rem 0;float: left}
 .user_center .panel-content .div_paimin{margin-bottom: 1rem;background: #fff;position: relative;overflow: hidden;}
 .user_center .panel-content .div_paimin .num{position: absolute;right: 3%;top: 0;color: #007fb1;font-size: 1.3rem}
 
 /*列表*/
 
-
-
+.user_center .exit_btn{width: 100%;background: #fff;padding:0;height: 4rem;line-height: 4rem;border-radius: 0;border:none;border-bottom:1px solid #ededed;margin-top: 1.2rem;color: #db0000;font-size: 1.28rem;}
 
 

@@ -10,6 +10,7 @@ define(function(require){
 
 		
 	Model.prototype.modelModelConstruct = function(event){
+		if (justep.Browser.isX5App) 
  		cordova.plugins.screenorientation.setOrientation('landscape');//横屏模式
  //		cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
 	};
@@ -28,6 +29,9 @@ define(function(require){
 		var url = "http://movie.ks.js.cn/flv/other/1_0.mp4";
 		var type = '->video/mp4';
 		this.ckPlayer(url, type);
+		
+//		this.comp("titleBar1").set({"visible" : false});
+		$("#titleBar1").attr('visible', false); 
 	};
 	
 	Model.prototype.ckPlayer = function(url, type){
@@ -51,7 +55,14 @@ define(function(require){
 
 	
 	Model.prototype.modelUnLoad = function(event){
+		if (justep.Browser.isX5App) 
 		 cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+	};
+	
+
+	Model.prototype.div1Click = function(event){
+//		this.comp("titleBar1").set({"visible" : true});
+		$("#titleBar1").attr('visible', true); 
 	};
 	
 

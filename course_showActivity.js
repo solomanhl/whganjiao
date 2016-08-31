@@ -1,6 +1,7 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+//	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
 
 	require("cordova!cordova-plugin-screen-orientation");
  
@@ -22,12 +23,21 @@ define(function(require){
 		var me = this;
 	    this.courseId = event.params.courseId;
 	    this.userId = event.params.userId;
-	    
+//	    alert(this.courseId +  "/" + this.userId);
+
+	    if (justep.Browser.isX5App) 
+	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
+
+
 	    this.getCourse();
 		this.getComment(false);
+		
+		
 	};
 	
+	
 	Model.prototype.modelModelConstruct = function(event){
+//		alert("onConstruct");
 //		this.getCourse();
 //		this.getComment(false);
 	};
@@ -46,10 +56,10 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-//	        	"courseId" : me.courseId,
-//	        	"userId" : me.userId
-	        	"courseId" : 1,
-	        	"userId" : 53
+	        	"courseId" : me.courseId,
+	        	"userId" : me.userId
+//	        	"courseId" : 1,
+//	        	"userId" : 53
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -71,7 +81,11 @@ define(function(require){
 	        	course.loadData(json, false);
 	        	course.first();
 	        	
-//	        	alert("课程数据" + course.count());
+	        	var url = "http://movie.ks.js.cn/flv/other/1_0.mp4";
+				var type = '->video/mp4';
+				var img = course.getValue("titleImg");
+				me.ckPlayer(url, type, img);
+//	        	alert("课程数据" + course.getValue("times"));
 	        	
 	        },
 	         error:function (msg){  
@@ -140,11 +154,33 @@ define(function(require){
 		}
 	};
 
+	Model.prototype.ckPlayer = function(url, type, img){
+		var width = parseInt(document.getElementById("comm_top").offsetWidth * 0.88);
+		var height = parseInt(width * 10 / 16);
+//		alert(width);
+		
+		var flashvars={
+			f:url,
+			c:0,
+			p:0,	//不自动播放
+			g:0,	//视频直接g秒开始播放
+			i:img,	//初始化图片
+			lv:1	//锁定进度条，不让拖动
+		};
+		var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+		var video=[url + type];//html5支持
+		CKobject.embed('/ckplayer/ckplayer.swf','a1','ckplayer_a1',"100%","100%",true,flashvars,video,params);
+//		CKobject.embedSWF('/ckplayer/ckplayer.swf','a1','ckplayer_a1','100%','100%',flashvars,params);
 
+	}
+	
 	//点击播放
 	Model.prototype.div1Click = function(event){
 		//去播放之前先切换成横屏模式
+		if (justep.Browser.isX5App ) 
 		cordova.plugins.screenorientation.setOrientation('landscape');//横屏模式
+//		ShellImpl.isSinglePage = true;
+		justep.Shell.setIsSinglePage(true);
 		var url = require.toUrl("./playActivity.w");
 			var params = {
 		        from : "course_showActivity",
@@ -162,6 +198,13 @@ define(function(require){
 		    }
 			justep.Shell.showPage(url, params);
 	};
+
+
+	Model.prototype.modelUnLoad = function(event){
+		if (justep.Browser.isX5App ) 
+		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+	};
+
 
 	return Model;
 });

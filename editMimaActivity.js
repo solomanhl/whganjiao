@@ -1,6 +1,7 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+	require("cordova!cordova-plugin-screen-orientation");
 
 	var Model = function(){
 		this.callParent();
@@ -12,6 +13,9 @@ define(function(require){
 		var context = this.getContext();
 		var me = this;
 	    this.userId = event.params.userId;
+	    
+	    if (justep.Browser.isX5App) 
+	    cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 	};
 	
 	Model.prototype.button_submitClick = function(event){

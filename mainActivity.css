@@ -18,7 +18,10 @@ body{font-family: 微软雅黑}
 
 .x-panel-bottom .buttonGroup{height: 48px;padding: 3px 0;border-top: 1px solid #ededed;background: #fff}
 .x-panel-bottom .buttonGroup a{height: 38px;display: block;float: left;width: 25%;}
-.x-panel-bottom .buttonGroup a span{background:#fff url(./img/home2.png) no-repeat center top;background-size:18px;padding-top:22px;display:block;height:38px;width:100%;overflow:hidden;text-align:center;color:#959595;font-size:12px;font-weight: normal;}
+.x-panel-bottom .x-card.btn-group .btn{font-weight: normal;}
+.x-panel-bottom .x-card.btn-group .btn i{font-size:20px;}
+.x-panel-bottom .x-card.btn-group .btn, .x-card.btn-group .btn:active, .x-card.btn-group .btn:focus {border-top: none;}
+.x-panel-bottom .buttonGroup a span{background:#fff url(./img/home2.png) no-repeat center top;background-size:18px;padding-top:22px;display:block;height:38px;width:100%;overflow:hidden;text-align:center;color:#959595;font-size:12px;font-weight: normal;font-weight: normal;}
 .x-panel-bottom .buttonGroup a .this{color: #1195db}
 .x-panel-bottom .buttonGroup a:nth-child(1) span{background:url(./img/home2.png) no-repeat center top;background-size:18px;}
 .x-panel-bottom .buttonGroup a:nth-child(2) span{background:url(./img/study.png) no-repeat center top;background-size:18px;}
@@ -38,13 +41,13 @@ body{font-family: 微软雅黑}
 .content_study .course_list table{border:none;width: 100%}
 .content_study .course_list table td img{width:6rem;height: 6rem;}
 .content_study .course_list table td span{display: block;margin-top: 5px;font-size: 1.2rem;}*/
-.content_study{background:#f6f6f6;}
-.content_study .studyTop{z-index: 999;height: auto;margin-bottom: 10px}
-.content_study .studyMore{height:auto;overflow: hidden;background: #fff;border-bottom:1px solid #ededed;}
+.content_study{background:#f6f6f6;top:0;}
+.content_study .studyTop{z-index: 999;height: auto;margin-bottom: 10px;position: absolute;top:0;left: 0;}
+.content_study .studyMore{height:auto;overflow: hidden;background: #fff;border-bottom:1px solid #ededed; }
 .content_study .studyMore .btn_more{text-align: center;padding:0;color: #444;border:none;display: block;width: auto;height: 3.2rem;line-height: 3.2rem;background: none}
 .content_study .studyMore .btn_more img{width: 1rem}
 .content_study .study_box li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;}
-.content_study .study_box li .media_study{height:74px;overflow: hidden;}
+.content_study .study_box li .media_study{height:74px;overflow: hidden;;}
 .content_study .study_box li .media_study .media-left{width: 115px;height: 74px;position: relative;overflow: hidden;}
 .content_study .study_box li .media_study .media-left img{width: 115px;height: 74px;}
 .content_study .study_box li .media_study .media-left span{display: block;overflow: hidden;background:url(./img/video.png) no-repeat center center;position: absolute;left: 0;top: 0;z-index: 900;width: 115px;height: 74px;}
@@ -103,3 +106,14 @@ body{font-family: 微软雅黑}
 .content_me .div_shezhi{border-top:1px solid #ededed;}
 
 /*个人中心*/
+
+.x-popOver-content{padding: 10px 3% 30px;width: 100%;background: #fff;overflow: hidden;}
+.x-popOver li{margin: 0 1% 10px;float: left;text-align: center;line-height: 1.4rem;border:1px solid #1195db;border-radius: 5px;color: #1195db;padding: 10px}
+.x-popOver li label{font-weight: normal;font-size: 1.1rem}
+.x-popOver li:hover{background: #1195db;color: #fff}
+
+/*学习页弹窗*/
+
+
+
+

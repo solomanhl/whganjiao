@@ -2,6 +2,7 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var allData = require("./js/loadData");
+	require("cordova!cordova-plugin-screen-orientation");
 
 	var Model = function(){
 		this.callParent();
@@ -9,16 +10,20 @@ define(function(require){
 		//用户登录信息
 		this.username = "";
 		this.userid = "";
+		this.password="";
 		this.status = 0;
 		
 		//首页新闻
 		this.pageNo = 0;
 		this.totalPage = 0;
+		this.channelId = 1;
+		this.typeId = 1;
 		
 		//学习课程
 		this.pageNo_study = 0;
 		this.totalPage_study = 0;
 		this.typeId_study = 1; //课程分类默认1
+		this.popshow = 0;//课程分类下拉框是否显示
 		
 		//交流页
 		this.pageNo_communicate = 0;
@@ -66,6 +71,9 @@ define(function(require){
 	 * 3、从服务端获取最新数据和图片，获取之后，更新界面并写入localStorage
 	 */
 	Model.prototype.modelModelConstruct = function(event){
+		if (justep.Browser.isX5App) 
+		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+//		alert("onConstruct");
 		/*
 		 * 1、数据模型创建时事件 2、加载静态图片或从缓存中加载图片
 		 */
@@ -92,18 +100,17 @@ define(function(require){
 		this.pageNo = 1;
 		this.getNews(false);
 		
-		//3.获取课程
-		this.pageNo_study = 1;
-		this.getCourse(false);
-		
-		//4.获取课程分类
-		this.getCourseGroup();
-		
-		//5.获取交流
-		this.getCommunicate(false);
-		
 		//6.获取用户状态
 		this.getUserStatus();
+		//刷新用户
+		if (this.username == "" || this.username == null){
+			
+			$("#label_username").text("请登录");
+			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+		}else{
+			$("#label_username").text(this.username);
+			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+		}
 	};
 
 
@@ -155,6 +162,11 @@ define(function(require){
 	//学习激活
 	Model.prototype.content_studyActive = function(event){
 		this.comp("titleBar").set({"title" : "学习广场"});
+		//3.获取课程
+		this.pageNo_study = 1;
+		this.getCourse(false);
+		//4.获取课程分类
+		this.getCourseGroup();
 	};
 	
 	//下拉刷新课程
@@ -270,17 +282,30 @@ define(function(require){
 	//弹出课程分类
 	Model.prototype.button_studyMoreClick = function(event){
 		var popOver_moreCourse = this.comp("popOver_moreCourse");
-		popOver_moreCourse.show();
+//		if (this.popshow == 0){
+//			this.popshow = 1;
+			popOver_moreCourse.show();
+			$(".x-popOver-overlay").css("top",$(".content_study .studyMore .btn_more").height()+$(".studyMore").height);
+			$(".x-popOver-content").css("top",$(".content_study .studyMore .btn_more").height()+$(".studyMore").height);
+//		}else{
+//			this.popshow = 0;
+//			popOver_moreCourse.hide();
+//		}
+		
 	};
 	
 	
 	Model.prototype.content_commActive = function(event){
 		this.comp("titleBar").set({"title" : "交流广场"});
+		//5.获取交流
+		this.getCommunicate(false);
 	};
 	
 
 	Model.prototype.content_meActive = function(event){
 		this.comp("titleBar").set({"title" : "个人空间"});
+
+		
 	};
 	
 	
@@ -302,8 +327,8 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-	        	"channelId" : "1",
-	        	"typeId" : "1",
+	        	"channelId" : me.channelId,
+	        	"typeId" : me.typeId,
 	        	"pageNo" : me.pageNo
 	        },
 	        success: function(resultData) {
@@ -367,12 +392,14 @@ define(function(require){
 
 	//点击课程列表
 	Model.prototype.li_studyClick = function(event){
+		var me = this;
 		var current = event.bindingContext.$object;//获得当前行
 		var url = require.toUrl("./course_showActivity.w");
 		var params = {
 	        from : "mainActivity",
 	        courseId : current.val("id"),
-	        userId : "53",
+//	        userId : "53",
+	        userId : me.userid,
 	        data : {
 	            // 将data中的一行数据传给对话框
 //	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
@@ -447,8 +474,8 @@ define(function(require){
 		var url = require.toUrl("./course_showActivity.w");
 		var params = {
 	        from : "mainActivity",
-	        courseId : current.val("id"),
-	        userId : "",
+	        courseId : current.val("courseId"),
+	        userId : this.userid,
 	        data : {
 	            // 将data中的一行数据传给对话框
 //	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
@@ -475,6 +502,7 @@ define(function(require){
 //		alert(this.username + this.userid + this.status);
 		if (this.username != ""  && this.userid != "" && this.status =="1"){
 //			$("label_username").val(this.username);
+			justep.Shell.setIsSinglePage(true);
 			var url = require.toUrl("./personalActivity.w");
 			var params = {
 		        from : "mainActivity",
@@ -485,9 +513,11 @@ define(function(require){
 			justep.Shell.showPage(url, params);
 		}else{
 //			$("label_username").val("请登录");
+			justep.Shell.setIsSinglePage(true);
 			var url = require.toUrl("./loginActivity.w");
 			var params = {
 		        from : "mainActivity",
+		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
 		}
@@ -499,7 +529,7 @@ define(function(require){
 		var url = require.toUrl("./myCoursesActivity.w");
 			var params = {
 		        from : "mainActivity",
-		        userId : 53
+		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
 	};
@@ -511,6 +541,7 @@ define(function(require){
 		var url = require.toUrl("./examActivity.w");
 			var params = {
 		        from : "mainActivity",
+		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
 	};
@@ -521,6 +552,7 @@ define(function(require){
 		var url = require.toUrl("./peixunActivity.w");
 			var params = {
 		        from : "mainActivity",
+		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
 	};
@@ -542,10 +574,53 @@ define(function(require){
 		var url = require.toUrl("./xuexidanganActivity.w");
 			var params = {
 		        from : "mainActivity",
+		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
 	};
 
+
+
+
+
+
+	Model.prototype.popOver_moreCourseClick = function(event){
+		if (this.popshow == 0){
+			this.popshow = 1;
+			this.comp("popOver_moreCourse").show();
+		}else{
+			this.popshow = 0;
+			this.comp("popOver_moreCourse").hide();
+		}
+	};
+
+
+
+
+
+
+	Model.prototype.modelLoad = function(event){
+		//添加事件
+		justep.Shell.on("onRefreshUser", this.onRefreshUser, this);
+	};
+
+	Model.prototype.modelUnLoad = function(event){
+		//卸载事件
+		justep.Shell.off("onRefreshUser", this.onRefreshUser);
+	};
+
+	Model.prototype.onRefreshUser = function(event){
+		this.getUserStatus();
+		//刷新用户
+		if (this.username == "" || this.username == null){
+			
+			$("#label_username").text("请登录");
+			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+		}else{
+			$("#label_username").text(this.username);
+			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+		}
+	};
 
 
 
@@ -561,17 +636,17 @@ $(function(){
 
 	// 首页头部导航切换
 
-	$(".x-panel-bottom a").click(function(){
-		$(".x-panel-bottom a .this").removeClass("this")
-		$(this).find("span").addClass("this");
-	})
-
-	// 底部导航切换
-
-	$(".x-panel-bottom a").click(function(){
-		$(".x-panel-bottom a .this").removeClass("this")
-		$(this).find("span").addClass("this");
-	})
+//	$(".x-panel-bottom a").click(function(){
+//		$(".x-panel-bottom a .this").removeClass("this")
+//		$(this).find("span").addClass("this");
+//	})
+//
+//	// 底部导航切换
+//
+//	$(".x-panel-bottom a").click(function(){
+//		$(".x-panel-bottom a .this").removeClass("this")
+//		$(this).find("span").addClass("this");
+//	})
 
 	// 底部导航切换
 
@@ -599,6 +674,5 @@ $(function(){
 	})
 
 	// 更多课程弹窗
-
 
 })

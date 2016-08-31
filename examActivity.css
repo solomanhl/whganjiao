@@ -1,12 +1,14 @@
 .exam .x-titlebar-title{font-weight: normal;}
 .exam{background: #f6f6f6}
 .exam .x-scroll-content{overflow: hidden;padding-top: 0.8rem}
-.exam .x-scroll-content li{float: left;margin: 0 0.75% 0.8rem 1.5%;width: 47.75%;border: 1px solid #dfdfdf;background: #fff;padding-bottom: 5px}
-.exam .x-scroll-content li:nth-child(2n){margin: 0 1.5% 0.8rem 0.75%}
-.exam .x-scroll-content li img{width: 100%;border-bottom: 1px solid #dfdfdf;margin-bottom: 3px} 
+.exam .x-scroll-content li{margin: 0 2% 0.8rem 2%;width: 96%;border: 1px solid #dfdfdf;background: #fff;overflow: hidden;height: 8rem;}
+.exam .x-scroll-content li dl{overflow: hidden;height: 8rem;}
+.exam .x-scroll-content li dt{float: left;width: 32%;height:8rem;overflow: hidden;}
+.exam .x-scroll-content li dd{float: left;width: 68%;padding:0.5rem 0;}
+.exam .x-scroll-content li img{width: 100%;height: 100%} 
 .exam .x-scroll-content li label{font-weight: normal;color: #959595;font-size: 1rem;}
 .exam .x-scroll-content li span{font-weight: normal;color: #959595;font-size: 1rem;}
-.exam .x-scroll-content li .title{padding:0 3%;display: block;color: #333;font-size: 1.25rem;margin-bottom: 5px;color: #007fb1}
+.exam .x-scroll-content li .title{padding:0 3%;display: block;color: #333;font-size: 1.25rem;margin-bottom: 5px;color: #007fb1;}
 .exam .x-scroll-content li ins{display: block;font-style: normal;margin-bottom: 2px;padding: 0 3%;text-decoration: none;}
 
 

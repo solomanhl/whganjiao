@@ -1,13 +1,25 @@
 define(function(require){
 	var $ = require("jquery");
+	
+	require("cordova!cordova-plugin-screen-orientation");
+	
 	var Model = function(){
 		this.callParent();
 		
 		this.pageNo_exam = 0;
 		this.totalPage_exam = 0;
+		
+		this.userId;
 	};
 	
 	Model.prototype.modelParamsReceive = function(event){
+		var context = this.getContext();
+		var me = this;
+		this.userId = event.params.userId;
+		
+		if (justep.Browser.isX5App) 
+		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+		
 		this.getExam(false);
 	};
 	
@@ -23,7 +35,8 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-	        	"pageNo" : me.pageNo_exam
+	        	"pageNo" : me.pageNo_exam,
+	        	"userId" : me.userId,
 //	        	"trainingclassId" : 1
 	        },
 	        success: function(resultData) {

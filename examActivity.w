@@ -30,10 +30,13 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="exam">
    <ul class="x-list-template" xid="listTemplateUl1">
-    <li xid="li1"><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img>
-  <span xid="span_title" bind-text='val("name")' class="title"></span>
+    <li xid="li1" bind-click="li1Click">
+    <dl>
+      <dt><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img></dt>
+      <dd><span xid="span_title" bind-text='val("name")' class="title"></span>
   <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("udate")'></span></ins>
-  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins> 
+  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins></dd>
+    </dl>  
   
   </li></ul> </div></div>
    <div class="x-content-center x-pull-up" xid="div3">

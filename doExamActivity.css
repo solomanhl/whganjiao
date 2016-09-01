@@ -1,0 +1,15 @@
+.doExam .x-titlebar-title{font-weight: normal;}
+.doExam .x-titlebar-right a{background: #36b2f9;border:none;padding-right: 6px 14px;}
+.doExam .x-panel-content{background: #fff;margin:2rem 4%;overflow: hidden;}
+.doExam .x-panel-content li .title{background: url(./img/title_bg.png) no-repeat left center;background-size: 100% 100%;height: 3rem;line-height: 3rem;width: 30%;color: #fff;font-size: 1.4rem;text-align: center;padding:0 0.5rem 0 0;margin-bottom: 1.5rem}
+.doExam .x-panel-content li .head{font-size: 1.3rem;line-height: 2rem;margin-bottom: 1.4rem;padding:0;color: #260000}
+.doExam .x-panel-content li li .x-radio-group span{border:1px solid #dedede;background: #f7f7f7;padding:0.7rem 3%;font-size: 1.1rem;line-height: 1.8rem;margin-bottom: 1.2rem;border-radius: 20px}
+.doExam .x-panel-content li li .x-radio-group span label{;margin-left: 5px}
+.doExam .x-panel-bottom a{border:none;font-weight: normal;} 
+.doExam .x-panel-bottom a span{display: block;font-size: 1.3rem;}
+.doExam .x-radio input[type="radio"] + label::before{margin-left: -1.8rem;height: 1.24rem;width: 1.24rem;top: 0.24rem}
+
+
+
+
+

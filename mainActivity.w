@@ -2,7 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:64px;left:326px;"
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:106px;left:266px;"
     onModelConstruct="modelModelConstruct" onLoad="modelLoad" onunLoad="modelUnLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="news" idColumn="id"> 
@@ -37,7 +37,7 @@
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="communicate" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid8"></column>
-  <column label="评论者" name="realname" type="String" xid="xid9"></column>
+  <column label="评论者" name="userName" type="String" xid="xid9"></column>
   <column label="评论者头像" name="userImg" type="String" xid="xid10"></column>
   <column label="评论内容" name="content" type="String" xid="xid11"></column>
   <column label="评论时间" name="date" type="String" xid="xid12"></column>
@@ -75,22 +75,22 @@
                 class="btn-group x-card btn-group-justified home_nav" tabbed="true"
                 xid="buttonGroup_home"> 
                 <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="最新资讯" xid="button_zixun"> 
+                  class="btn btn-default" label="最新资讯" xid="button_zixun" onClick="button_zixunClick"> 
                   <i xid="i5"/>  
                   <span xid="span5" class="this">最新资讯</span> 
                 </a>  
                 <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="公告通知" xid="button_tongzhi"> 
+                  class="btn btn-default" label="公告通知" xid="button_tongzhi" onClick="button_tongzhiClick"> 
                   <i xid="i6"/>  
                   <span xid="span6">公告通知</span> 
                 </a>  
                 <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="网院简报" xid="button_jianbao"> 
+                  class="btn btn-default" label="网院简报" xid="button_jianbao" onClick="button_jianbaoClick"> 
                   <i xid="i7"/>  
                   <span xid="span7">网院简报</span> 
                 </a>  
                 <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="政策文件" xid="button_wenjian"> 
+                  class="btn btn-default" label="政策文件" xid="button_wenjian" onClick="button_wenjianClick"> 
                   <i xid="i8"/>  
                   <span xid="span8">政策文件</span> 
                 </a> 
@@ -224,7 +224,7 @@
                       <div class="media-body" xid="mediaBody1"> 
                         <div xid="div_info" class="info"> 
                           <div component="$UI/system/components/justep/output/output"
-                            class="x-output author" xid="output_comm_author" bind-ref='ref("realname")'/>
+                            class="x-output author" xid="output_comm_author" bind-ref='ref("userName")'/>
                           <div component="$UI/system/components/justep/output/output"
                             class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)"/> 
                         </div>  
@@ -334,4 +334,5 @@
                           <label xid="label_groupname" bind-text="ref(&quot;name&quot;)"><![CDATA[]]></label>
                         </li>
                       </ul> 
-                    </div></div></div></div>
+                    </div></div></div>
+  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer"></span></div>

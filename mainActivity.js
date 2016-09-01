@@ -148,9 +148,9 @@ define(function(require){
 		/*
 		 * 1、点击组件增加算定义属性：pagename 2、获取自定义属性，打开 对应页面
 		 */
-		var pageName = event.currentTarget.getAttribute('pagename');
-		if (pageName)
-			justep.Shell.showPage(require.toUrl(pageName));
+//		var pageName = event.currentTarget.getAttribute('pagename');
+//		if (pageName)
+//			justep.Shell.showPage(require.toUrl(pageName));
 	};
 	
 
@@ -162,11 +162,17 @@ define(function(require){
 	//学习激活
 	Model.prototype.content_studyActive = function(event){
 		this.comp("titleBar").set({"title" : "学习广场"});
-		//3.获取课程
-		this.pageNo_study = 1;
-		this.getCourse(false);
-		//4.获取课程分类
-		this.getCourseGroup();
+		
+		if (this.status == 1){
+			//3.获取课程
+			this.pageNo_study = 1;
+			this.getCourse(false);
+			//4.获取课程分类
+			this.getCourseGroup();
+		}else{
+			this.jumpToLogin();
+		}
+		
 	};
 	
 	//下拉刷新课程
@@ -297,8 +303,13 @@ define(function(require){
 	
 	Model.prototype.content_commActive = function(event){
 		this.comp("titleBar").set({"title" : "交流广场"});
-		//5.获取交流
-		this.getCommunicate(false);
+		
+		if (this.status == 1){
+			//5.获取交流
+			this.getCommunicate(false);
+		}else{
+			this.jumpToLogin();
+		}
 	};
 	
 
@@ -513,48 +524,66 @@ define(function(require){
 			justep.Shell.showPage(url, params);
 		}else{
 //			$("label_username").val("请登录");
-			justep.Shell.setIsSinglePage(true);
-			var url = require.toUrl("./loginActivity.w");
-			var params = {
-		        from : "mainActivity",
-		        userId : this.userid
-		    }
-			justep.Shell.showPage(url, params);
+			this.jumpToLogin();
 		}
 	};
 
+	//
+	Model.prototype.jumpToLogin = function(){
+		justep.Shell.setIsSinglePage(true);
+		var url = require.toUrl("./loginActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        userId : this.userid
+	    }
+		justep.Shell.showPage(url, params);
+	};
 
 	//我的课程
 	Model.prototype.div_projectClick = function(event){
-		var url = require.toUrl("./myCoursesActivity.w");
+		if (this.status == 1){
+			var url = require.toUrl("./myCoursesActivity.w");
 			var params = {
 		        from : "mainActivity",
 		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
+		}else{
+			this.jumpToLogin();
+		}
+		
 	};
 	
 	
 	//考试列表
 	Model.prototype.div_banjiClick = function(event){
-		
-		var url = require.toUrl("./examActivity.w");
+		if (this.status == 1){
+			var url = require.toUrl("./examActivity.w");
 			var params = {
 		        from : "mainActivity",
 		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
+		}else{
+			this.jumpToLogin();
+		}
+		
 	};
 
 
 	//我的培训计划
 	Model.prototype.div_peixunClick = function(event){
-		var url = require.toUrl("./peixunActivity.w");
+		if (this.status == 1){
+			var url = require.toUrl("./peixunActivity.w");
 			var params = {
 		        from : "mainActivity",
 		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
+		}else{
+			this.jumpToLogin();
+		}
+		
 	};
 
 
@@ -571,12 +600,17 @@ define(function(require){
 
 	//学习档案
 	Model.prototype.div_danganClick = function(event){
-		var url = require.toUrl("./xuexidanganActivity.w");
+		if (this.status == 1){
+			var url = require.toUrl("./xuexidanganActivity.w");
 			var params = {
 		        from : "mainActivity",
 		        userId : this.userid
 		    }
 			justep.Shell.showPage(url, params);
+		}else{
+			this.jumpToLogin();
+		}
+		
 	};
 
 
@@ -620,6 +654,49 @@ define(function(require){
 			$("#label_username").text(this.username);
 			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
 		}
+	};
+
+
+
+
+	Model.prototype.button_zixunClick = function(event){
+		this.channelId = 1;
+		this.pageNo = 1;
+		this.getNews(false);
+		this.comp("list1").refresh();
+	};
+
+	Model.prototype.button_tongzhiClick = function(event){
+		this.channelId = 2;
+		this.pageNo = 1;
+		this.getNews(false);
+		this.comp("list1").refresh();
+	};
+
+
+
+
+	Model.prototype.button_jianbaoClick = function(event){
+		this.channelId = 3;
+		this.pageNo = 1;
+		this.getNews(false);
+		this.comp("list1").refresh();
+	};
+
+
+
+
+	Model.prototype.button_wenjianClick = function(event){
+		this.channelId = 4;
+		this.pageNo = 1;
+		this.getNews(false);
+		this.comp("list1").refresh();
+	};
+
+
+
+
+	Model.prototype.timer1Timer = function(event){
 	};
 
 

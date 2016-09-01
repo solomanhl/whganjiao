@@ -2,6 +2,7 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	require("cordova!cordova-plugin-screen-orientation");
+	require("cordova!cordova-plugin-x-toast");
 
 	var Model = function(){
 		this.callParent();
@@ -115,9 +116,29 @@ define(function(require){
 	
 	Model.prototype.radioGroup_singleChange = function(event){
 //		alert("onChage");
-		var value = this.comp("radioGroup_single").val();
+		var value = this.comp("radioGroup_single").val();	//这里绑定的是optionId
 //		alert(value);
-	};
+		var options = this.comp("options");
+		options.first();
+		var count = options.count();//选项数量
+		var themeId = options.getValue("themeId");
+		var optionIds = [];	//选项id数组
+		var checked = [];	//选择数组
+		
+		options.each(function(param){
+			var curId = param.row.val('optionId');
+			optionIds.push(curId);
+			if (value ==  curId){
+				checked.push(1);
+			}else{
+				checked.push(0);
+			}
+		});
+//		alert(themeId);
+//		alert(optionIds);
+//		alert(checked);
+		this.exam_save(themeId, optionIds, checked);
+	}; 
 	
 	Model.prototype.button_preClick = function(event){
 		if (this.pageNo >1){
@@ -129,6 +150,92 @@ define(function(require){
 		if (this.pageNo < this.totalPage){
 			this.getThemes((this.pageNo+1), false);
 		}
+	};
+	
+	
+	Model.prototype.messageDialog1OK = function(event){
+//		alert("ok");
+		this.exam_finish();
+	};
+	
+	//提交单题
+	Model.prototype.exam_save = function (themeId, optionIds, checked){
+		var me = this;
+		var strOptionIds = "{";
+		var strchecked = "{";
+
+		for (var i=0; i<optionIds.length; i++){
+			strOptionIds = strOptionIds + optionIds[i] + ",";
+			strchecked = strchecked + checked[i] + ",";
+		}
+
+		strOptionIds = strOptionIds.substring(0, strOptionIds.length - 1);
+		strOptionIds += "}";
+		
+		strchecked = strchecked.substring(0, strchecked.length - 1);
+		strchecked += "}";
+		
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/exam-save.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : me.userId,
+	        	"themeId" : themeId,
+	        	"optionIds" : strOptionIds,
+	        	"checked" : strchecked
+	        },
+	        success: function(resultData) {
+//	        	alert(JSON.stringify(resultData));
+	        	var result = resultData.result;
+	        	if (result == "true"){
+	        	
+	        	}
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	};
+	
+	//交卷
+	Model.prototype.exam_finish = function (){
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/exam-finish.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : me.userId,
+	        	"examId" : me.examId
+	        },
+	        success: function(resultData) {
+//	        	alert(JSON.stringify(resultData));
+	        	var result = resultData.result;
+	        	if (result == "true"){
+	        		if (justep.Browser.isX5App) window.plugins.toast.show("考试结束", "long", "center");
+	        		justep.Shell.closePage();
+	        	}else{
+	        		if (justep.Browser.isX5App) window.plugins.toast.show("交卷失败，请重新提交", "long", "center");
+	        	}
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	};
+	
+	Model.prototype.button_submitClick = function(event){
+//		alert("click");
+		this.comp("messageDialog1").show();
 	};
 	
 	return Model;

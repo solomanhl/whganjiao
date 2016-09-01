@@ -12,7 +12,7 @@
   <column label="序号" name="id" type="Integer" xid="xid8"></column>
   <column label="选项排序" name="id2" type="Integer" xid="xid10"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
-    class="x-panel x-full" xid="panel1"> 
+    class="x-panel x-full doExam" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
         <div component="$UI/system/components/justep/titleBar/titleBar" title="正在考试"
           class="x-titlebar">
@@ -26,16 +26,16 @@
           </div>  
           <div class="x-titlebar-title">正在考试</div>  
           <div class="x-titlebar-right reverse"> 
-          <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="交卷" xid="button_submit">
-   <i xid="i3"></i>
-   <span xid="span3">交卷</span></a></div>
+          <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="交卷" xid="button_submit" onClick="button_submitClick">
+          <i xid="i3"></i>
+          <span xid="span3">交卷</span></a></div>
         </div> 
       </div>  
     <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C73474F241800001944419B01C1095D0" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1">
    
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_theme" data="themes">
    <ul class="x-list-template" xid="listTemplateUl1">
-    <li xid="li_theme"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output_id" bind-ref='ref("themeId")'></div><div component="$UI/system/components/justep/output/output" class="x-output" xid="output_name" bind-ref='ref("name")'></div>
+    <li xid="li_theme"><div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_id" bind-ref='ref("themeId")'></div><div component="$UI/system/components/justep/output/output" class="x-output head" xid="output_name" bind-ref='ref("name")'></div>
   
   <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_single" data="$model.options" filter='($row.val("themeId") == val("themeId"))  &amp;&amp; ($row.val("id2") == 1) '>
    <ul class="x-list-template" xid="listTemplateUl2">
@@ -50,4 +50,8 @@
   <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="下一题" xid="button_next" onClick="button_nextClick">
    <i xid="i2"></i>
    <span xid="span2">下一题</span></a></div></div></div> 
-</div>
+   <resource xid="resource2">
+    <require xid="require1" url="css!$UI/whganjiao/base"/>  
+    <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"/>
+  </resource>
+<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" style="top:10px;left:43px;" title="提示" message="您正在交卷，点”确定“后完成考试，并且不能再次进入，如果需要修改，请点”取消“。" onOK="messageDialog1OK" type="OKCancel"></span></div>

@@ -8,7 +8,8 @@
   <column name="level" type="String" xid="xid3"></column>
   <column name="status" type="String" xid="xid4"></column>
   <column label="课程名" name="name" type="String" xid="xid5"></column>
-  <column label="课程id" name="courseId" type="String" xid="xid6"></column></div></div>  
+  <column label="课程id" name="courseId" type="String" xid="xid6"></column>
+  <column label="图片" name="titleImg" type="String" xid="xid7"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full myCourse"
     xid="panel1"> 
     <div class="x-panel-top" xid="top1"> 
@@ -37,7 +38,7 @@
           <div component="$UI/system/components/justep/list/list" class="x-list"
             xid="list1" data="course"> 
             <ul class="x-list-template" xid="listTemplateUl1"> 
-              <li xid="li1">
+              <li xid="li1" bind-click="li1Click">
               	<div class="media media_study" xid="media_sdudy"> 
                           <div class="media-left" xid="mediaLeft_study"> 
                             <span xid="span12"></span><img src="" alt="" xid="image_study" bind-attr-src='val("titleImg")' style="" ></img> 

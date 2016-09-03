@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:145px;height:auto;" onParamsReceive="modelParamsReceive"> 
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" idColumn="id" limit="6"><column label="考试id" name="id" type="Integer" xid="xid1"></column>
-  <column label="考试名" name="name" type="String" xid="xid3"></column>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" idColumn="id" limit="6"><column label="线上培训集id" name="id" type="Integer" xid="xid1"></column>
+  <column label="线上培训集名字" name="name" type="String" xid="xid3"></column>
   <column label="时间" name="udate" type="String" xid="xid5"></column>
   <column name="level" type="String" xid="xid2"></column>
   <column name="times" type="String" xid="xid4"></column>
@@ -31,7 +31,7 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="peixun">
    <ul class="x-list-template" xid="listTemplateUl1">
-    <li xid="li1"><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img>
+    <li xid="li1" bind-click="li1Click"><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img>
   <span xid="span_title" bind-text='val("name")' class="title"></span>
   <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("udate")'></span></ins>
   <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins>

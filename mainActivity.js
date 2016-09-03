@@ -654,6 +654,13 @@ define(function(require){
 			$("#label_username").text(this.username);
 			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
 		}
+		
+		//刷新课件
+		this.getCourse(false);
+		//刷新课件组
+		this.getCourseGroup(false);
+		//刷新评论
+		this.getCommunicate(false);
 	};
 
 
@@ -697,6 +704,33 @@ define(function(require){
 
 
 	Model.prototype.timer1Timer = function(event){
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/online.jspx",
+//	        url: "http://192.168.1.22:8080/app/online.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+//	        	"userId" : me.userid
+	        	"userId" : 2982
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+//	        	var statusObj = resultData.status;
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
 	};
 
 

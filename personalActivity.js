@@ -57,6 +57,36 @@ define(function(require){
 		localStorage.setItem('userid',""); 
 		localStorage.setItem('password',"");
 		localStorage.setItem('status',""); 
+		
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/logout.jspx",
+//	        url: "http://192.168.1.22:8080/app/logout.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+//	        	"userId" : me.userId
+	        	"userId" : 2982
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+//	        	var statusObj = resultData.status;
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+		
+		
 		justep.Shell.closePage();
 	};
 

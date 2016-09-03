@@ -281,7 +281,7 @@
             <img src="$UI/whganjiao/img/wenjianjia.png" alt="" xid="image_danganicon"/>  
             <label xid="label_dangan"><![CDATA[学习档案]]></label> 
           </div>  
-          <div xid="div_huancun" class="same_me div_huancun"> 
+          <div xid="div_huancun" class="same_me div_huancun" bind-visible="false"> 
             <img src="$UI/whganjiao/img/huancun.png" alt="" xid="image_huancunicon"/>  
             <label xid="label_huancun"><![CDATA[离线缓存]]></label> 
           </div>  
@@ -335,4 +335,4 @@
                         </li>
                       </ul> 
                     </div></div></div>
-  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer"></span></div>
+  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:10px;left:53px;"></span></div>

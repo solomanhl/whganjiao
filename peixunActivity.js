@@ -85,5 +85,19 @@ define(function(require){
 		}
 	};
 
+	Model.prototype.li1Click = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+		var url = require.toUrl("./myCoursesActivity.w");
+		var params = {
+	        from : "peixunActivity",
+	        trainingclassId : current.val("id"),
+	        data : {
+	            // 将data中的一行数据传给对话框
+//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+	        }
+	    }
+		justep.Shell.showPage(url, params);
+	};
+
 	return Model;
 });

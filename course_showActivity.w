@@ -52,7 +52,7 @@
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i2"></i>
     <span class="x-pull-down-label" xid="span3">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div8">
-    <div class="comm_top" id="comm_top">
+    <div class="comm_top" id="comm_top" xid="ckplayer" bind-click="ckplayerClick">
     <!-- <img src="" alt="" xid="image_title" bind-attr-src=' $model.course.val("titleImg")'></img><ins></ins> -->
     	<div id="a1"></div>
 		<script type="text/javascript" src="/ckplayer/ckplayer.js" charset="utf-8"></script>

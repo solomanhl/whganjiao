@@ -66,11 +66,13 @@ define(function(require){
         		dangan.loadData(json, isApend);
 	        	dangan.first();
 //	        	alert("数据" + dangan.count());
+	        	var ranking = dangan.getValue("ranking");
+	        	if (ranking == 0) ranking = "-";
 	        	
 	        	var titleValue = "截至<b>" + dangan.getValue("date") + "</b>为止，您总共选修<b>" +  dangan.getValue("courseAll") + "</b>门课程，已学完<b>" 
 					+  dangan.getValue("coursefinish") + "</b>门<b>，" +  ( dangan.getValue("courseAll") - dangan.getValue("coursefinish")) 
 					+ "</b>门未完成，累计参加<b>" +  dangan.getValue("examAll") + "</b>次测试，修满<b>" +  dangan.getValue("examAll") 
-					+ "</b>学时，您的学时在全市排名<b>" +  dangan.getValue("ranking") + "</b>，祝您学有所成！";
+					+ "</b>学时，您的学时在全市排名<b>" +  ranking + "</b>，祝您学有所成！";
 					
 				outTitle.set({value : titleValue});
 				$("b").css("color","#dd0000");

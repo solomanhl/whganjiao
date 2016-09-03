@@ -4,6 +4,7 @@ define(function(require){
 //	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
 
 	require("cordova!cordova-plugin-screen-orientation");
+//	require("cordova!cordova-plugin-inappbrowser");
  
 	var Model = function(){
 		this.callParent();
@@ -81,7 +82,9 @@ define(function(require){
 	        	course.loadData(json, false);
 	        	course.first();
 	        	
+	        	//这里要判断课程类型mp4、精英在线、scorm
 	        	var url = "http://movie.ks.js.cn/flv/other/1_0.mp4";
+	        	url = "";
 				var type = '->video/mp4';
 				var img = course.getValue("titleImg");
 				me.ckPlayer(url, type, img);
@@ -214,6 +217,32 @@ define(function(require){
  		$(window).on('beforeunload', function(){
  			document.removeEventListener('backbutton', listener, false);
  	    });
+	};
+
+	//点击播放器外层的div
+	Model.prototype.ckplayerClick = function(event){
+		//如果播放类型是调用别人的网页，则弹出新页面
+//		alert("");
+//		_self: Opens in the Cordova WebView if the URL is in the white list, otherwise it opens in the InAppBrowser.
+//		_blank: Opens in the InAppBrowser.
+//		_system: Opens in the system's web browser.
+//		window.open("http://whce.whgky.cn/u/cms/www/lesson01/study.html",'_self');//scorm，可以放，但是画面不全，类似iframe100%
+//		window.open("http://whce.whgky.cn/u/cms/www/lesson01/study.html", '_self', 'enableViewportScale=yes,zoom=yes');//同上
+		
+//		window.open("http://whce.whgky.cn/u/cms/www/lesson02/index.html",'_self');//精英在线，白屏
+
+		window.open("http://whce.whgky.cn/u/cms/www/lesson01/study.html",'_system');//scorm，手机自带浏览器
+
+		//scorm视频
+//		var url = require.toUrl("./playScomActivity.w");
+//			var params = {
+//		        from : "course_showActivity",
+//		        courseId : this.courseId,
+//		        userId : this.userId,
+//		        url : "http://whce.whgky.cn/u/cms/www/lesson01/study.html" //scorm，可以播放，但是不能缩放
+////		        url : "http://whce.whgky.cn/u/cms/www/lesson02/index.html" //精英在线，手机不能播放
+//		    };
+//			justep.Shell.showPage(url, params);
 	};
 
 

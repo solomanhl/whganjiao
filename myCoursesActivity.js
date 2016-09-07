@@ -57,7 +57,7 @@ define(function(require){
 	        	
 	        	me.pageNo = pageNoObj;
 	        	me.totalPage = totalPageObj;
-//	        	alert(me.totalPage_study);
+//	        	alert(me.pageNo);
 //	        	alert(experiencesObj);
 	        	        	
 //	        	$.each(resultData,function(name,value) { 
@@ -80,6 +80,14 @@ define(function(require){
 	    });
 	};
 	
+	//课程状态
+	Model.prototype.getcourseStatus = function (status){
+		switch (status){
+			case 0: return "" break;
+			default : return "" break;
+		}
+	};
+	
 	Model.prototype.getCourseList_class = function(isApend){
 		var me = this;
 		var course = this.comp("course");
@@ -93,7 +101,7 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 	        	"pageNo" : me.pageNo,
-	        	"userId" : me.trainingclassId
+	        	"trainingclassId" : me.trainingclassId
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -151,6 +159,7 @@ define(function(require){
 
 	Model.prototype.li1Click = function(event){
 		var current = event.bindingContext.$object;//获得当前行
+		var status = current.val("status");
 		var url = require.toUrl("./course_showActivity.w");
 		var params = {
 	        from : "myCoursesActivity",

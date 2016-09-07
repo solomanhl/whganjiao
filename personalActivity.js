@@ -53,6 +53,7 @@ define(function(require){
 	};
 
 	Model.prototype.button_exitClick = function(event){
+		localStorage.setItem('realname',""); 
 		localStorage.setItem('username',""); 
 		localStorage.setItem('userid',""); 
 		localStorage.setItem('password',"");
@@ -69,8 +70,8 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-//	        	"userId" : me.userId
-	        	"userId" : 2982
+	        	"userId" : me.userId
+//	        	"userId" : 2982
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -88,6 +89,14 @@ define(function(require){
 		
 		
 		justep.Shell.closePage();
+	};
+
+	Model.prototype.div_banghzuClick = function(event){
+		var url = require.toUrl("./helpIndexActivity.w");
+			var params = {
+		        from : "personalActivity",
+		    }
+			justep.Shell.showPage(url, params);
 	};
 
 	return Model;

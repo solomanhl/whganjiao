@@ -3,8 +3,8 @@
 .login .x-panel-content{padding: 30px 10%}
 .login .x-panel-content .user_img{height: 92px;width: 92px;margin:0 auto 40px;padding: 5px;border:1px solid #dfdfdf;border-radius: 100%;text-align: center;}
 .login .x-panel-content .user_img img{height: 80px;width: 80px;border-radius: 100%}
-.login .x-panel-content .login_input input{border:1px solid #dfdfdf;border-radius: 20px;height: 3.4rem;line-height: 3.4rem;margin-bottom: 10px;padding: 0;padding-left: 46px;font-size: 1.2rem;background: url(./img/login_icon1.png) no-repeat 16px center;background-size: 1.6rem}
-.login .x-panel-content .login_input input:last-child{background: url(./img/login_icon2.png) no-repeat 16px center;background-size: 1.6rem;margin-bottom: 20px}
-.login .x-panel-content .login_btn a{background: #1195db;border:1px solid #1195db;width: 100%;display: block;text-align: center;border-radius: 20px;height: 3.4rem;line-height: 3.4rem;color: #fff;padding: 0;font-size: 1.2rem;}
+.login .x-panel-content .login_input input{border:1px solid #dfdfdf;border-radius: 20px;padding:0.8rem 0;margin-bottom: 10px;padding-left: 46px;font-size: 1.2rem;background:#fff url(./img/login_icon1.png) no-repeat 16px center;background-size: 1.6rem;display: block;height: auto;}
+.login .x-panel-content .login_input input:last-child{background:#fff url(./img/login_icon2.png) no-repeat 16px center;background-size: 1.6rem;margin-bottom: 20px}
+.login .x-panel-content .login_btn a{background: #1195db;border:1px solid #1195db;width: 100%;display: block;text-align: center;border-radius: 20px;color: #fff;padding: 0.8rem 0;font-size: 1.2rem;}
 .login .x-panel-content .login_btn a:hover{background: #0e8acb}
 

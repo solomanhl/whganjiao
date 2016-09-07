@@ -20,15 +20,15 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit1">
+    <div class="x-panel-content" xid="content1"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 label-first" xid="labelEdit1">
    <label class="x-label" xid="label1"><![CDATA[旧密码：]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input_old"></input></div>
+   <span class="x-edit dif"><input component="$UI/system/components/justep/input/input" class="" xid="input_old"></input></span></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit2">
    <label class="x-label" xid="label2"><![CDATA[新密码：]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input_new"></input></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit3">
+   <span class="x-edit dif"><input component="$UI/system/components/justep/input/input" class="" xid="input_new"></input></span></div>
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 label-last" xid="labelEdit3">
    <label class="x-label" xid="label3"><![CDATA[确认新密码：]]></label>
-   <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="input_confirm" ></input></div>
+   <span class="x-edit dif"><input component="$UI/system/components/justep/input/input" class="" xid="input_confirm" ></input></span></div>
   <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="提交" xid="button_submit" bind-click="button_submitClick">
    <i xid="i1"></i>
    <span xid="span1">提交</span></a></div>

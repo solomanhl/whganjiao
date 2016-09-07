@@ -37,7 +37,7 @@
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="communicate" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid8"></column>
-  <column label="评论者" name="userName" type="String" xid="xid9"></column>
+  <column label="评论者" name="realname" type="String" xid="xid9"></column>
   <column label="评论者头像" name="userImg" type="String" xid="xid10"></column>
   <column label="评论内容" name="content" type="String" xid="xid11"></column>
   <column label="评论时间" name="date" type="String" xid="xid12"></column>
@@ -70,32 +70,6 @@
           onActive="content_homeActive"> 
           <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
             xid="panel_home"> 
-            <div class="x-panel-top" xid="top2">
-              <div component="$UI/system/components/justep/button/buttonGroup"
-                class="btn-group x-card btn-group-justified home_nav" tabbed="true"
-                xid="buttonGroup_home"> 
-                <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="最新资讯" xid="button_zixun" onClick="button_zixunClick"> 
-                  <i xid="i5"/>  
-                  <span xid="span5" class="this">最新资讯</span> 
-                </a>  
-                <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="公告通知" xid="button_tongzhi" onClick="button_tongzhiClick"> 
-                  <i xid="i6"/>  
-                  <span xid="span6">公告通知</span> 
-                </a>  
-                <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="网院简报" xid="button_jianbao" onClick="button_jianbaoClick"> 
-                  <i xid="i7"/>  
-                  <span xid="span7">网院简报</span> 
-                </a>  
-                <a component="$UI/system/components/justep/button/button"
-                  class="btn btn-default" label="政策文件" xid="button_wenjian" onClick="button_wenjianClick"> 
-                  <i xid="i8"/>  
-                  <span xid="span8">政策文件</span> 
-                </a> 
-              </div>
-            </div>  
             <div class="x-panel-content" xid="content2">
               <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
@@ -105,7 +79,7 @@
                 </div>  
                 <div class="x-scroll-content" xid="div2"> 
                   <div component="$UI/system/components/bootstrap/carousel/carousel"
-                    class="x-carousel" xid="carousel1" style="height:133px;" auto="true"> 
+                    class="x-carousel" xid="carousel1" auto="true"> 
                     <ol class="carousel-indicators" xid="ol1"/>  
                     <div class="x-contents carousel-inner" role="listbox" component="$UI/system/components/justep/contents/contents"
                       active="0" slidable="true" wrap="true" swipe="true" routable="false"
@@ -153,13 +127,9 @@
             <div class="x-panel-content study_box" xid="content3">
               <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown"> 
-                <div class="x-content-center x-pull-down container" xid="div4"> 
-                  <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"/>  
-                  <span class="x-pull-down-label" xid="span9">下拉刷新...</span>
-                </div>  
                 <div class="x-scroll-content" xid="div5">
                   <div component="$UI/system/components/justep/list/list" class="x-list"
-                    xid="list_study" data="study_course"> 
+                    xid="list_study" data="study_course" disablePullToRefresh="false"> 
                     <ul class="x-list-template" xid="listTemplateUl_study"> 
                       <li xid="li_study" bind-click="li_studyClick">
                         <div class="media media_study" xid="media_sdudy"> 
@@ -224,7 +194,7 @@
                       <div class="media-body" xid="mediaBody1"> 
                         <div xid="div_info" class="info"> 
                           <div component="$UI/system/components/justep/output/output"
-                            class="x-output author" xid="output_comm_author" bind-ref='ref("userName")'/>
+                            class="x-output author" xid="output_comm_author" bind-ref='ref("realname")'/>
                           <div component="$UI/system/components/justep/output/output"
                             class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)"/> 
                         </div>  
@@ -263,7 +233,7 @@
         <div class="x-contents-content content_me" xid="content_me" onActive="content_meActive"> 
           <div xid="div_user" class="div_user" bind-click="div_userClick"> 
             <img alt="" xid="image_usericon" id="image_usericon"/>  
-            <label xid="label_username" id="label_username" bind-text="localStorage['username']"><![CDATA[请登录]]></label> 
+            <label xid="label_username" id="label_username" bind-text="localStorage['realname']"><![CDATA[请登录]]></label> 
           </div>  
           <div xid="div_project" class="div_project same_me" bind-click="div_projectClick"> 
             <img src="$UI/whganjiao/img/daohang.png" alt="" xid="image_projecticon"/>  

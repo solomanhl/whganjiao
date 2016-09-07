@@ -19,8 +19,8 @@
   <column label="平均成绩学时" name="exambegin" type="String" xid="xid12"></column>
   <column label="总成绩学时" name="examjoined" type="String" xid="xid13"></column>
   <column label="全市排名" name="ranking" type="String" xid="xid14"></column>
-  <data xid="default1">[]</data>
-  <column label="截至日期" name="date" type="String" xid="xid15"></column></div>
+  <column label="截至日期" name="date" type="String" xid="xid15"></column>
+  <data xid="default1">[]</data></div>
   </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full files"
     xid="panel1"> 

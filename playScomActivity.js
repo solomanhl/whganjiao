@@ -23,7 +23,8 @@ define(function(require){
 		 
 		 var iframe1 = this.getElementByXid("iframe1");
 		 iframe1.src = this.url;
-//		 iframe1.style.zoom=0.2;
+//		 iframe1.style.zoom=2;
+
 	};
 
 	Model.prototype.modelUnLoad = function(event){

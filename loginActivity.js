@@ -41,11 +41,12 @@ define(function(require){
 //	        	alert(resultData.result);
 //	        	alert(resultData + "/" + JSON.stringify(resultData));
 	        	
+	        	var realname = resultData.realname;
 	        	var username = resultData.username;
 	        	var userId = resultData.userId;
 	        	var status = resultData.status;
 	        	
-//	        	alert(me.totalPage_study);
+//	        	alert(realname);
 //	        	alert(username + userId + status);
 	        	        	
 //	        	$.each(resultData,function(name,value) { 
@@ -66,7 +67,7 @@ define(function(require){
 	        	}
 	        	
 //	        	window.plugins.toast.show(msg, "long", "center");
-	        	me.saveLocal(username, userId, pwd, status);
+	        	me.saveLocal(realname, username, userId, pwd, status);
 	        	if (status == 1){
 	        		justep.Shell.closePage();
 	        	}
@@ -82,7 +83,8 @@ define(function(require){
 	};
 	
 	//保存到本地
-	Model.prototype.saveLocal = function (username, userid, password, status){
+	Model.prototype.saveLocal = function (realname,username, userid, password, status){
+		localStorage.setItem('realname',realname); 
 		localStorage.setItem('username',username); 
 		localStorage.setItem('userid',userid); 
 		localStorage.setItem('password',password);

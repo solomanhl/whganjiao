@@ -26,16 +26,15 @@
         </div> 
       </div>  
     <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C731F1EA1830000137FE1EA617201D6E" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp">
-   <div class="x-content-center x-pull-down container" xid="div1">
-    <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"></i>
-    <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="peixun">
    <ul class="x-list-template" xid="listTemplateUl1">
-    <li xid="li1" bind-click="li1Click"><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img>
+    <li xid="li1" bind-click="li1Click">
+      <dl>
+      <dt><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img></dt><dd>
   <span xid="span_title" bind-text='val("name")' class="title"></span>
   <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("udate")'></span></ins>
-  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins>
-  
+  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins></dd>
+  </dl>
   </li></ul> </div></div>
    <div class="x-content-center x-pull-up" xid="div3">
     <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>

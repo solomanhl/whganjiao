@@ -5,14 +5,15 @@
 /*头部标题栏*/
 
 .userComment{background:#f6f6f6;}
-.userComment .comm_top{background: #fff;padding: 15px 6% 0;position: relative;overflow: hidden;/* height:170px; */}
+.userComment .comm_top{background: #fff;padding: 15px 2% 0;position: relative;overflow: hidden;/* height:170px; */}
 .userComment .comm_top img{width: 100%;height: auto;}
 .userComment .comm_top ins{display: block;width: 88%;height: 170px;background:#000 url(./img/play1.png)no-repeat center center;opacity: 0.6;position: absolute;left: 6%;top: 15px;background-size: 60px;}
+.userComment .comm_top #a1{height: 15rem;}
 
 /*头部图像*/
 
-.userComment .top_title{display: block;background: #fff;padding: 1rem 6%;font-size: 1.3rem;text-align: center;color: #333}
-.userComment .div_info{background: #fff;padding:0 6% 1.5rem;overflow: hidden;border-bottom: 1px solid #dfdfdf;margin-bottom: 10px}
+.userComment .top_title{display: block;background: #fff;padding: 1rem 5%;font-size: 1.3rem;text-align: center;color: #333}
+.userComment .div_info{background: #fff;padding:0 5% 1.5rem;overflow: hidden;border-bottom: 1px solid #dfdfdf;margin-bottom: 10px}
 .userComment .div_info .div_left{width: 50%;padding:5px 4%;float: left;color: #959595;font-size: 1rem}
 .userComment .div_info label{width: auto;margin-right: 5px;padding: 0;}
 .userComment .div_info .x-label-edit{padding:0;margin-bottom: 5px}

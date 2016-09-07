@@ -21,7 +21,7 @@
         </div> 
       </div>  
     <div class="x-panel-content" xid="content1">
-  <div xid="div1"><iframe xid="iframe1" height="700" width="1010"></iframe></div></div>
+  <iframe xid="iframe1" height="700" width="1010" bind-visible="false"></iframe></div>
   </div> 
 </div>
 

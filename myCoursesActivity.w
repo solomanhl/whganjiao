@@ -6,7 +6,7 @@
     onParamsReceive="modelParamsReceive"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="id" name="id" type="Integer" xid="xid1"></column>
   <column label="播放次数" name="time" type="String" xid="xid2"></column>
   <column name="level" type="String" xid="xid3"></column>
-  <column name="status" type="String" xid="xid4"></column>
+  <column label="课程状态" name="status" type="String" xid="xid4"></column>
   <column label="课程名" name="name" type="String" xid="xid5"></column>
   <column label="课程id" name="courseId" type="String" xid="xid6"></column>
   <column label="图片" name="titleImg" type="String" xid="xid7"></column></div></div>  
@@ -30,10 +30,6 @@
     <div class="x-panel-content  x-scroll-view course_box" xid="content1" _xid="C731F4F130A00001EE6263D0E270D2F0">
       <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
         xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
-        <div class="x-content-center x-pull-down container" xid="div1"> 
-          <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"/>  
-          <span class="x-pull-down-label" xid="span1">下拉刷新...</span>
-        </div>  
         <div class="x-scroll-content" xid="div2">
           <div component="$UI/system/components/justep/list/list" class="x-list"
             xid="list1" data="course"> 

@@ -22,19 +22,11 @@
     <div class="panel-content x-panel-content" xid="content1"><div xid="div_icon" class="user_head">
       <ins><img src="$UI/whganjiao/img/user_pic.png" alt="" xid="image_icon"></img></ins>
   <span xid="span_name"></span></div>
-  <div xid="div_paimin" class="same div_paimin">
-    <img src="$UI/whganjiao/img/personal_icon1.png" alt="" xid="image_paimin"></img>
-  <span xid="span_paimin"><![CDATA[学习排名]]>
-  </span>
-  <span xid="span_num" class="num"><![CDATA[4]]></span></div>
-
-  <div xid="div_tongzhi" class="same div_tongzhi"><img src="$UI/whganjiao/img/personal_icon2.png" alt="" xid="image_tongzhi"></img>
-  <span xid="span_tongzhi"><![CDATA[我的通知]]></span></div>
   <div xid="div_xinxi" class="same div_xinxi" bind-click="div_xinxiClick"><img src="$UI/whganjiao/img/personal_icon3.png" alt="" xid="image_xinxi"></img>
   <span xid="span_xinxi"><![CDATA[修改信息]]></span></div>
   <div xid="div_mima" class="same div_mima" bind-click="div_mimaClick"><img src="$UI/whganjiao/img/personal_icon4.png" alt="" xid="image_mima"></img>
   <span xid="span_mima"><![CDATA[修改密码]]></span></div>
-  <div xid="div_banghzu" class="same div_banghzu"><img src="$UI/whganjiao/img/personal_icon5.png" alt="" xid="image_bangzhu"></img>
+  <div xid="div_banghzu" class="same div_banghzu" bind-click="div_banghzuClick"><img src="$UI/whganjiao/img/personal_icon5.png" alt="" xid="image_bangzhu"></img>
   <span xid="span_bangzhu"><![CDATA[帮助咨询]]></span>
   </div>
   <a component="$UI/system/components/justep/button/button" class="btn btn-default exit_btn" label="退出账号" xid="button_exit" onClick="button_exitClick">

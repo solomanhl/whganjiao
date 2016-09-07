@@ -158,7 +158,7 @@ define(function(require){
 	};
 
 	Model.prototype.ckPlayer = function(url, type, img){
-		var width = parseInt(document.getElementById("comm_top").offsetWidth * 0.88);
+		var width = parseInt(document.getElementById("comm_top").offsetWidth * 0.96);
 		var height = parseInt(width * 10 / 16);
 //		alert(width);
 		
@@ -211,16 +211,17 @@ define(function(require){
 
 	Model.prototype.modelLoad = function(event){
 		//监听返回键
- 		document.addEventListener('backbutton', function(){
- 			justep.Shell.closePage();
- 		}, false);
- 		$(window).on('beforeunload', function(){
- 			document.removeEventListener('backbutton', listener, false);
- 	    });
+// 		document.addEventListener('backbutton', function(){
+// 			justep.Shell.closePage();
+// 		}, false);
+// 		$(window).on('beforeunload', function(){
+// 			document.removeEventListener('backbutton', listener, false);
+// 	    });
 	};
 
 	//点击播放器外层的div
 	Model.prototype.ckplayerClick = function(event){
+		
 		//如果播放类型是调用别人的网页，则弹出新页面
 //		alert("");
 //		_self: Opens in the Cordova WebView if the URL is in the white list, otherwise it opens in the InAppBrowser.
@@ -231,7 +232,12 @@ define(function(require){
 		
 //		window.open("http://whce.whgky.cn/u/cms/www/lesson02/index.html",'_self');//精英在线，白屏
 
-		window.open("http://whce.whgky.cn/u/cms/www/lesson01/study.html",'_system');//scorm，手机自带浏览器
+
+		//通过服务器页面代理，解决跨域问题。
+		var url = "http://whce.whgky.cn/app/course-flash-play.jspx";
+		var options = "location=no,toolbar=yes";
+		window.open(url,'_blank', options);//新scorm，弹出浏览器
+		
 
 		//scorm视频
 //		var url = require.toUrl("./playScomActivity.w");
@@ -239,7 +245,8 @@ define(function(require){
 //		        from : "course_showActivity",
 //		        courseId : this.courseId,
 //		        userId : this.userId,
-//		        url : "http://whce.whgky.cn/u/cms/www/lesson01/study.html" //scorm，可以播放，但是不能缩放
+////		        url : "http://whce.whgky.cn/u/cms/www/lesson01/study.html" //scorm，可以播放，但是不能缩放
+//		        url : "http://whce.whgky.cn/app/course-flash-play.jspx" //新版scorm，要解决跨域问题
 ////		        url : "http://whce.whgky.cn/u/cms/www/lesson02/index.html" //精英在线，手机不能播放
 //		    };
 //			justep.Shell.showPage(url, params);

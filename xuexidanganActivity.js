@@ -21,7 +21,6 @@ define(function(require){
 	
 	Model.prototype.modelLoad = function(event){
 		this.getData(false);
-		this.comp("dataTables1").reload();
 	};
 	
 	

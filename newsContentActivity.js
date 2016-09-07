@@ -36,6 +36,10 @@ define(function(require){
 		var output_date = this.comp("output_date");
 		var output_author = this.comp("output_author");
 		var output_content = this.comp("output_content")
+		
+		var label_date = this.getElementByXid("label_date");
+		var label_author = this.getElementByXid("label_author");
+		
 //		alert(me.contentId);
 		$.ajax({
 	        type: "get",
@@ -72,6 +76,9 @@ define(function(require){
 	        	output_date.set({"value" : dateObj});
 	        	output_author.set({"value" : authorObj});
 	        	output_content.set({"value" : txtObj});
+	        	
+	        	label_date.innerText = "发表时间";
+	        	label_author.innerText = "作者";
 	        },
 	         error:function (){  
 	        	 alert("服务器数据错误");

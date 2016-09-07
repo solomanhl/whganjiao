@@ -28,11 +28,11 @@
     <div class="x-panel-content article_box" xid="content1">
       <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title"></div>
       <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 date" xid="labelEdit_date">
-        <label class="x-label" xid="label_date"><![CDATA[发布时间]]></label>
+        <label class="x-label" xid="label_date"><![CDATA[]]></label>
         <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_date"></div>
       </div>
       <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 date author" xid="labelEdit_author">
-        <label class="x-label" xid="label_author"><![CDATA[作者]]></label>
+        <label class="x-label" xid="label_author"><![CDATA[]]></label>
         <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_author"></div>
       </div>
       <div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_content"></div>

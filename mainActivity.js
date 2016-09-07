@@ -9,6 +9,7 @@ define(function(require){
 		
 		//用户登录信息
 		this.username = "";
+		this.realname="";
 		this.userid = "";
 		this.password="";
 		this.status = 0;
@@ -108,13 +109,14 @@ define(function(require){
 			$("#label_username").text("请登录");
 			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
 		}else{
-			$("#label_username").text(this.username);
+			$("#label_username").text(this.realname);
 			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
 		}
 	};
 
 
 	Model.prototype.getUserStatus = function(){
+		this.realname = localStorage.getItem('realname');
 		this.username = localStorage.getItem('username');
 		this.userid = localStorage.getItem('userid');
 		this.status = localStorage.getItem('status');
@@ -651,7 +653,7 @@ define(function(require){
 			$("#label_username").text("请登录");
 			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
 		}else{
-			$("#label_username").text(this.username);
+			$("#label_username").text(this.realname);
 			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
 		}
 		
@@ -661,43 +663,6 @@ define(function(require){
 		this.getCourseGroup(false);
 		//刷新评论
 		this.getCommunicate(false);
-	};
-
-
-
-
-	Model.prototype.button_zixunClick = function(event){
-		this.channelId = 1;
-		this.pageNo = 1;
-		this.getNews(false);
-		this.comp("list1").refresh();
-	};
-
-	Model.prototype.button_tongzhiClick = function(event){
-		this.channelId = 2;
-		this.pageNo = 1;
-		this.getNews(false);
-		this.comp("list1").refresh();
-	};
-
-
-
-
-	Model.prototype.button_jianbaoClick = function(event){
-		this.channelId = 3;
-		this.pageNo = 1;
-		this.getNews(false);
-		this.comp("list1").refresh();
-	};
-
-
-
-
-	Model.prototype.button_wenjianClick = function(event){
-		this.channelId = 4;
-		this.pageNo = 1;
-		this.getNews(false);
-		this.comp("list1").refresh();
 	};
 
 
@@ -715,8 +680,8 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-//	        	"userId" : me.userid
-	        	"userId" : 2982
+	        	"userId" : me.userid
+//	        	"userId" : 2982
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);

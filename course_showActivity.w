@@ -18,7 +18,7 @@
   <data xid="default1">[]</data>
   <rule xid="rule1"></rule></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="comment" idColumn="id"><column label="评论id" name="id" type="Integer" xid="xid6"></column>
-  <column label="用户名" name="userName" type="String" xid="xid7"></column>
+  <column label="用户名" name="realname" type="String" xid="xid7"></column>
   <column label="用户头像" name="image" type="String" xid="xid8"></column>
   <column label="评论内容" name="content" type="String" xid="xid9"></column>
   <column label="评论时间" name="date" type="String" xid="xid10"></column>
@@ -93,7 +93,7 @@
    <div class="media-left" xid="mediaLeft_userComment">
     <img src="$UI/whganjiao/img/user_pic.png" alt="" xid="image_userComment_icon"></img></div> 
    <div class="media-body" xid="mediaBody_userComment">
-    <div xid="div_userComment_head" class="media_head"><div component="$UI/system/components/justep/output/output" class="x-output user" xid="output_comment_user" bind-ref='ref("userName")'></div>
+    <div xid="div_userComment_head" class="media_head"><div component="$UI/system/components/justep/output/output" class="x-output user" xid="output_comment_user" bind-ref='ref("realname")'></div>
   <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_comment_date" bind-ref='ref("date")'></div></div>
   <div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_comment_txt" bind-ref='ref("content")'></div></div> </div></li></ul> </div>
 </div>

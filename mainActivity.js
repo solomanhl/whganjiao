@@ -23,7 +23,7 @@ define(function(require){
 		//学习课程
 		this.pageNo_study = 0;
 		this.totalPage_study = 0;
-		this.typeId_study = 1; //课程分类默认1
+		this.typeId_study = ""; //课程分类默认1
 		this.popshow = 0;//课程分类下拉框是否显示
 		
 		//交流页

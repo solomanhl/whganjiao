@@ -73,10 +73,6 @@
             <div class="x-panel-content" xid="content2">
               <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
-                <div class="x-content-center x-pull-down container" xid="div1"> 
-                  <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i9"/>  
-                  <span class="x-pull-down-label" xid="span13">下拉刷新...</span> 
-                </div>  
                 <div class="x-scroll-content" xid="div2"> 
                   <div component="$UI/system/components/bootstrap/carousel/carousel"
                     class="x-carousel" xid="carousel1" auto="true"> 
@@ -135,7 +131,7 @@
                         <div class="media media_study" xid="media_sdudy"> 
                           <div class="media-left" xid="mediaLeft_study"> 
                             <span xid="span12"/>
-                            <img src="" alt="" xid="image_study" bind-attr-src="val(&quot;titleImg&quot;)"
+                            <img src="" alt="" xid="image_study" bind-attr-src=' $model.getServerImg(val("titleImg"))'
                               style=""/> 
                           </div>  
                           <div class="media-body" xid="mediaBody_study"> 

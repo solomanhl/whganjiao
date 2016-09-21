@@ -7,6 +7,8 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		this.server = "http://whce.whgky.cn";
+		
 		//用户登录信息
 		this.username = "";
 		this.realname="";
@@ -191,10 +193,21 @@ define(function(require){
 		}
 	};
 	
+	
+	//转换课程的图服务器图片路径
+	Model.prototype.getServerImg = function(path){
+		var rtn = "";
+		if (path != "" && path !=null){
+			rtn = this.server + path;
+		}
+		return rtn;
+	};
+	
 	//获取课程列表
 	Model.prototype.getCourse = function (isApend){
 		var me = this;
 		var study_course = this.comp("study_course");
+//		alert(this.typeId_study);
 		
 		$.ajax({
 	        type: "get",
@@ -206,6 +219,7 @@ define(function(require){
 	        data: {
 	        	"pageNo" : me.pageNo_study,
 	        	"typeId" : me.typeId_study,
+	        	"shapeId" : 3	//3单视频
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -636,6 +650,7 @@ define(function(require){
 
 
 	Model.prototype.modelLoad = function(event){
+		justep.Shell.setIsSinglePage(true);
 		//添加事件
 		justep.Shell.on("onRefreshUser", this.onRefreshUser, this);
 	};

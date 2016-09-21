@@ -47,6 +47,7 @@ define(function(require){
 	Model.prototype.getCourse = function (){
 		var me = this;
 		var course = this.comp("course");
+//		alert(this.courseId + "|" + this.userId);
 		
 		$.ajax({
 	        type: "get",

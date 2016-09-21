@@ -16,7 +16,8 @@
   <column label="学习人数" name="learns" type="String" xid="xid18"></column>
   <column label="课程图片" name="titleImg" type="String" xid="xid5"></column>
   <data xid="default1">[]</data>
-  <rule xid="rule1"></rule></div>
+  <rule xid="rule1"></rule>
+  <column label="单视频路径" name="path" type="String" xid="xid20"></column></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="comment" idColumn="id"><column label="评论id" name="id" type="Integer" xid="xid6"></column>
   <column label="用户名" name="realname" type="String" xid="xid7"></column>
   <column label="用户头像" name="image" type="String" xid="xid8"></column>
@@ -52,7 +53,7 @@
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i2"></i>
     <span class="x-pull-down-label" xid="span3">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div8">
-    <div class="comm_top" id="comm_top" xid="ckplayer" bind-click="ckplayerClick">
+    <div class="comm_top" id="comm_top" xid="ckplayer">
     <!-- <img src="" alt="" xid="image_title" bind-attr-src=' $model.course.val("titleImg")'></img><ins></ins> -->
     	<div id="a1"></div>
 		<script type="text/javascript" src="/ckplayer/ckplayer.js" charset="utf-8"></script>

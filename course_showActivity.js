@@ -9,6 +9,7 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		this.server = "http://whce.whgky.cn";
 		
 		this.courseId;//课程id
 		this.userId;//用户id
@@ -28,7 +29,6 @@ define(function(require){
 
 	    if (justep.Browser.isX5App) 
 	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
-
 
 	    this.getCourse();
 		this.getComment(false);
@@ -84,10 +84,11 @@ define(function(require){
 	        	course.first();
 	        	
 	        	//这里要判断课程类型mp4、精英在线、scorm
-	        	var url = "http://movie.ks.js.cn/flv/other/1_0.mp4";
-	        	url = "";
+//	        	var url = "http://movie.ks.js.cn/flv/other/1_0.mp4";
+	        	var url = me.server + course.getValue("path");
 				var type = '->video/mp4';
-				var img = course.getValue("titleImg");
+				var img = me.server + course.getValue("titleImg");
+//				alert(url + img);
 				me.ckPlayer(url, type, img);
 //	        	alert("课程数据" + course.getValue("times"));
 	        	

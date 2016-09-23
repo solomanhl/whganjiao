@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:110px;left:16px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/smartContainer/smartContainer" class="x-smartcontainer" xid="smartContainer1"></div><div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:110px;left:16px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="课程id" name="id" type="Integer" xid="xid1"></column>
   <column label="申请量" name="users" type="String" xid="xid2"></column>
   <column label="状态" name="status" type="String" xid="xid3"></column>
@@ -9,8 +9,8 @@
   <column label="课程介绍" name="absract" type="String" xid="xid12"></column>
   <column label="完成人数" name="completes" type="String" xid="xid13"></column>
   <column label="课程分类" name="typeName" type="String" xid="xid14"></column>
-  <column label="课时" name="classhour" type="String" xid="xid15"></column>
-  <column isCalculate="false" label="学时" name="times" type="String" xid="xid16"></column>
+  <column label="课时（多少秒）" name="classhour" type="String" xid="xid15"></column>
+  <column isCalculate="false" label="学时（学到多少秒）" name="times" type="String" xid="xid16"></column>
   <column label="课程名" name="name" type="String" xid="xid4"></column>
   <column label="点击量" name="clicks" type="String" xid="xid17"></column>
   <column label="学习人数" name="learns" type="String" xid="xid18"></column>
@@ -57,6 +57,7 @@
     <!-- <img src="" alt="" xid="image_title" bind-attr-src=' $model.course.val("titleImg")'></img><ins></ins> -->
     	<div id="a1"></div>
 		<script type="text/javascript" src="/ckplayer/ckplayer.js" charset="utf-8"></script>
+		<!-- <script type="text/javascript" src="$UI2/whganjiao/js/ckplayerDisableDrag.js" charset="utf-8"></script> -->
 			
     </div>
     <span xid="span_title" bind-text='$model.course.val("name")' class="top_title"></span>    
@@ -68,11 +69,11 @@
    <label class="x-label" xid="label_classify"><![CDATA[课程分类：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_classify" bind-text=' $model.course.val("typeName")'></div></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_time">
-   <label class="x-label" xid="label_time"><![CDATA[时长：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_time" bind-text=' $model.course.val("classhour")'></div></div>
+   <label class="x-label" xid="label_time"><![CDATA[学时：]]></label>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_time" bind-text=' $model.classhourToXueshi($model.course.val("classhour"))'></div></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_schedule">
    <label class="x-label" xid="label_schedule"><![CDATA[进度：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text=' $model.course.val("times")'></div></div>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text='( $model.course.val("status") ==2) ?  "已完成" : $model.classhourToXueshi($model.course.val("times")) '></div></div>
   </div>
   <div xid="div_right" class="div_right">
   

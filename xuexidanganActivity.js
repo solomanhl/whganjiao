@@ -13,14 +13,17 @@ define(function(require){
 		var context = this.getContext();
 		var me = this;
 	    this.userId = event.params.userId;
+//	    alert(this.userId);
 		
 		if (justep.Browser.isX5App) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+		
+		this.getData(false);
 	};
 	
 	
 	Model.prototype.modelLoad = function(event){
-		this.getData(false);
+		
 	};
 	
 	
@@ -35,7 +38,7 @@ define(function(require){
 		
 		$.ajax({
 	        type: "get",
-	        "async" : true,//异步
+	        "async" : false,//异步
 	        url: "http://whce.whgky.cn/app/user-archives.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
@@ -51,7 +54,7 @@ define(function(require){
 	        	
 	        	var archivesObj = resultData.archives;
 	        	
-//	        	alert(me.totalPage_study);
+//	        	alert(JSON.stringify(archivesObj));
 //	        	alert(experiencesObj);
 	        	        	
 //	        	$.each(resultData,function(name,value) { 

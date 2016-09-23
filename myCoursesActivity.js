@@ -6,6 +6,8 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		this.server = "http://whce.whgky.cn";
+		
 		this.userId;
 		this.from;
 		this.trainingclassId;//培训课程集id
@@ -13,10 +15,20 @@ define(function(require){
 		this.pageNo = 0;
 		this.totalPage = 0;
 	};
+	
+	//转换课程的图服务器图片路径
+	Model.prototype.getServerImg = function(path){
+		var rtn = "";
+		if (path != "" && path !=null){
+			rtn = this.server + path;
+		}
+		return rtn;
+	};
 
 	Model.prototype.modelParamsReceive = function(event){
 		var context = this.getContext();
 		var me = this;
+//		alert(1);
 		
 		if (justep.Browser.isX5App) cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 	    
@@ -32,9 +44,25 @@ define(function(require){
 	    
 	};
 	
+	Model.prototype.modelActive = function(event){
+//		alert(2);
+		this.userId = localStorage.getItem("my_CoursesActivity_userId");
+		this.from = localStorage.getItem("my_CoursesActivity_from");
+		this.trainingclassId = localStorage.getItem("my_CoursesActivity_trainingclassId");
+		
+		if (this.from == "mainActivity"){
+	    	this.getCourseList(false);//我的课程
+	    }else if (this.from = "peixunActivity"){
+	    	this.trainingclassId = event.params.trainingclassId;
+	    	this.getCourseList_class(false);//培训班的课程
+	    }
+	};
+	
+	
 	Model.prototype.getCourseList = function(isApend){
 		var me = this;
 		var course = this.comp("course");
+//		alert(this.userId);
 		
 		$.ajax({
 	        type: "get",
@@ -83,9 +111,10 @@ define(function(require){
 	//课程状态
 	Model.prototype.getcourseStatus = function (status){
 		switch (status){
-			case 0: return "" break;
-			default : return "" break;
+			case 0: return "" ;break;
+			default : return ""; break;
 		}
+		return status;
 	};
 	
 	Model.prototype.getCourseList_class = function(isApend){
@@ -158,12 +187,16 @@ define(function(require){
 	};
 
 	Model.prototype.li1Click = function(event){
+		localStorage.setItem('my_CoursesActivity_userId',this.userId); 
+		localStorage.setItem('my_CoursesActivity_from',this.from); 
+		localStorage.setItem('my_CoursesActivity_trainingclassId',this.trainingclassId); 
+		
 		var current = event.bindingContext.$object;//获得当前行
 		var status = current.val("status");
 		var url = require.toUrl("./course_showActivity.w");
 		var params = {
 	        from : "myCoursesActivity",
-	        courseId : current.val("id"),
+	        courseId : current.val("courseId"),
 	        userId : this.userId,
 	        data : {
 	            // 将data中的一行数据传给对话框
@@ -172,6 +205,7 @@ define(function(require){
 	    }
 		justep.Shell.showPage(url, params);
 	};
+
 
 	return Model;
 });

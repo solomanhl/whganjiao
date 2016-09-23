@@ -25,6 +25,7 @@ define(function(require){
 		var me = this;
 	    this.courseId = event.params.courseId;
 	    this.userId = event.params.userId;
+	    this.from = event.params.from;
 //	    alert(this.courseId +  "/" + this.userId);
 
 	    if (justep.Browser.isX5App) 
@@ -88,8 +89,14 @@ define(function(require){
 	        	var url = me.server + course.getValue("path");
 				var type = '->video/mp4';
 				var img = me.server + course.getValue("titleImg");
+				
+				//从第几秒开始
+				var times = course.getValue("times");
+				if (times == null){
+					times = 0;
+				}
 //				alert(url + img);
-				me.ckPlayer(url, type, img);
+				me.ckPlayer(url, type, img, times);
 //	        	alert("课程数据" + course.getValue("times"));
 	        	
 	        },
@@ -158,8 +165,16 @@ define(function(require){
 			this.getComment(true);
 		}
 	};
+	
+	//classhour转换成学时
+	Model.prototype.classhourToXueshi = function (seconds){
+//		alert(seconds);
+		var h = (seconds / 3600).toFixed(1);//小数点后1位
+		return h;
+	};
 
-	Model.prototype.ckPlayer = function(url, type, img){
+	Model.prototype.ckPlayer = function(url, type, img, times){
+		var me = this;
 		var width = parseInt(document.getElementById("comm_top").offsetWidth * 0.96);
 		var height = parseInt(width * 10 / 16);
 //		alert(width);
@@ -168,16 +183,131 @@ define(function(require){
 			f:url,
 			c:0,
 			p:0,	//不自动播放
-			g:0,	//视频直接g秒开始播放
+			g:times,	//视频直接g秒开始播放
 			i:img,	//初始化图片
-			lv:1	//锁定进度条，不让拖动
+			lv:1,	//锁定进度条，不让拖动
 		};
 		var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
 		var video=[url + type];//html5支持
-		CKobject.embed('/ckplayer/ckplayer.swf','a1','ckplayer_a1',"100%","100%",true,flashvars,video,params);
+		CKobject.embed('/ckplayer/ckplayer.swf','a1','ckplayer_a1',width,height,true,flashvars,video,params); 
 //		CKobject.embedSWF('/ckplayer/ckplayer.swf','a1','ckplayer_a1','100%','100%',flashvars,params);
-
+		
+		CKobject.getObjectById('ckplayer_a1').addListener('play',function playHandler(){
+		    //没有任何参数，但运行到这里则确认视频已暂停
+//			    alert("play");
+		});
+			
+		CKobject.getObjectById('ckplayer_a1').addListener('pause',function pauseHandler(){
+		    //没有任何参数，但运行到这里则确认视频已暂停
+//			    alert("pause");
+		});
+			
+		CKobject.getObjectById('ckplayer_a1').addListener('ended',function endedHandler(){
+		    //没有任何参数，但运行到这里则确认视频已暂停
+//			    alert("ended");
+			me.sendEnd();
+		});
+		
+		CKobject.getObjectById('ckplayer_a1').addListener('time',function endedHandler(Number){
+		    //没有任何参数，但运行到这里则确认视频已暂停
+//			    alert(Number);
+			var time = Math.round(Number);
+			if ( time % 60 == 0 ){//一分钟
+				//回传进度
+				me.sendTime(time);
+			}
+		});
+			
 	}
+	
+	//回传课程时间
+	Model.prototype.sendTime = function (time){
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/course-play-times.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"courseId" : me.courseId,
+	        	"userId" : me.userId,
+	        	"times" : time
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+	        	var id = resultData.id;
+	        	var status = resultData.status;
+	        	var name = resultData.name;
+	        	var path = resultData.path;
+	        	
+//	        	alert(me.totalPage_study);
+//	        	alert(experiencesObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	};
+	
+	//看完视频回传状态
+	Model.prototype.sendEnd = function (){
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/course-play-end.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"courseId" : me.courseId,
+	        	"userId" : me.userId
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+	        	var id = resultData.id;
+	        	var status = resultData.status;
+	        	var name = resultData.name;
+	        	var path = resultData.path;
+	        	
+//	        	alert(me.totalPage_study);
+//	        	alert(experiencesObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	};
 	
 	//点击播放
 	Model.prototype.div1Click = function(event){
@@ -206,6 +336,7 @@ define(function(require){
 
 
 	Model.prototype.modelUnLoad = function(event){
+		
 		if (justep.Browser.isX5App ) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 	};

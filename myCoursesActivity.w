@@ -2,8 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:194px;left:15px;height:auto;"
-    onParamsReceive="modelParamsReceive"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="id" name="id" type="Integer" xid="xid1"></column>
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:194px;left:15px;height:auto;" onParamsReceive="modelParamsReceive" onActive="modelActive"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="id" name="id" type="Integer" xid="xid1"></column>
   <column label="播放次数" name="time" type="String" xid="xid2"></column>
   <column name="level" type="String" xid="xid3"></column>
   <column label="课程状态" name="status" type="String" xid="xid4"></column>
@@ -37,7 +36,7 @@
               <li xid="li1" bind-click="li1Click">
               	<div class="media media_study" xid="media_sdudy"> 
                           <div class="media-left" xid="mediaLeft_study"> 
-                            <span xid="span12"></span><img src="" alt="" xid="image_study" bind-attr-src='val("titleImg")' style="" ></img> 
+                            <span xid="span12"></span><img src="" alt="" xid="image_study" bind-attr-src=' $model.getServerImg(val("titleImg"))' style="" ></img> 
                           </div>  
                           <div class="media-body" xid="mediaBody_study"> 
                             <div component="$UI/system/components/justep/output/output"

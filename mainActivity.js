@@ -562,7 +562,7 @@ define(function(require){
 			var params = {
 		        from : "mainActivity",
 		        userId : this.userid
-		    }
+		    };
 			justep.Shell.showPage(url, params);
 		}else{
 			this.jumpToLogin();

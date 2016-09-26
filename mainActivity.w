@@ -30,10 +30,13 @@
     </div>
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="imgData" onCustomRefresh="imgDataCustomRefresh" idColumn="id"> 
-      <column label="id" name="id" type="String" xid="xid5"/>  
-      <column label="图片" name="fImgUrl" type="String" xid="xid6"/>  
-      <column label="链接地址" name="fUrl" type="String" xid="xid7"/> 
-    </div>  
+      <column label="id" name="id" type="String" xid="xid5"></column>
+  <column label="图片" name="fImgUrl" type="String" xid="xid6"></column>
+  <column label="链接地址" name="fUrl" type="String" xid="xid7"></column>
+  <column name="author" type="String" xid="xid25"></column>
+  <column name="title" type="String" xid="xid26"></column>
+  <column name="description" type="String" xid="xid27"></column>
+  <column label="服务器图片相对路径" name="typeImg" type="String" xid="xid28"></column></div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="communicate" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid8"></column>

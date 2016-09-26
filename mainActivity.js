@@ -45,28 +45,110 @@ define(function(require){
 		 * 3、如果img已经创建了，只修改属性
 		 * 4、第一张图片信息存入localStorage
 		 */
-		var url = require.toUrl("./main/json/imgData.json");
-		allData.loadDataFromFile(url, event.source, true);
-		var me = this;
-		var carousel = this.comp("carousel1");
-		event.source.each(function(obj) {
-			var fImgUrl = require.toUrl(obj.row.val("fImgUrl"));
-			var fUrl = require.toUrl(obj.row.val("fUrl"));
-			if (me.comp('contentsImg').getLength() > obj.index) {
-				$(carousel.domNode).find("img").eq(obj.index).attr({
-					"src" : fImgUrl,
-					"pagename" : fUrl
-				});
-				if (obj.index == 0) {
-					localStorage.setItem("index_BannerImg_src", fImgUrl);
-					localStorage.setItem("index_BannerImg_url", fUrl);
-				}
-			} else {
-				carousel.add('<img src="' + fImgUrl + '" class="tb-img1" bind-click="openPageClick" pagename="' + fUrl + '"/>');
-			}
-		});
+		//从本地json取本地图片路径
+//		var url = require.toUrl("./main/json/imgData.json");
+//		allData.loadDataFromFile(url, event.source, true);
+
+		//从服务器取远程图片路径
+		this.getFocusNews();
+		
+		
+//		var me = this;
+//		var carousel = this.comp("carousel1");
+//		event.source.each(function(obj) {
+//			var fImgUrl = require.toUrl(obj.row.val("fImgUrl"));
+//			var fUrl = require.toUrl(obj.row.val("fUrl"));
+//			alert(fImgUrl);
+//			if (me.comp('contentsImg').getLength() > obj.index) {
+//				$(carousel.domNode).find("img").eq(obj.index).attr({
+//					"src" : fImgUrl,
+//					"pagename" : fUrl
+//				});
+//				if (obj.index == 0) {
+//					localStorage.setItem("index_BannerImg_src", fImgUrl);
+//					localStorage.setItem("index_BannerImg_url", fUrl);
+//				}
+//			} else {
+//				carousel.add('<img src="' + fImgUrl + '" class="tb-img1" bind-click="openPageClick" pagename="' + fUrl + '"/>');
+//			}
+//		});
 	};
 
+	//获取首页图片焦点新闻
+	Model.prototype.getFocusNews = function(){
+		var me = this;
+		var data = this.comp("imgData");
+//		alert(this.typeId_study);
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: "http://whce.whgky.cn/app/content-list.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"typeId" : 3,
+	        	"channelId" : 2	
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	var contentsObj;	
+	        	contentsObj = resultData.contents;
+//	        	alert(me.totalPage_study);
+//	        	alert(contentsObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	if (contentsObj.length > 0){
+		        	json={"@type" : "table","imgData" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
+		        	data.loadData(json, false);
+		        	
+					var carousel = me.comp("carousel1");
+			//		event.source.each(function(obj) {
+					$.each(contentsObj,function(i,item)  {
+			//			var fImgUrl = require.toUrl(obj.row.val("fImgUrl"));
+			//			var fUrl = require.toUrl(obj.row.val("fUrl"));
+						var fImgUrl = me.server + item.typeImg;
+						var forcusid = item.id;
+						var title = item.title;
+//						alert(me.comp('contentsImg').getLength() + "/" + i);
+//						if (me.comp('contentsImg').getLength() > obj.index) {
+						if (me.comp('contentsImg').getLength() > i) {
+//							$(carousel.domNode).find("img").eq(obj.index).attr({
+							$(carousel.domNode).find("img").eq(i).attr({
+								"src" : fImgUrl,
+//								"pagename" : fUrl,
+								"forcusid" : forcusid
+							});
+							
+//							if (obj.index == 0) {
+							if (i == 0) {
+								localStorage.setItem("index_BannerImg_src", fImgUrl);
+//								localStorage.setItem("index_BannerImg_url", fUrl);
+								localStorage.setItem("forcusid", forcusid);
+								localStorage.setItem("title", title);
+							}
+						} else {
+//							carousel.add('<img src="' + fImgUrl + '" class="tb-img1" bind-click="openPageClick" pagename="' + fUrl + '"/>');
+							carousel.add('<img src="' + fImgUrl + '" class="tb-img1" bind-click="openPageClick" forcusid="' + forcusid + '"/>');
+						}
+					});
+					
+	//	        	alert(news.count());
+	        	}
+	        	
+	        },
+	         error:function (){  
+	        	 alert("服务器数据错误");
+	         }
+	    });
+	};
 
 	/*
 	 * 写首页图片数据缓存的代码 1、数据模型创建时事件
@@ -155,6 +237,20 @@ define(function(require){
 //		var pageName = event.currentTarget.getAttribute('pagename');
 //		if (pageName)
 //			justep.Shell.showPage(require.toUrl(pageName));
+		
+		var forcusid = event.currentTarget.getAttribute('forcusid');
+		if (forcusid){
+			var url = require.toUrl("./newsContentActivity.w");
+			var params = {
+		        from : "mainActivity",
+		        contentId : forcusid,
+		        data : {
+		            // 将data中的一行数据传给对话框
+	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+		        }
+		    }
+			justep.Shell.showPage(url, params);
+		}
 	};
 	
 

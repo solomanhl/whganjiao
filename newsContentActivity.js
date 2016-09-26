@@ -6,6 +6,7 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		this.server = "http://whce.whgky.cn";
 		this.contentId;
 	};
 
@@ -75,7 +76,8 @@ define(function(require){
 	        	output_title.set({"value" : titleObj});
 	        	output_date.set({"value" : dateObj});
 	        	output_author.set({"value" : authorObj});
-	        	output_content.set({"value" : txtObj});
+	        	var str = txtObj.replace(/<img alt=\"\" src=\"/g, '<img width=100% height=auto alt=\"\" src=\"' + me.server);
+	        	output_content.set({"value" : str});
 	        	
 	        	label_date.innerText = "发表时间";
 	        	label_author.innerText = "作者";

@@ -78,7 +78,7 @@
                 xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
                 <div class="x-scroll-content" xid="div2"> 
                   <div component="$UI/system/components/bootstrap/carousel/carousel"
-                    class="x-carousel" xid="carousel1" auto="true"> 
+                    class="x-carousel banner" xid="carousel1" auto="true"> 
                     <ol class="carousel-indicators" xid="ol1"/>  
                     <div class="x-contents carousel-inner" role="listbox" component="$UI/system/components/justep/contents/contents"
                       active="0" slidable="true" wrap="true" swipe="true" routable="false"

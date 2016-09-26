@@ -92,7 +92,7 @@ define(function(require){
 	Model.prototype.li1Click = function(event){
 		var current = event.bindingContext.$object;//获得当前行
 		var examId = current.val("id");
-		examId = 3;
+//		examId = 3;
 //		alert(examId);
 		var me = this;
 		$.ajax({

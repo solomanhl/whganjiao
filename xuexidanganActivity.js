@@ -35,7 +35,7 @@ define(function(require){
 		var dataTables1 = this.comp("dataTables1");
 		var dataTables2 = this.comp("dataTables2");
 		var dataTables3 = this.comp("dataTables3");
-		
+//		alert(this.userId);
 		$.ajax({
 	        type: "get",
 	        "async" : false,//异步

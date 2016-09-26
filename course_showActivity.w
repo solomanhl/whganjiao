@@ -43,15 +43,12 @@
           <span xid="span1"></span></a></div>
         </div> 
       </div>  
-    <div class="x-panel-content" xid="content1">
+    <div class="x-panel-content x-scroll-view" xid="content1" supportpulldown="true" _xid="C73CE1C92490000121BD1EC6113012DE" style="bottom: 0px;">
   
   
   
   
   <div class="x-scroll userComment" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_userComment" onPullDown="scrollView_userCommentPullDown" onPullUp="scrollView_userCommentPullUp">
-   <div class="x-content-center x-pull-down container" xid="div7">
-    <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i2"></i>
-    <span class="x-pull-down-label" xid="span3">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div8">
     <div class="comm_top" id="comm_top" xid="ckplayer">
     <!-- <img src="" alt="" xid="image_title" bind-attr-src=' $model.course.val("titleImg")'></img><ins></ins> -->
@@ -73,7 +70,7 @@
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_time" bind-text=' $model.classhourToXueshi($model.course.val("classhour"))'></div></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_schedule">
    <label class="x-label" xid="label_schedule"><![CDATA[进度：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text='( $model.course.val("status") ==2) ?  "已完成" : $model.classhourToXueshi($model.course.val("times")) '></div></div>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text=' $model.calcTime($model.course.val("times"))'></div></div>
   </div>
   <div xid="div_right" class="div_right">
   

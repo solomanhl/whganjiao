@@ -212,7 +212,7 @@ define(function(require){
 		    //没有任何参数，但运行到这里则确认视频已暂停
 //			    alert(Number);
 			var time = Math.round(Number);
-			if ( time % 60 == 0 ){//一分钟
+			if ( time % 10 == 0 ){//10S
 				//回传进度
 				me.sendTime(time);
 			}
@@ -350,6 +350,29 @@ define(function(require){
 // 		$(window).on('beforeunload', function(){
 // 			document.removeEventListener('backbutton', listener, false);
 // 	    });
+	};
+	
+	//计算已经看过的时间
+	Model.prototype.calcTime = function (value){
+		var theTime = parseInt(value);// 秒
+	    var theTime1 = 0;// 分
+	    var theTime2 = 0;// 小时
+	    if(theTime > 60) {
+	        theTime1 = parseInt(theTime/60);
+	        theTime = parseInt(theTime%60);
+	            if(theTime1 > 60) {
+	            theTime2 = parseInt(theTime1/60);
+	            theTime1 = parseInt(theTime1%60);
+	            }
+	    }
+	        var result = ""+parseInt(theTime)+"秒";
+	        if(theTime1 > 0) {
+	        result = ""+parseInt(theTime1)+"分"+result;
+	        }
+	        if(theTime2 > 0) {
+	        result = ""+parseInt(theTime2)+"小时"+result;
+	        }
+	    return result;
 	};
 
 	//点击播放器外层的div

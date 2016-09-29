@@ -20,7 +20,7 @@
   <column label="总成绩学时" name="examjoined" type="String" xid="xid13"></column>
   <column label="全市排名" name="ranking" type="String" xid="xid14"></column>
   <column label="截至日期" name="date" type="String" xid="xid15"></column>
-  <data xid="default1">[]</data></div>
+  <data xid="default1">[{&quot;id&quot;:0,&quot;examfinish&quot;:&quot;0&quot;,&quot;trainingClassjoined&quot;:&quot;0&quot;,&quot;examAll&quot;:&quot;0&quot;,&quot;times&quot;:&quot;0&quot;,&quot;trainingClassbegin&quot;:&quot;0&quot;,&quot;trainingClassfinish&quot;:&quot;0&quot;,&quot;coursestudy&quot;:&quot;0&quot;,&quot;coursejoined&quot;:&quot;0&quot;,&quot;coursefinish&quot;:&quot;0&quot;,&quot;courseAll&quot;:&quot;0&quot;,&quot;exambegin&quot;:&quot;0&quot;,&quot;examjoined&quot;:&quot;0&quot;,&quot;ranking&quot;:&quot;0&quot;,&quot;date&quot;:&quot;-&quot;}]</data></div>
   </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full files"
     xid="panel1"> 
@@ -42,9 +42,9 @@
     <div class="x-panel-content" xid="content1"><div xid="div_title" class="title"><div component="$UI/system/components/justep/output/output" class="x-output username" xid="output_username"></div>
   <div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_title"></div></div>
   <div xid="div_xuexi" class="same"><label xid="label1"><![CDATA[学习课件获得学时]]></label><div component="$UI/system/components/justep/dataTables/dataTables" flexibleWidth="true" responsive="true" rowActiveClass="active" class="table table-hover table-striped" xid="dataTables1" data="dangan">
-   <columns xid="columns1"><column name="times" xid="column1" label="选择课件数" orderable="false"></column>
+   <columns xid="columns1"><column name="courseAll" xid="column3" label="选择课件数" orderable="false"></column>
   <column name="coursefinish" xid="column2" label="完成课件数" orderable="false"></column>
-  <column name="courseAll" xid="column3" label="获得总学时" orderable="false"></column></columns></div>
+  <column name="times" xid="column1" label="获得总学时" orderable="false"></column></columns></div>
   </div>
   <div xid="div_pince"  class="same"><label xid="label2"><![CDATA[参加课件评测获得学时]]></label>
   <div component="$UI/system/components/justep/dataTables/dataTables" flexibleWidth="true" responsive="true" rowActiveClass="active" class="table table-hover table-striped" xid="dataTables2" data="dangan">

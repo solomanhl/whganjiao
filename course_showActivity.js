@@ -31,9 +31,10 @@ define(function(require){
 	    if (justep.Browser.isX5App) 
 	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
 
-	    this.getCourse();
-		this.getComment(false);
-		
+	    if (this.userId != null && this.userId != null && this.userId != undefined){
+	    	this.getCourse();
+	    	this.getComment(false);
+	    }
 		
 	};
 	
@@ -213,8 +214,11 @@ define(function(require){
 //			    alert(Number);
 			var time = Math.round(Number);
 			if ( time % 10 == 0 ){//10S
-				//回传进度
-				me.sendTime(time);
+				//当前时间大于开始时间，回传进度
+				if (time > times){
+					me.sendTime(time);
+				}
+				
 			}
 		});
 			
@@ -339,6 +343,22 @@ define(function(require){
 		
 		if (justep.Browser.isX5App ) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+		
+		//卸载事件
+		justep.Shell.off("onRefreshList", this.onRefreshList);
+	};
+	
+	Model.prototype.onRefreshList = function(event){
+		this.courseId = event.courseId;//课程id
+		this.userId = event.userId;//用户id
+		
+		if (this.userId != null && this.userId != null && this.userId != undefined){
+	    	this.getCourse();
+	    	this.getComment(false);
+	    }
+//		alert(this.userId);
+		
+		
 	};
 
 
@@ -350,6 +370,8 @@ define(function(require){
 // 		$(window).on('beforeunload', function(){
 // 			document.removeEventListener('backbutton', listener, false);
 // 	    });
+		//添加事件
+		justep.Shell.on("onRefreshList", this.onRefreshList, this);
 	};
 	
 	//计算已经看过的时间

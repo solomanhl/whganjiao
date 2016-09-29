@@ -14,13 +14,15 @@
 
 .userComment .top_title{display: block;background: #fff;padding: 1rem 5%;font-size: 1.3rem;text-align: center;color: #333}
 .userComment .div_info{background: #fff;padding:0 5% 1.5rem;overflow: hidden;border-bottom: 1px solid #dfdfdf;margin-bottom: 10px}
-.userComment .div_info .div_left{width: 50%;padding:5px 4%;float: left;color: #959595;font-size: 1rem}
+.userComment .div_info .div_left{width: 50%;padding:5px 3% 5px 1%;float: left;color: #959595;font-size: 1rem}
 .userComment .div_info label{width: auto;margin-right: 5px;padding: 0;}
-.userComment .div_info .x-label-edit{padding:0;margin-bottom: 5px}
+.userComment .div_info .x-label-edit{padding:0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
 .userComment .div_info .x-output{color: #959595;font-size: 1rem;padding: 0;}
 .userComment .div_info .div_left .teacher{color: #1195db}
-.userComment .div_info .div_right{width: 50%;padding:5px 4%;float: right;color: #959595;font-size: 1rem;border-left: 1px solid #dfdfdf;}
-.userComment .div_info .div_right label{font-weight: normal;padding-right: 70px;background: url(./img/block.gif) no-repeat right center;background-size: 65px;}
+.userComment .div_info .div_right{width: 50%;padding:5px 1% 5px 3%;float: right;color: #959595;font-size: 1rem;border-left: 1px solid #dfdfdf;}
+.userComment .div_info .div_right label{width: 65%;font-weight: normal;}
+.userComment .div_info .div_right label span{display: block;background: url(./img/block.gif) no-repeat right center;background-size: 64%;padding-right:64%;}
+.userComment .div_info .div_right .x-edit{width: 35%;}
 
 /*视频详情*/
 
@@ -41,6 +43,6 @@
 .userComment .comm_list li .media-body .media_head{height: 20px;line-height: 20px;position: relative;font-size: 1.2rem;margin-bottom: 5px;}
 .userComment .comm_list li .media-body .media_head .user{padding: 0;}
 .userComment .comm_list li .media-body .media_head .date{padding: 0;position: absolute;right: 0;top: 0;color: #959595}
-.userComment .comm_list li .media-body .text{padding: 0;font-size: 1rem;line-height: 1.5rem;color: #959595;height: 35px;overflow: hidden;}
+.userComment .comm_list li .media-body .text{padding: 0;font-size: 1rem;line-height: 1.5rem;color: #959595;height: 3rem;overflow: hidden;}
 
 /*课程列表*/

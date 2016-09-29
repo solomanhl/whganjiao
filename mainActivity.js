@@ -556,6 +556,7 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
+//	        	"typeId" : 3,
 	        	"pageNo" : me.pageNo_comment
 	        },
 	        success: function(resultData) {
@@ -616,6 +617,7 @@ define(function(require){
 	Model.prototype.scrollView_commPullUp = function(event){	
 		if (this.pageNo_communicate < this.totalPage_communicate){
 			this.pageNo_communicate++;
+			this.getCommunicate(true);
 		}
 	};
 
@@ -861,5 +863,8 @@ $(function(){
 	})
 
 	// 更多课程弹窗
+
+	$(".content_home .banner").height($(window).width()/1.84);
+	$(".content_home .banner img").height($(window).width()/1.84);
 
 })

@@ -77,37 +77,30 @@
               <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
                 <div class="x-scroll-content" xid="div2"> 
-                  <div component="$UI/system/components/bootstrap/carousel/carousel"
-                    class="x-carousel banner" xid="carousel1" auto="true"> 
-                    <ol class="carousel-indicators" xid="ol1"/>  
-                    <div class="x-contents carousel-inner" role="listbox" component="$UI/system/components/justep/contents/contents"
-                      active="0" slidable="true" wrap="true" swipe="true" routable="false"
-                      xid="contentsImg"> 
+                  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-card" xid="panel3">
+   <div component="$UI/system/components/bootstrap/carousel/carousel" class="x-carousel banner" xid="carousel1" auto="true"> 
+                    <ol class="carousel-indicators" xid="ol1" />  
+                    <div class="x-contents carousel-inner" role="listbox" component="$UI/system/components/justep/contents/contents" active="0" slidable="true" wrap="true" swipe="true" routable="false" xid="contentsImg"> 
                       <div class="x-contents-content" xid="contentImg"> 
-                        <img src="" alt="" xid="image1" class="tb-img1" bind-click="openPageClick"
-                          pagename="./detail.w"/> 
+                        <img src="" alt="" xid="image1" class="tb-img1" bind-click="openPageClick" pagename="./detail.w" /> 
                       </div> 
                     </div> 
-                  </div>  
-                  <div component="$UI/system/components/justep/list/list" class="x-list"
-                    xid="list1" data="news" limit="20"> 
+                  </div></div>  
+                   
+                <div component="$UI/system/components/justep/panel/panel" class="x-panel x-card" xid="panel5">
+   <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="news" limit="20"> 
                     <ul class="x-list-template" xid="listTemplateUl1"> 
                       <li xid="li1" bind-click="li1Click"> 
-                        <div component="$UI/system/components/justep/output/output"
-                          class="x-output title" xid="output_title" bind-ref="ref(&quot;title&quot;)"/>  
-                        <div component="$UI/system/components/justep/output/output"
-                          class="x-output message" xid="output_message" bind-ref="ref(&quot;description&quot;)"
-                          bind-visible="false"/>  
-                        <div component="$UI/system/components/justep/output/output"
-                          class="x-output date" xid="output_date" bind-ref="ref(&quot;date&quot;)"/> 
+                        <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title" bind-ref="ref(&quot;title&quot;)" />  
+                        <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_message" bind-ref="ref(&quot;description&quot;)" bind-visible="false" />  
+                        <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_date" bind-text='val("date").substring(0, 10)'/> 
                       </li> 
                     </ul> 
-                  </div> 
-                </div>  
-                <div class="x-content-center x-pull-up" xid="div3"> 
+                  </div></div></div>  
+                 
+              <div class="x-content-center x-pull-up" xid="div3"> 
                   <span class="x-pull-up-label" xid="span14">加载更多...</span> 
-                </div> 
-              </div>
+                </div></div>
             </div> 
           </div>
         </div>  
@@ -204,7 +197,7 @@
                             <a href="#" xid="a_orien"> 
                               <span xid="span15"/>
                               <img class="media-object" src="" alt="" xid="image_orien"
-                                bind-attr-src=" val(&quot;titleImg&quot;)"/>
+                                bind-attr-src=' "http://whce.whgky.cn" + val("titleImg")'/>
                             </a> 
                           </div>
                           <div class="media-body" xid="mediaBody2"> 

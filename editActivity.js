@@ -62,10 +62,12 @@ define(function(require){
 		        	var status = resultData.status;
 		        	
 		        	if (status == 1){
-		        		window.plugins.toast.show("发表成功！", "long", "center");
+		        		if (justep.Browser.isX5App)
+		        			window.plugins.toast.show("发表成功！", "long", "center");
 		        		justep.Shell.closePage();
 		        	}else{
-		        		window.plugins.toast.show("发表失败，请稍后再试！", "long", "center");
+		        		if (justep.Browser.isX5App)
+		        			window.plugins.toast.show("发表失败，请稍后再试！", "long", "center");
 		        	}
 		        	
 		        },
@@ -77,6 +79,13 @@ define(function(require){
 		
 		
 	}
+
+	Model.prototype.modelUnLoad = function(event){
+		justep.Shell.fireEvent("onRefreshList", {
+				"courseId" : this.courseId, 
+				"userId" : this.userId
+			});
+	};
 
 	return Model;
 });

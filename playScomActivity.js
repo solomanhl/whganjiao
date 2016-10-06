@@ -13,16 +13,21 @@ define(function(require){
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
-		 if (justep.Browser.isX5App) cordova.plugins.screenorientation.setOrientation('landscape');//屏幕方向横屏
+//		 if (justep.Browser.isX5App) cordova.plugins.screenorientation.setOrientation('landscape');//屏幕方向横屏
 		 
 		 var context = this.getContext();
 		 var me = this;
 		 this.userId = event.params.userId;
 		 this.courseId = event.params.courseId;
 		 this.url =  event.params.url;
+//		 alert(this.url);
 		 
 		 var iframe1 = this.getElementByXid("iframe1");
 		 iframe1.src = this.url;
+		 var width = document.getElementById("div2").offsetWidth;
+		 var height = width * 0.7;
+//		 alert(width);
+		 iframe1.Height =  height;
 //		 iframe1.style.zoom=2;
 
 	};

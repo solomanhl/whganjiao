@@ -3,6 +3,8 @@ define(function(require){
 	
 	require("cordova!cordova-plugin-screen-orientation");
 	
+	var global = require("./globalvar");
+	
 	var Model = function(){
 		this.callParent();
 		
@@ -20,7 +22,8 @@ define(function(require){
 		if (justep.Browser.isX5App) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 		
-		this.getExam(false);
+		if (this.userId != undefined)
+			this.getExam(false);
 	};
 	
 	Model.prototype.getExam = function(isApend){
@@ -30,7 +33,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/trainingclass-user-list.jspx",
+	        url: global.server + "/app/trainingclass-user-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -90,6 +93,7 @@ define(function(require){
 		var url = require.toUrl("./myCoursesActivity.w");
 		var params = {
 	        from : "peixunActivity",
+	        userId : this.userId,
 	        trainingclassId : current.val("id"),
 	        data : {
 	            // 将data中的一行数据传给对话框
@@ -97,6 +101,25 @@ define(function(require){
 	        }
 	    }
 		justep.Shell.showPage(url, params);
+	};
+
+	Model.prototype.modelLoad = function(event){
+		//添加事件
+		justep.Shell.on("onRefreshList", this.onRefreshList, this);
+	};
+
+	Model.prototype.modelUnLoad = function(event){
+		//卸载事件
+		justep.Shell.off("onRefreshList", this.onRefreshList);
+	};
+	
+	Model.prototype.onRefreshList = function(event){
+		this.userId = event.userId;
+	    this.from = event.from;
+	    this.trainingclassId = event.trainingclassId;
+	    
+	    if (this.userId != undefined)
+			this.getExam(false);
 	};
 
 	return Model;

@@ -3,6 +3,8 @@ define(function(require){
 	var justep = require("$UI/system/lib/justep");
 	require("cordova!cordova-plugin-screen-orientation");
 	require("cordova!cordova-plugin-x-toast");
+	
+	var global = require("./globalvar");
 
 	var Model = function(){
 		this.callParent();
@@ -10,6 +12,7 @@ define(function(require){
 		this.examId;
 		this.pageNo=1;
 		this.totalPage=1;
+		
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
@@ -45,7 +48,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/exam-theme-list.jspx",
+	        url: global.server + "/app/exam-theme-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -179,7 +182,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/exam-save.jspx",
+	        url: global.server + "/app/exam-save.jspx",
 //	        url: "http://192.168.1.22:8080/app/exam-save.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
@@ -210,7 +213,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/exam-finish.jspx",
+	        url: global.server + "/app/exam-finish.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

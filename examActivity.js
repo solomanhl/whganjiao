@@ -4,6 +4,8 @@ define(function(require){
 	require("cordova!cordova-plugin-screen-orientation");
 	require("cordova!cordova-plugin-x-toast");
 
+	var global = require("./globalvar");
+	
 	var Model = function(){
 		this.callParent();
 		
@@ -32,7 +34,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/exam-user-list.jspx",
+	        url: global.server + "/app/exam-user-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -98,7 +100,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/exam-user-checked.jspx",
+	        url: global.server + "/app/exam-user-checked.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

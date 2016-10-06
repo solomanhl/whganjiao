@@ -2,12 +2,15 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var allData = require("./js/loadData");
+	
+	var global = require("./globalvar");
 	require("cordova!cordova-plugin-screen-orientation");
 
 	var Model = function(){
 		this.callParent();
 		
-		this.server = "http://whce.whgky.cn";
+//		this.server = "http://whce.whgky.cn";
+		this.server = global.server;
 		
 		//用户登录信息
 		this.username = "";
@@ -83,7 +86,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/content-list.jspx",
+	        url: global.server + "/app/content-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -308,7 +311,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course-list.jspx",
+	        url: global.server + "/app/course-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -359,7 +362,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course-type-list.jspx",
+	        url: global.server + "/app/course-type-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -445,7 +448,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/content-list.jspx",
+	        url: global.server + "/app/content-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -551,12 +554,12 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course-experience-list.jspx",
+	        url: global.server + "/app/course-experience-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-//	        	"typeId" : 3,
+	        	"shapeId" : 3,  //单视频的评论
 	        	"pageNo" : me.pageNo_comment
 	        },
 	        success: function(resultData) {
@@ -627,7 +630,7 @@ define(function(require){
 //		alert(this.username + this.userid + this.status);
 		if (this.username != ""  && this.userid != "" && this.status =="1"){
 //			$("label_username").val(this.username);
-			justep.Shell.setIsSinglePage(true);
+//			justep.Shell.setIsSinglePage(true);
 			var url = require.toUrl("./personalActivity.w");
 			var params = {
 		        from : "mainActivity",
@@ -644,7 +647,7 @@ define(function(require){
 
 	//
 	Model.prototype.jumpToLogin = function(){
-		justep.Shell.setIsSinglePage(true);
+//		justep.Shell.setIsSinglePage(true);
 		var url = require.toUrl("./loginActivity.w");
 		var params = {
 	        from : "mainActivity",
@@ -748,7 +751,7 @@ define(function(require){
 
 
 	Model.prototype.modelLoad = function(event){
-		justep.Shell.setIsSinglePage(true);
+//		justep.Shell.setIsSinglePage(true);
 		//添加事件
 		justep.Shell.on("onRefreshUser", this.onRefreshUser, this);
 	};
@@ -787,7 +790,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/online.jspx",
+	        url: global.server + "/app/online.jspx",
 //	        url: "http://192.168.1.22:8080/app/online.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",

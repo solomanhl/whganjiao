@@ -5,14 +5,21 @@ define(function(require){
 
 	require("cordova!cordova-plugin-screen-orientation");
 //	require("cordova!cordova-plugin-inappbrowser");
+	
+	var global = require("./globalvar");
  
 	var Model = function(){
 		this.callParent();
 		
-		this.server = "http://whce.whgky.cn";
+//		this.server = "http://whce.whgky.cn";
+		this.server = global.server;
 		
+		this.from;
+		this.trainingclassId;
 		this.courseId;//课程id
 		this.userId;//用户id
+		this.shapeId;//课件类型
+		this.pretime;//开始时间
 		
 		//评论
 		this.pageNo_comment = 0;
@@ -26,10 +33,11 @@ define(function(require){
 	    this.courseId = event.params.courseId;
 	    this.userId = event.params.userId;
 	    this.from = event.params.from;
-//	    alert(this.courseId +  "/" + this.userId);
+	    this.trainingclassId = event.params.trainingclassId;
+//	    alert(this.courseId +  "/" + this.userId)
 
-	    if (justep.Browser.isX5App) 
-	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
+//	    if (justep.Browser.isX5App) 
+//	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
 
 	    if (this.userId != null && this.userId != null && this.userId != undefined){
 	    	this.getCourse();
@@ -54,7 +62,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course.jspx",
+	        url: global.server + "/app/course.jspx",
 //	        url: "http://192.168.1.22:8080/app/course.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
@@ -86,6 +94,14 @@ define(function(require){
 	        	course.first();
 	        	
 	        	//这里要判断课程类型mp4、精英在线、scorm
+	        	/*
+					0：动画
+					1：华点通三分频
+					2：中经三分频
+					3：单视频
+					4：精品三分频
+					5：图书
+	        	*/
 //	        	var url = "http://movie.ks.js.cn/flv/other/1_0.mp4";
 	        	var url = me.server + course.getValue("path");
 				var type = '->video/mp4';
@@ -96,8 +112,63 @@ define(function(require){
 				if (times == null){
 					times = 0;
 				}
+				me.pretime = times;
+				
+				me.shapeId = course.getValue("shapeId");;
+//				alert(me.shapeId);
+//				me.shapeId = 2;
+				if (me.shapeId == 3){
+					var flashvars={
+						f:url,
+						c:0,
+						p:0,	//不自动播放
+						g:times,	//视频直接g秒开始播放
+						i:img,	//初始化图片
+						lv:1,	//锁定进度条，不让拖动
+					};
+					me.ckPlayer(url, type, img, times, flashvars);
+				}else if (me.shapeId == 4){
+				//精英在线课件不支持手机
+//					url = "http://whce.whgky.cn/course/lessionnew/gc/GC31I3314035_1405/index.html?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=24311&courseID=6472";
+						var flashvars={
+//				        f:'http://whce.whgky.cn/course/lessionnew/gc/GC31I3314035_1405/index.html?url=[$url]&userId=[$uid]&courseID=[$cid]',
+//				        a:'whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx|24311|6472',
+//				        s:1,
+				        c:0,
+				        p:0,	//不自动播放
+				        g:times,	//视频直接g秒开始播放
+						i:img,	//初始化图片
+						lv:1,	//锁定进度条，不让拖动
+				    };
+				    me.ckPlayer(url, type, img, times, flashvars);
+				}else if (me.shapeId == 2){
+				//中经三分频，scorm
+//					url = "http://whce.whgky.cn/course/lessionnew/gc/GC31I3314035_1405/index.html?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=24311&courseID=6472";
+						var flashvars={
+//				        f:'http://whce.whgky.cn/course/lessionnew/gc/GC31I3314035_1405/index.html?url=[$url]&userId=[$uid]&courseID=[$cid]',
+//				        a:'whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx|24311|6472',
+//				        s:1,
+				        c:0,
+				        p:0,	//不自动播放
+				        g:times,	//视频直接g秒开始播放
+						i:img,	//初始化图片
+						lv:1,	//锁定进度条，不让拖动
+				    };
+				    me.ckPlayer(url, type, img, times, flashvars);
+				}else{
+					var flashvars={
+						f:url,
+						c:0,
+						p:0,	//不自动播放
+						g:times,	//视频直接g秒开始播放
+						i:img,	//初始化图片
+						lv:1,	//锁定进度条，不让拖动
+					};
+					me.ckPlayer(url, type, img, times, flashvars);
+				}
+				
 //				alert(url + img);
-				me.ckPlayer(url, type, img, times);
+				
 //	        	alert("课程数据" + course.getValue("times"));
 	        	
 	        },
@@ -115,7 +186,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course-experience-list.jspx",
+	        url: global.server + "/app/course-experience-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -174,20 +245,21 @@ define(function(require){
 		return h;
 	};
 
-	Model.prototype.ckPlayer = function(url, type, img, times){
+	Model.prototype.ckPlayer = function(url, type, img, times, flashvars){
 		var me = this;
 		var width = parseInt(document.getElementById("comm_top").offsetWidth * 0.96);
 		var height = parseInt(width * 10 / 16);
 //		alert(width);
 		
-		var flashvars={
-			f:url,
-			c:0,
-			p:0,	//不自动播放
-			g:times,	//视频直接g秒开始播放
-			i:img,	//初始化图片
-			lv:1,	//锁定进度条，不让拖动
-		};
+//		var flashvars={
+//			f:url,
+//			c:0,
+//			p:0,	//不自动播放
+//			g:times,	//视频直接g秒开始播放
+//			i:img,	//初始化图片
+//			lv:1,	//锁定进度条，不让拖动
+//		};
+//		alert(JSON.stringify(flashvars));
 		var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
 		var video=[url + type];//html5支持
 		CKobject.embed('/ckplayer/ckplayer.swf','a1','ckplayer_a1',width,height,true,flashvars,video,params); 
@@ -224,6 +296,7 @@ define(function(require){
 			
 	}
 	
+	
 	//回传课程时间
 	Model.prototype.sendTime = function (time){
 		var me = this;
@@ -231,7 +304,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course-play-times.jspx",
+	        url: global.server + "/app/course-play-times.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -276,7 +349,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/course-play-end.jspx",
+	        url: global.server + "/app/course-play-end.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -319,7 +392,7 @@ define(function(require){
 		if (justep.Browser.isX5App ) 
 		cordova.plugins.screenorientation.setOrientation('landscape');//横屏模式
 //		ShellImpl.isSinglePage = true;
-		justep.Shell.setIsSinglePage(true);
+//		justep.Shell.setIsSinglePage(true);
 		var url = require.toUrl("./playActivity.w");
 			var params = {
 		        from : "course_showActivity",
@@ -345,10 +418,15 @@ define(function(require){
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 		
 		//卸载事件
-		justep.Shell.off("onRefreshList", this.onRefreshList);
+		justep.Shell.off("onRefreshCourse", this.onRefreshCourse);
+		
+//		alert(this.trainingclassId);
+		justep.Shell.fireEvent("onRefreshCourseList", {"from" : this.from,
+									"userId" : this.userId,
+									"trainingclassId" : this.trainingclassId});
 	};
 	
-	Model.prototype.onRefreshList = function(event){
+	Model.prototype.onRefreshCourse = function(event){
 		this.courseId = event.courseId;//课程id
 		this.userId = event.userId;//用户id
 		
@@ -371,7 +449,7 @@ define(function(require){
 // 			document.removeEventListener('backbutton', listener, false);
 // 	    });
 		//添加事件
-		justep.Shell.on("onRefreshList", this.onRefreshList, this);
+		justep.Shell.on("onRefreshCourse", this.onRefreshCourse, this);
 	};
 	
 	//计算已经看过的时间
@@ -411,12 +489,6 @@ define(function(require){
 //		window.open("http://whce.whgky.cn/u/cms/www/lesson02/index.html",'_self');//精英在线，白屏
 
 
-		//通过服务器页面代理，解决跨域问题。
-		var url = "http://whce.whgky.cn/app/course-flash-play.jspx";
-		var options = "location=no,toolbar=yes";
-		window.open(url,'_blank', options);//新scorm，弹出浏览器
-		
-
 		//scorm视频
 //		var url = require.toUrl("./playScomActivity.w");
 //			var params = {
@@ -428,8 +500,60 @@ define(function(require){
 ////		        url : "http://whce.whgky.cn/u/cms/www/lesson02/index.html" //精英在线，手机不能播放
 //		    };
 //			justep.Shell.showPage(url, params);
-	};
 
+		
+		//通过服务器页面代理，解决跨域问题。  可用！！！！！！！！！！！！！！！！
+//		var url = "http://whce.whgky.cn/app/course-flash-play.jspx";
+//		var options = "location=no,toolbar=yes";
+//		window.open(url,'_blank', options);//新scorm，弹出浏览器
+
+		if (this.shapeId == 4){
+			//精英在线
+			//通过服务器页面代理，
+//			var course = this.comp("course");
+//			var path = course.getValue("path");
+//			var url = this.server + path + "?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId;
+//			var options = "location=no,toolbar=yes";
+//			window.open(url,'_blank', options);//，弹出浏览器
+			
+			
+			var url = require.toUrl("./playJinYinActivity.w");
+			var course = this.comp("course");
+			var path = course.getValue("path");
+//			path = "/course/lessionnew/gc/GC31I3314035_1405/index.html";
+			var params = {
+		        from : "course_showActivity",
+		        courseId : this.courseId,
+		        userId : this.userId,
+		        url : this.server + path + "?url=" + global.server + "/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId
+		    };
+			justep.Shell.showPage(url, params);
+			
+		}else if (this.shapeId == 2){
+			//中经三分频，老scorm内核，不支持手机
+			//通过服务器页面代理，
+//			var course = this.comp("course");
+//			var path = course.getValue("path");
+//			var url = this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2";
+//			var options = "location=no,toolbar=yes";
+//			window.open(url,'_blank', options);//，弹出浏览器
+
+			var url = require.toUrl("./playScomActivity.w");
+			var course = this.comp("course");
+			var path = course.getValue("path");
+			//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
+			var params = {
+		        from : "course_showActivity",
+		        courseId : this.courseId,
+		        userId : this.userId,
+		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2",
+		    };
+			justep.Shell.showPage(url, params);
+//		}
+		
+		
+	};
+}
 
 	return Model;
 });

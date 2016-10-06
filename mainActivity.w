@@ -197,7 +197,7 @@
                             <a href="#" xid="a_orien"> 
                               <span xid="span15"/>
                               <img class="media-object" src="" alt="" xid="image_orien"
-                                bind-attr-src=' "http://whce.whgky.cn" + val("titleImg")'/>
+                                bind-attr-src='$model.getServerImg(val("titleImg")) '/>
                             </a> 
                           </div>
                           <div class="media-body" xid="mediaBody2"> 

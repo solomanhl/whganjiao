@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:145px;height:auto;" onParamsReceive="modelParamsReceive"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:145px;height:auto;" onParamsReceive="modelParamsReceive" onLoad="modelLoad" onunLoad="modelUnLoad"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" idColumn="id" limit="6"><column label="线上培训集id" name="id" type="Integer" xid="xid1"></column>
   <column label="线上培训集名字" name="name" type="String" xid="xid3"></column>
   <column label="时间" name="udate" type="String" xid="xid5"></column>

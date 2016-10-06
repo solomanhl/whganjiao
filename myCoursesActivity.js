@@ -2,11 +2,14 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	require("cordova!cordova-plugin-screen-orientation");
+	
+	var global = require("./globalvar");
 
 	var Model = function(){
 		this.callParent();
 		
 		this.server = "http://whce.whgky.cn";
+		this.server = global.server;
 		
 		this.userId;
 		this.from;
@@ -52,8 +55,9 @@ define(function(require){
 		
 		if (this.from == "mainActivity"){
 	    	this.getCourseList(false);//我的课程
-	    }else if (this.from = "peixunActivity"){
-	    	this.trainingclassId = event.params.trainingclassId;
+	    }else if (this.from == "peixunActivity"){
+//	    	this.trainingclassId = event.params.trainingclassId;
+//	    	alert(this.trainingclassId);
 	    	this.getCourseList_class(false);//培训班的课程
 	    }
 	};
@@ -67,7 +71,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/user-course-list.jspx",
+	        url: global.server + "/app/user-course-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -120,11 +124,12 @@ define(function(require){
 	Model.prototype.getCourseList_class = function(isApend){
 		var me = this;
 		var course = this.comp("course");
+//		alert(this.trainingclassId);
 		
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/trainingclass-course-list.jspx",
+	        url: global.server + "/app/trainingclass-course-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -192,11 +197,13 @@ define(function(require){
 		localStorage.setItem('my_CoursesActivity_trainingclassId',this.trainingclassId); 
 		
 		var current = event.bindingContext.$object;//获得当前行
+//		alert(current.val("id"));
 		var status = current.val("status");
 		var url = require.toUrl("./course_showActivity.w");
 		var params = {
-	        from : "myCoursesActivity",
+	        from : this.from,
 	        courseId : current.val("courseId"),
+	        trainingclassId : this.trainingclassId,
 	        userId : this.userId,
 	        data : {
 	            // 将data中的一行数据传给对话框
@@ -204,6 +211,34 @@ define(function(require){
 	        }
 	    }
 		justep.Shell.showPage(url, params);
+	};
+
+
+	Model.prototype.modelLoad = function(event){
+		//添加事件
+		justep.Shell.on("onRefreshCourseList", this.onRefreshCourseList, this);
+	};
+
+
+	Model.prototype.modelUnLoad = function(event){
+		//卸载事件
+		justep.Shell.off("onRefreshCourseList", this.onRefreshCourseList);
+		
+		justep.Shell.fireEvent("onRefreshList", {"from" : this.from,
+									"userId" : this.userId,
+									"trainingclassId" : this.trainingclassId});
+	};
+	
+	Model.prototype.onRefreshCourseList = function(event){
+		this.userId = event.userId;
+	    this.from = event.from;
+	    this.trainingclassId = event.trainingclassId;
+//	    alert(this.from);
+//	    if (this.from == "mainActivity"){
+//	    	this.getCourseList(false);//我的课程
+//	    }else if (this.from = "peixunActivity"){
+//	    	this.getCourseList_class(false);//培训班的课程
+//	    }
 	};
 
 

@@ -2,13 +2,13 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:194px;left:15px;height:auto;" onParamsReceive="modelParamsReceive" onActive="modelActive"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="id" name="id" type="Integer" xid="xid1"></column>
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:194px;left:15px;height:auto;" onParamsReceive="modelParamsReceive" onActive="modelActive" onLoad="modelLoad" onunLoad="modelUnLoad"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="id" name="id" type="Integer" xid="xid1"></column>
   <column label="播放次数" name="time" type="String" xid="xid2"></column>
   <column name="level" type="String" xid="xid3"></column>
   <column label="课程状态" name="status" type="String" xid="xid4"></column>
   <column label="课程名" name="name" type="String" xid="xid5"></column>
-  <column label="课程id" name="courseId" type="String" xid="xid6"></column>
-  <column label="图片" name="titleImg" type="String" xid="xid7"></column></div></div>  
+  <column label="图片" name="titleImg" type="String" xid="xid7"></column>
+  <column label="课程id" name="courseId" type="String" xid="xid6"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full myCourse"
     xid="panel1"> 
     <div class="x-panel-top" xid="top1"> 

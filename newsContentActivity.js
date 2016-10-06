@@ -2,11 +2,14 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	require("cordova!cordova-plugin-screen-orientation");
+	
+	var global = require("./globalvar");
 
 	var Model = function(){
 		this.callParent();
 		
-		this.server = "http://whce.whgky.cn";
+//		this.server = "http://whce.whgky.cn";
+		this.server = global.server;
 		this.contentId;
 	};
 
@@ -45,7 +48,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/content.jspx",
+	        url: global.server + "/app/content.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

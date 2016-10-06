@@ -2,6 +2,8 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	require("cordova!cordova-plugin-screen-orientation");
+	
+	var global = require("./globalvar");
 
 	var Model = function(){
 		this.callParent();
@@ -28,7 +30,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/user-edit.jspx",
+	        url: global.server + "/app/user-edit.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -74,7 +76,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/user-update.jspx",
+	        url: global.server + "/app/user-update.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

@@ -42,20 +42,19 @@
     <div class="x-panel-content" xid="content1"><div xid="div_title" class="title"><div component="$UI/system/components/justep/output/output" class="x-output username" xid="output_username"></div>
   <div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_title"></div></div>
   <div xid="div_xuexi" class="same"><label xid="label1"><![CDATA[学习课件获得学时]]></label><div component="$UI/system/components/justep/dataTables/dataTables" flexibleWidth="true" responsive="true" rowActiveClass="active" class="table table-hover table-striped" xid="dataTables1" data="dangan">
-   <columns xid="columns1"><column name="courseAll" xid="column3" label="选择课件数" orderable="false"></column>
+   <columns xid="columns1"><column name="coursejoined" xid="column3" label="选择课件数" orderable="false"></column>
   <column name="coursefinish" xid="column2" label="完成课件数" orderable="false"></column>
   <column name="times" xid="column1" label="获得总学时" orderable="false"></column></columns></div>
   </div>
   <div xid="div_pince"  class="same"><label xid="label2"><![CDATA[参加课件评测获得学时]]></label>
   <div component="$UI/system/components/justep/dataTables/dataTables" flexibleWidth="true" responsive="true" rowActiveClass="active" class="table table-hover table-striped" xid="dataTables2" data="dangan">
-   <columns xid="columns2"><column name="examfinish" xid="column4" label="总成绩学时" orderable="false"></column>
-  <column name="exambegin" xid="column5" label="平均成绩学时" orderable="false"></column>
-  <column name="examjoined" xid="column6" label="总学时" orderable="false"></column>
+   <columns xid="columns2"><column name="examjoined" xid="column6" label="参加" orderable="false"></column><column name="examfinish" xid="column4" label="完成" orderable="false"></column>
+  
   </columns></div></div>
   <div xid="div_xianxia"  class="same"><label xid="label3"><![CDATA[线下培训档案]]></label>
   <div component="$UI/system/components/justep/dataTables/dataTables" flexibleWidth="true" responsive="true" rowActiveClass="active" class="table table-hover table-striped" xid="dataTables3" data="dangan">
-   <columns xid="columns3"><column name="trainingClassjoined" xid="column9" label="线下培训记录" orderable="false"></column>
-  <column name="trainingClassfinish" xid="column10" label="总学时" orderable="false"></column></columns></div></div></div> 
+   <columns xid="columns3"><column name="trainingClassjoined" xid="column9" label="参加" orderable="false"></column>
+  <column name="trainingClassfinish" xid="column10" label="完成" orderable="false"></column></columns></div></div></div> 
   </div> 
   <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
   <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource>

@@ -2,6 +2,8 @@ define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	require("cordova!cordova-plugin-screen-orientation");
+	
+	var global = require("./globalvar");
 
 	var Model = function(){
 		this.callParent();
@@ -33,7 +35,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: "http://whce.whgky.cn/app/user-pwd.jspx?userId=53&=1",
+	        url: global.server + "/app/user-pwd.jspx?userId=53&=1",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

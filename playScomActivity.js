@@ -34,7 +34,10 @@ define(function(require){
 
 	Model.prototype.modelUnLoad = function(event){
 		if (justep.Browser.isX5App )  cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
-		
+		justep.Shell.fireEvent("onRefreshCourse", {
+				"courseId" : this.courseId, 
+				"userId" : this.userId
+			});
 	};
 
 	Model.prototype.modelLoad = function(event){

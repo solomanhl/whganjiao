@@ -26,10 +26,20 @@ define(function(require){
 	};
 
 	Model.prototype.modelUnLoad = function(event){
-		justep.Shell.fireEvent("onRefreshList", {
+		justep.Shell.fireEvent("onRefreshCourse", {
 				"courseId" : this.courseId, 
 				"userId" : this.userId
 			});
+	};	
+
+	Model.prototype.modelLoad = function(event){
+		//监听返回键
+ 		document.addEventListener('backbutton', function(){
+ 			justep.Shell.closePage();
+ 		}, false);
+ 		$(window).on('beforeunload', function(){
+ 			document.removeEventListener('backbutton', listener, false);
+ 	    });
 	};	
 
 	return Model;

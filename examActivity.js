@@ -157,5 +157,15 @@ define(function(require){
 		justep.Shell.showPage(url, params);
 	};
 	
+	Model.prototype.modelLoad = function(event){
+		//监听返回键
+ 		document.addEventListener('backbutton', function(){
+ 			justep.Shell.closePage();
+ 		}, false);
+ 		$(window).on('beforeunload', function(){
+ 			document.removeEventListener('backbutton', listener, false);
+ 	    });
+	};
+	
 	return Model;
 });

@@ -6,6 +6,9 @@ define(function(require){
 
 	var Model = function(){
 		this.callParent();
+		
+		this.courseId;//课程id
+		this.userId;//用户id
 	};
 
 		
@@ -57,12 +60,25 @@ define(function(require){
 	Model.prototype.modelUnLoad = function(event){
 		if (justep.Browser.isX5App) 
 		 cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
+		 
+		 justep.Shell.fireEvent("onRefreshCourse", {
+				"courseId" : this.courseId, 
+				"userId" : this.userId
+			});
 	};
 	
 
 	Model.prototype.div1Click = function(event){
 //		this.comp("titleBar1").set({"visible" : true});
 		$("#titleBar1").attr('visible', true); 
+	};
+	
+
+	Model.prototype.modelParamsReceive = function(event){
+		var context = this.getContext();
+		var me = this;
+	    this.courseId = event.params.courseId;
+	    this.userId = event.params.userId;
 	};
 	
 

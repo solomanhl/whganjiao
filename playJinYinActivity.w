@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
   </div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
@@ -21,6 +21,6 @@
         </div> 
       </div>  
     <div class="x-panel-content" xid="content1"><div xid="div1"><span xid="span1" style="color:#FF254A;" bind-visible="justep.Browser.isX5App"><![CDATA[精英在线课程不支持手机播放！]]></span></div>
-  <div xid="div2"><iframe src="" xid="iframe1" width="100%"></iframe></div></div>
+  <div xid="div2"><iframe src="" xid="iframe1" width="1010" height="700"></iframe></div></div>
   </div> 
 </div>

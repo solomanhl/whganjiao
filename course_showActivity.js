@@ -442,12 +442,12 @@ define(function(require){
 
 	Model.prototype.modelLoad = function(event){
 		//监听返回键
-// 		document.addEventListener('backbutton', function(){
-// 			justep.Shell.closePage();
-// 		}, false);
-// 		$(window).on('beforeunload', function(){
-// 			document.removeEventListener('backbutton', listener, false);
-// 	    });
+ 		document.addEventListener('backbutton', function(){
+ 			justep.Shell.closePage();
+ 		}, false);
+ 		$(window).on('beforeunload', function(){
+ 			document.removeEventListener('backbutton', listener, false);
+ 	    });
 		//添加事件
 		justep.Shell.on("onRefreshCourse", this.onRefreshCourse, this);
 	};

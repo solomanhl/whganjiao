@@ -12,6 +12,7 @@ define(function(require){
 		this.totalPage_exam = 0;
 		
 		this.userId;
+		this.loaded = false;
 	};
 	
 	Model.prototype.modelParamsReceive = function(event){
@@ -22,7 +23,7 @@ define(function(require){
 		if (justep.Browser.isX5App) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 		
-		if (this.userId != undefined)
+		if (this.userId != undefined && !this.loaded)
 			this.getExam(false);
 	};
 	
@@ -125,7 +126,7 @@ define(function(require){
 	    this.from = event.from;
 	    this.trainingclassId = event.trainingclassId;
 	    
-	    if (this.userId != undefined)
+	    if (this.userId != undefined && !this.loaded)
 			this.getExam(false);
 	};
 

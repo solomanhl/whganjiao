@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:145px;height:auto;" onParamsReceive="modelParamsReceive" onLoad="modelLoad" onunLoad="modelUnLoad"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:315px;left:172px;" onParamsReceive="modelParamsReceive" onLoad="modelLoad" onunLoad="modelUnLoad"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" idColumn="id" limit="6"><column label="线上培训集id" name="id" type="Integer" xid="xid1"></column>
   <column label="线上培训集名字" name="name" type="String" xid="xid3"></column>
-  <column label="时间" name="udate" type="String" xid="xid5"></column>
+  <column label="" name="udate" type="String" xid="xid5"></column>
   <column name="level" type="String" xid="xid2"></column>
   <column name="times" type="String" xid="xid4"></column>
-  <column name="status" type="String" xid="xid6"></column></div></div>  
+  <column name="status" type="String" xid="xid6"></column>
+  <column label="培训班开始时间" name="startDate" type="String" xid="xid7"></column>
+  <column label="结束时间" name="endDate" type="String" xid="xid8"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full peixun" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -32,8 +34,8 @@
       <dl>
       <dt><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img></dt><dd>
   <span xid="span_title" bind-text='val("name")' class="title"></span>
-  <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("udate")'></span></ins>
-  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins></dd>
+  <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("startDate")'></span></ins>
+  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("endDate")'></span></ins></dd>
   </dl>
   </li></ul> </div></div>
    <div class="x-content-center x-pull-up" xid="div3">

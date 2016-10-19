@@ -22,8 +22,8 @@
       </div>  
     <div class="x-panel-content" xid="content1">
   
-  <div xid="div1"><span xid="span1" bind-visible="false" style="color:#FF254A;"><![CDATA[老中经课程不支持手机播放！]]></span></div>
+  <div xid="div1" bind-visible="false"><span xid="span1" bind-visible="false" style="color:#FF254A;"><![CDATA[老中经课程不支持手机播放！]]></span></div>
   <div xid="div2" id="div2" bind-visible="justep.Browser.isX5App"><iframe xid="iframe1" width="1010" height="700"></iframe></div></div>
   </div> 
-</div>
+<span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="120000" onTimer="timer1Timer"></span></div>
 

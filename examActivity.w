@@ -5,7 +5,9 @@
   <column label="级别" name="level" type="String" xid="xid2"></column>
   <column label="考试名" name="name" type="String" xid="xid3"></column>
   <column label="分数" name="score" type="String" xid="xid4"></column>
-  <column label="时间" name="udate" type="String" xid="xid5"></column></div></div>  
+  <column label="" name="udate" type="String" xid="xid5"></column>
+  <column label="开始时间" name="startDate" type="String" xid="xid6"></column>
+  <column label="结束时间" name="endDate" type="String" xid="xid7"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full exam" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -31,8 +33,8 @@
     <dl>
       <dt><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img></dt>
       <dd><span xid="span_title" bind-text='val("name")' class="title"></span>
-  <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("udate")'></span></ins>
-  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("udate")'></span></ins></dd>
+  <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("startDate")'></span></ins>
+  <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("endDate")'></span></ins></dd>
     </dl>  
   
   </li></ul> </div></div>

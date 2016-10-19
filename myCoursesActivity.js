@@ -11,6 +11,8 @@ define(function(require){
 		this.server = "http://whce.whgky.cn";
 		this.server = global.server;
 		
+		this.loaded = false;
+		
 		this.userId;
 		this.from;
 		this.trainingclassId;//培训课程集id
@@ -38,28 +40,17 @@ define(function(require){
 	    this.userId = event.params.userId;
 	    this.from = event.params.from;
 	    
-	    if (this.from == "mainActivity"){
+	    if (this.from == "mainActivity" && !this.loaded ){
 	    	this.getCourseList(false);//我的课程
-	    }else if (this.from = "peixunActivity"){
+	    	this.loaded = true;
+	    }else if (this.from = "peixunActivity" && !this.loaded){
 	    	this.trainingclassId = event.params.trainingclassId;
-	    	this.getCourseList_class(false);//培训班的课程
+	    	if (this.trainingclassId != undefined){
+	    		this.getCourseList_class(false);//培训班的课程
+	    		this.loaded = true;
+	    	}
 	    }
 	    
-	};
-	
-	Model.prototype.modelActive = function(event){
-//		alert(2);
-		this.userId = localStorage.getItem("my_CoursesActivity_userId");
-		this.from = localStorage.getItem("my_CoursesActivity_from");
-		this.trainingclassId = localStorage.getItem("my_CoursesActivity_trainingclassId");
-		
-		if (this.from == "mainActivity"){
-	    	this.getCourseList(false);//我的课程
-	    }else if (this.from == "peixunActivity"){
-//	    	this.trainingclassId = event.params.trainingclassId;
-//	    	alert(this.trainingclassId);
-	    	this.getCourseList_class(false);//培训班的课程
-	    }
 	};
 	
 	
@@ -124,7 +115,6 @@ define(function(require){
 	Model.prototype.getCourseList_class = function(isApend){
 		var me = this;
 		var course = this.comp("course");
-//		alert(this.trainingclassId);
 		
 		$.ajax({
 	        type: "get",
@@ -240,12 +230,14 @@ define(function(require){
 		this.userId = event.userId;
 	    this.from = event.from;
 	    this.trainingclassId = event.trainingclassId;
-//	    alert(this.from);
-//	    if (this.from == "mainActivity"){
-//	    	this.getCourseList(false);//我的课程
-//	    }else if (this.from = "peixunActivity"){
-//	    	this.getCourseList_class(false);//培训班的课程
-//	    }
+	    
+	    if (this.from == "mainActivity"  && this.userId != null && !this.loaded){
+	    	this.getCourseList(false);//我的课程
+	    	this.loaded = true;
+	    }else if (this.from = "peixunActivity" && this.trainingclassId != null && !this.loaded){
+	    	this.getCourseList_class(false);//培训班的课程
+	    	this.loaded = true;
+	    }
 	};
 
 

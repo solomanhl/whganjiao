@@ -21,6 +21,8 @@ define(function(require){
 		this.shapeId;//课件类型
 		this.pretime;//开始时间
 		
+		this.loaded = false;//页面加载完成
+		
 		//评论
 		this.pageNo_comment = 0;
 		this.totalPage_comment = 0;
@@ -40,8 +42,12 @@ define(function(require){
 //	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
 
 	    if (this.userId != null && this.userId != null && this.userId != undefined){
-	    	this.getCourse();
-	    	this.getComment(false);
+	    	if ( !this.loaded){
+	    		this.getCourse();
+	    		this.getComment(false);
+	    		this.loaded = true;
+	    	}
+	    	
 	    }
 		
 	};
@@ -431,8 +437,12 @@ define(function(require){
 		this.userId = event.userId;//用户id
 		
 		if (this.userId != null && this.userId != null && this.userId != undefined){
-	    	this.getCourse();
-	    	this.getComment(false);
+			if (!this.loaded){
+				this.getCourse();
+				this.getComment(false);
+				this.loaded = true;
+			}
+	    	
 	    }
 //		alert(this.userId);
 		

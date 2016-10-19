@@ -10,6 +10,7 @@ define(function(require){
 		
 		 this.userId ;
 		 this.courseId ;
+		 this.trainingclassId;
 		 this.url ;
 		 this.times = 0;//进入timer的次数
 	};
@@ -21,6 +22,7 @@ define(function(require){
 		 var me = this;
 		 this.userId = event.params.userId;
 		 this.courseId = event.params.courseId;
+		 this.trainingclassId = event.params.trainingclassId;
 		 this.url =  event.params.url;
 //		 alert(this.url);
 		 
@@ -38,7 +40,8 @@ define(function(require){
 		if (justep.Browser.isX5App )  cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 		justep.Shell.fireEvent("onRefreshCourse", {
 				"courseId" : this.courseId, 
-				"userId" : this.userId
+				"userId" : this.userId,
+				"trainingclassId":this.trainingclassId
 			});
 	};
 

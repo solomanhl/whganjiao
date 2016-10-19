@@ -34,14 +34,14 @@ define(function(require){
 		var me = this;
 	    this.courseId = event.params.courseId;
 	    this.userId = event.params.userId;
-	    this.from = event.params.from;
+//	    this.from = event.params.from;
 	    this.trainingclassId = event.params.trainingclassId;
-//	    alert(this.courseId +  "/" + this.userId)
+//	    alert(this.trainingclassId +  "/" + this.userId)
 
 //	    if (justep.Browser.isX5App) 
 //	    cordova.plugins.screenorientation.setOrientation('unlock');//屏幕方向解锁
 
-	    if (this.userId != null && this.userId != null && this.userId != undefined){
+	    if (this.userId >0 ){
 	    	if ( !this.loaded){
 	    		this.getCourse();
 	    		this.getComment(false);
@@ -426,8 +426,8 @@ define(function(require){
 		//卸载事件
 		justep.Shell.off("onRefreshCourse", this.onRefreshCourse);
 		
-//		alert(this.trainingclassId);
-		justep.Shell.fireEvent("onRefreshCourseList", {"from" : this.from,
+//		alert(this.from);
+		justep.Shell.fireEvent("onRefreshCourseList", {
 									"userId" : this.userId,
 									"trainingclassId" : this.trainingclassId});
 	};
@@ -435,6 +435,7 @@ define(function(require){
 	Model.prototype.onRefreshCourse = function(event){
 		this.courseId = event.courseId;//课程id
 		this.userId = event.userId;//用户id
+		this.trainingclassId = event.trainingclassId;//培训班id
 		
 		if (this.userId != null && this.userId != null && this.userId != undefined){
 			if (!this.loaded){
@@ -535,6 +536,7 @@ define(function(require){
 		        from : "course_showActivity",
 		        courseId : this.courseId,
 		        userId : this.userId,
+		        trainingclassId : this.trainingclassId,
 		        url : this.server + path + "?url=" + global.server + "/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId
 		    };
 			justep.Shell.showPage(url, params);
@@ -556,6 +558,7 @@ define(function(require){
 		        from : "course_showActivity",
 		        courseId : this.courseId,
 		        userId : this.userId,
+		        trainingclassId : this.trainingclassId,
 		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2",
 		    };
 			justep.Shell.showPage(url, params);

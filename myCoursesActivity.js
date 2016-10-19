@@ -228,14 +228,16 @@ define(function(require){
 	
 	Model.prototype.onRefreshCourseList = function(event){
 		this.userId = event.userId;
-	    this.from = event.from;
+//	    this.from = event.from;
 	    this.trainingclassId = event.trainingclassId;
+//	    alert(this.trainingclassId);
 	    
-	    if (this.from == "mainActivity"  && this.userId != null && !this.loaded){
-	    	this.getCourseList(false);//我的课程
-	    	this.loaded = true;
-	    }else if (this.from = "peixunActivity" && this.trainingclassId != null && !this.loaded){
+	    if (this.trainingclassId > 0 && !this.loaded){
 	    	this.getCourseList_class(false);//培训班的课程
+	    	this.loaded = true;
+	    }else if (   this.userId > 0 && !this.loaded){
+//	    	alert(this.loaded);
+	    	this.getCourseList(false);//我的课程
 	    	this.loaded = true;
 	    }
 	};

@@ -412,7 +412,8 @@ define(function(require){
 			var params = {
 		        from : "course_showActivity",
 		        courseId : this.courseId,
-		        userId : this.userId
+		        userId : this.userId,
+		        trainingclassId : this.trainingclassId
 		    }
 			justep.Shell.showPage(url, params);
 	};

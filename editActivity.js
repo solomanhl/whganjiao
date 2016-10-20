@@ -13,6 +13,7 @@ define(function(require){
 		
 		this.courseId;//课程id
 		this.userId;//用户id
+		this.trainingclassId;//培训班id，只有从培训班进入课程页面才会有
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
@@ -20,6 +21,7 @@ define(function(require){
 		var me = this;
 	    this.courseId = event.params.courseId;
 	    this.userId = event.params.userId;
+	    this.trainingclassId = event.params.trainingclassId;
 	    
 	    if (justep.Browser.isX5App) 
 	    cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
@@ -85,7 +87,8 @@ define(function(require){
 	Model.prototype.modelUnLoad = function(event){
 		justep.Shell.fireEvent("onRefreshCourse", {
 				"courseId" : this.courseId, 
-				"userId" : this.userId
+				"userId" : this.userId,
+				"trainingclassId" : this.trainingclassId
 			});
 	};
 

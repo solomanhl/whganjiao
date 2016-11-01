@@ -4,6 +4,7 @@ define(function(require){
 	require("cordova!cordova-plugin-screen-orientation");
 	
 	var global = require("./globalvar");
+	require("./js/md5");
 
 	var Model = function(){
 		this.callParent();
@@ -23,9 +24,13 @@ define(function(require){
 	Model.prototype.button_submitClick = function(event){
 		var old = this.comp("input_old").val();
 		var newp = this.comp("input_new").val();
+		var confirm = this.comp("input_confirm").val();
 		
 		if (old != "" && newp != ""){
-			this.update(newp);
+			if (newp == confirm){
+				var newp_md5 = hex_md5(newp);
+				this.update(newp);
+			}
 		}
 	};
 
@@ -35,7 +40,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: global.server + "/app/user-pwd.jspx?userId=53&=1",
+	        url: global.server + "/app/user-pwd.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",

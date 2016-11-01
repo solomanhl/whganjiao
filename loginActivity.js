@@ -7,6 +7,7 @@ define(function(require){
 	require("cordova!cordova-plugin-screen-orientation");
 	
 	var global = require("./globalvar");
+	require("./js/md5");
 
 	var Model = function(){
 		this.callParent();
@@ -16,11 +17,14 @@ define(function(require){
 		var me = this;
 		var username = this.comp("input_user").val();
 		var password = this.comp("password1").val();
+		var paas_md5 = hex_md5(password);
+//		alert(paas_md5);
 		
 		if (username == "" || password == ""){
 			window.plugins.toast.show("请输入用户名或密码", "long", "center");
 		}else{
 			this.login(username, password);
+//			this.login(username, paas_md5);
 		}
 		
 	};

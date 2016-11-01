@@ -15,7 +15,7 @@ define(function(require){
 		//用户登录信息
 		this.username = "";
 		this.realname="";
-		this.userid = "";
+		this.userid = 0;
 		this.password="";
 		this.status = 0;
 		
@@ -207,6 +207,11 @@ define(function(require){
 		this.username = localStorage.getItem('username');
 		this.userid = localStorage.getItem('userid');
 		this.status = localStorage.getItem('status');
+		
+		if (this.userid == "undefined" || this.userid == undefined || this.userid == null){
+			this.userid = 0;
+			this.username = "";
+		}
 	};
 
 	// 下划刷新
@@ -763,22 +768,32 @@ define(function(require){
 
 	Model.prototype.onRefreshUser = function(event){
 		this.getUserStatus();
-		//刷新用户
-		if (this.username == "" || this.username == null){
+		
+		if (this.status == 0){
+			//未登录，跳到首页只能看新闻
+			this.comp("contents1").to(0);
+		}else if (this.status == 1){
+			//登录了
+			//刷新用户
+			if (this.username == "" || this.username == null){
+				
+				$("#label_username").text("请登录");
+				$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+			}else{
+				$("#label_username").text(this.realname);
+				$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+			}
 			
-			$("#label_username").text("请登录");
-			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+			//刷新课件
+			this.getCourse(false);
+			//刷新课件组
+			this.getCourseGroup(false);
+			//刷新评论
+			this.getCommunicate(false);
 		}else{
-			$("#label_username").text(this.realname);
-			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+			this.comp("contents1").to(0);
 		}
 		
-		//刷新课件
-		this.getCourse(false);
-		//刷新课件组
-		this.getCourseGroup(false);
-		//刷新评论
-		this.getCommunicate(false);
 	};
 
 
@@ -786,32 +801,36 @@ define(function(require){
 
 	Model.prototype.timer1Timer = function(event){
 		var me = this;
+//		alert(this.userid);
+//		if(this.userid !="undefined"){
+			$.ajax({
+		        type: "get",
+		        "async" : false,
+		        url: global.server + "/app/online.jspx",
+	//	        url: "http://192.168.1.22:8080/app/online.jspx",
+		        contentType: "application/json; charset=utf-8",
+		        dataType: "jsonp",
+		        jsonp: "CallBack",
+		        data: {
+		        	"userId" : me.userid
+	//	        	"userId" : 2982
+		        },
+		        success: function(resultData) {
+	//	        	alert(resultData.result);
+	//	        	alert(resultData + "/" + JSON.stringify(resultData));
+		        	
+	//	        	var statusObj = resultData.status;
+		        	
+	//	        	alert("评论数据" + comment.count());
+		        	
+		        },
+		         error:function (){  
+		        	 alert("服务器数据错误");
+		         }
+		    });
+//		}
 		
-		$.ajax({
-	        type: "get",
-	        "async" : false,
-	        url: global.server + "/app/online.jspx",
-//	        url: "http://192.168.1.22:8080/app/online.jspx",
-	        contentType: "application/json; charset=utf-8",
-	        dataType: "jsonp",
-	        jsonp: "CallBack",
-	        data: {
-	        	"userId" : me.userid
-//	        	"userId" : 2982
-	        },
-	        success: function(resultData) {
-//	        	alert(resultData.result);
-//	        	alert(resultData + "/" + JSON.stringify(resultData));
-	        	
-//	        	var statusObj = resultData.status;
-	        	
-//	        	alert("评论数据" + comment.count());
-	        	
-	        },
-	         error:function (){  
-	        	 alert("服务器数据错误");
-	         }
-	    });
+		
 	};
 
 
@@ -871,3 +890,15 @@ $(function(){
 	$(".content_home .banner img").height($(window).width()/1.84);
 
 })
+
+define(function(require){
+	var $ = require("jquery");
+	var Model = function(){
+		this.callParent();
+	};
+	Model.prototype.content_meActive = function(event){
+
+	};
+
+	return Model;
+});

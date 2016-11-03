@@ -323,7 +323,7 @@ define(function(require){
 	        data: {
 	        	"pageNo" : me.pageNo_study,
 	        	"typeId" : me.typeId_study,
-	        	"shapeId" : 3	//3单视频
+//	        	"shapeId" : 3	//3单视频
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -564,7 +564,7 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
-	        	"shapeId" : 3,  //单视频的评论
+//	        	"shapeId" : 3,  //单视频的评论
 	        	"pageNo" : me.pageNo_comment
 	        },
 	        success: function(resultData) {
@@ -769,20 +769,25 @@ define(function(require){
 	Model.prototype.onRefreshUser = function(event){
 		this.getUserStatus();
 		
+		//刷新用户
+		if (this.username == "" || this.username == null){
+			
+			$("#label_username").text("请登录");
+			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+		}else{
+			$("#label_username").text(this.realname);
+			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+		}
+		
 		if (this.status == 0){
-			//未登录，跳到首页只能看新闻
-			this.comp("contents1").to(0);
+			if (this.comp("contents1").getActiveXid() != "content_me")
+			{
+				//未登录，跳到首页只能看新闻
+				this.comp("contents1").to(0);
+			}
 		}else if (this.status == 1){
 			//登录了
-			//刷新用户
-			if (this.username == "" || this.username == null){
-				
-				$("#label_username").text("请登录");
-				$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
-			}else{
-				$("#label_username").text(this.realname);
-				$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
-			}
+			
 			
 			//刷新课件
 			this.getCourse(false);
@@ -891,14 +896,3 @@ $(function(){
 
 })
 
-define(function(require){
-	var $ = require("jquery");
-	var Model = function(){
-		this.callParent();
-	};
-	Model.prototype.content_meActive = function(event){
-
-	};
-
-	return Model;
-});

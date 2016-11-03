@@ -41,7 +41,8 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 	        	"username" : name,
-	        	"password" : pwd
+	        	"password" : pwd,
+	        	"version" : 1	//0或无老版本不加密，1新版本加密
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);

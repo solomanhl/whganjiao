@@ -26,6 +26,9 @@ define(function(require){
 		//评论
 		this.pageNo_comment = 0;
 		this.totalPage_comment = 0;
+		
+		this.shouldShowCKplaer = justep.Bind.observable(true);
+		this.shouldShowImgTitle = justep.Bind.observable(false);
 	};
 
 	
@@ -113,6 +116,8 @@ define(function(require){
 				var type = '->video/mp4';
 				var img = me.server + course.getValue("titleImg");
 				
+				me.getElementByXid("image_title").src = img;
+				
 				//从第几秒开始
 				var times = course.getValue("times");
 				if (times == null){
@@ -124,6 +129,8 @@ define(function(require){
 //				alert(me.shapeId);
 //				me.shapeId = 2;
 				if (me.shapeId == 3){
+					me.shouldShowCKplaer.set(true);
+					me.shouldShowImgTitle.set(false);
 					var flashvars={
 						f:url,
 						c:0,
@@ -134,6 +141,10 @@ define(function(require){
 					};
 					me.ckPlayer(url, type, img, times, flashvars);
 				}else if (me.shapeId == 4){
+					me.shouldShowCKplaer.set(false);
+					me.shouldShowImgTitle.set(true);
+					
+					//下面一段可以不要
 				//精英在线课件不支持手机
 //					url = "http://whce.whgky.cn/course/lessionnew/gc/GC31I3314035_1405/index.html?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=24311&courseID=6472";
 						var flashvars={
@@ -148,6 +159,10 @@ define(function(require){
 				    };
 				    me.ckPlayer(url, type, img, times, flashvars);
 				}else if (me.shapeId == 2){
+					me.shouldShowCKplaer.set(false);
+					me.shouldShowImgTitle.set(true);
+					
+					//下面一段可以不要
 				//中经三分频，scorm
 //					url = "http://whce.whgky.cn/course/lessionnew/gc/GC31I3314035_1405/index.html?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=24311&courseID=6472";
 						var flashvars={
@@ -162,6 +177,10 @@ define(function(require){
 				    };
 				    me.ckPlayer(url, type, img, times, flashvars);
 				}else{
+					me.shouldShowCKplaer.set(false);
+					me.shouldShowImgTitle.set(true);
+					
+					//下面可以不要
 					var flashvars={
 						f:url,
 						c:0,
@@ -487,8 +506,8 @@ define(function(require){
 	    return result;
 	};
 
-	//点击播放器外层的div
-	Model.prototype.ckplayerClick = function(event){
+	//点击imgTitle外层的div
+	Model.prototype.imgTitleClick = function(event){
 		
 		//如果播放类型是调用别人的网页，则弹出新页面
 //		alert("");

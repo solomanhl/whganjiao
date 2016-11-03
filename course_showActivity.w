@@ -51,8 +51,9 @@
   
   <div class="x-scroll userComment" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_userComment" onPullDown="scrollView_userCommentPullDown" onPullUp="scrollView_userCommentPullUp">
    <div class="x-scroll-content" xid="div8">
-    <div class="comm_top" id="comm_top" xid="ckplayer" bind-click="ckplayerClick">
-    <!-- <img src="" alt="" xid="image_title" bind-attr-src=' $model.course.val("titleImg")'></img><ins></ins> -->
+    <div xid="div_img" class="comm_top" bind-visible="shouldShowImgTitle" bind-click="imgTitleClick"><img src="" alt="" xid="image_title" bind-visible="shouldShowImgTitle"></img></div><div class="comm_top" id="comm_top" xid="ckplayer" bind-visible="shouldShowCKplaer">
+    	
+    	<!-- <ins></ins> -->
     	<div id="a1"></div>
 		<script type="text/javascript" src="/ckplayer/ckplayer.js" charset="utf-8"></script>
 		<!-- <script type="text/javascript" src="$UI2/whganjiao/js/ckplayerDisableDrag.js" charset="utf-8"></script> -->

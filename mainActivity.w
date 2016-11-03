@@ -222,7 +222,7 @@
             </div> 
           </div> 
         </div>  
-        <div class="x-contents-content content_me" xid="content_me" onActive="content_meActive"> 
+        <div class="x-contents-content content_me" xid="content_me"> 
           <div xid="div_user" class="div_user" bind-click="div_userClick"> 
             <img alt="" xid="image_usericon" id="image_usericon"/>  
             <label xid="label_username" id="label_username" bind-text="localStorage['realname']"><![CDATA[请登录]]></label> 
@@ -247,11 +247,11 @@
             <img src="$UI/whganjiao/img/huancun.png" alt="" xid="image_huancunicon"/>  
             <label xid="label_huancun"><![CDATA[离线缓存]]></label> 
           </div>  
-          <div xid="div_dayi" class="div_dayi same_me" bind-click="div_dayiClick"> 
+          <div xid="div_dayi" class="div_dayi same_me" bind-click="div_dayiClick" bind-visible="false"> 
             <img src="$UI/whganjiao/img/zixun.png" alt="" xid="image_dayiicon"/>  
             <label xid="label_dayi"><![CDATA[咨询答疑]]></label> 
           </div>  
-          <div xid="div_shezhi" class="same_me div_shezhi"> 
+          <div xid="div_shezhi" class="same_me div_shezhi" bind-visible="false"> 
             <img src="$UI/whganjiao/img/shezhi.png" alt="" xid="image_shezhiicon"/>  
             <label xid="label_shezhi"><![CDATA[设置]]></label> 
           </div> 

@@ -5,6 +5,7 @@ define(function(require){
 	return {
 		server : "http://www.whce.gov.cn"
 //		server : "http://app.whce.gov.cn"
+//		server : "http://weifang.imwork.net:19307"
 	}
 	
 	

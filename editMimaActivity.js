@@ -29,7 +29,8 @@ define(function(require){
 		if (old != "" && newp != ""){
 			if (newp == confirm){
 				var newp_md5 = hex_md5(newp);
-				this.update(newp);
+//				this.update(newp);
+				this.update(newp_md5);
 			}
 		}
 	};
@@ -46,7 +47,8 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 	        	"password" : newp,
-	        	"userId" : me.userId
+	        	"userId" : me.userId,
+	        	"version" : 1	//0或无老版本不加密，1新版本加密
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);

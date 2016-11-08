@@ -76,7 +76,7 @@ define(function(require){
 //	        	"typeId" : me.typeId_study,
 //	        	"shapeId" : 3	//3单视频
 	        	"name" : me.name,
-//	        	"teacher" : me.teacher
+	        	"teacher" : me.teacher
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);

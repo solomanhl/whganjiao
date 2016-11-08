@@ -63,7 +63,9 @@
           </a> 
         </div>  
         <div class="x-titlebar-title">干部教育</div>  
-        <div class="x-titlebar-right reverse"/> 
+        <div class="x-titlebar-right reverse"><a component="$UI/system/components/justep/button/button" class="btn btn-default" xid="button_search" onClick="button_searchClick" bind-visible="shouldShowSearch">
+   <i xid="i5"></i>
+   <span xid="span5"></span></a></div> 
       </div> 
     </div>  
     <div class="x-panel-content" xid="content1"> 
@@ -105,7 +107,7 @@
           </div>
         </div>  
         <div class="x-panel-content x-contents-content content_study  x-scroll-view " xid="content_study"
-          onActive="content_studyActive" onactive="content_studyActive"> 
+          onActive="content_studyActive" onactive="content_studyActive" onInactive="content_studyInactive"> 
           <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
             xid="panel2"> 
             <div class="x-panel-top studyTop" xid="top3">
@@ -222,7 +224,7 @@
             </div> 
           </div> 
         </div>  
-        <div class="x-contents-content content_me" xid="content_me"> 
+        <div class="x-contents-content content_me" xid="content_me" onActive="content_meActive"> 
           <div xid="div_user" class="div_user" bind-click="div_userClick"> 
             <img alt="" xid="image_usericon" id="image_usericon"/>  
             <label xid="label_username" id="label_username" bind-text="localStorage['realname']"><![CDATA[请登录]]></label> 

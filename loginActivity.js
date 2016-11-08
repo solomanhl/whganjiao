@@ -23,8 +23,8 @@ define(function(require){
 		if (username == "" || password == ""){
 			window.plugins.toast.show("请输入用户名或密码", "long", "center");
 		}else{
-			this.login(username, password);
-//			this.login(username, paas_md5);
+//			this.login(username, password);
+			this.login(username, paas_md5);
 		}
 		
 	};

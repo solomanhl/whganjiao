@@ -1,5 +1,7 @@
 body{font-family: 微软雅黑}
 .x-panel .x-panel-top .x-titlebar-title{font-weight: normal;}
+.x-panel .x-panel-top .x-titlebar-right a{background: url(./img/search_icon1.png) no-repeat center center;background-size: auto 26px;border:none;display: block;height: 26px;padding: 0 20px;}
+
 
 /*头部标题栏*/
 

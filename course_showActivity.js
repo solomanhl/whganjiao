@@ -552,12 +552,13 @@ define(function(require){
 			var course = this.comp("course");
 			var path = course.getValue("path");
 //			path = "/course/lessionnew/gc/GC31I3314035_1405/index.html";
+//			alert(path);
 			var params = {
 		        from : "course_showActivity",
 		        courseId : this.courseId,
 		        userId : this.userId,
 		        trainingclassId : this.trainingclassId,
-		        url : this.server + path + "?url=" + global.server + "/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId
+		        url : this.server + path + "?url=" + global.serverWithOutHttp + "/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId
 		    };
 			justep.Shell.showPage(url, params);
 			

@@ -18,6 +18,7 @@ define(function(require) {
 
 	Model.prototype.modelLoad = function(event){
 		justep.Shell.setIsSinglePage(true);
+		justep.Shell.setIsSinglePage(false);
 		justep.Shell.showPage("main");
 	};
 

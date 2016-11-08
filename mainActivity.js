@@ -30,6 +30,7 @@ define(function(require){
 		this.totalPage_study = 0;
 		this.typeId_study = ""; //课程分类默认1
 		this.popshow = 0;//课程分类下拉框是否显示
+		this.shouldShowSearch = justep.Bind.observable(false);
 		
 		//交流页
 		this.pageNo_communicate = 0;
@@ -277,10 +278,25 @@ define(function(require){
 			this.getCourse(false);
 			//4.获取课程分类
 			this.getCourseGroup();
+			
+			this.shouldShowSearch.set(true);
 		}else{
 			this.jumpToLogin();
 		}
 		
+	};
+	
+	Model.prototype.content_studyInactive = function(event){
+		this.shouldShowSearch.set(false);
+	};
+	
+	Model.prototype.button_searchClick = function(event){
+		var url = require.toUrl("./searchActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        userId : this.userid
+	    }
+		justep.Shell.showPage(url, params);
 	};
 	
 	//下拉刷新课程
@@ -435,8 +451,6 @@ define(function(require){
 
 	Model.prototype.content_meActive = function(event){
 		this.comp("titleBar").set({"title" : "个人空间"});
-
-		
 	};
 	
 	
@@ -768,6 +782,7 @@ define(function(require){
 
 	Model.prototype.onRefreshUser = function(event){
 		this.getUserStatus();
+//		alert(this.userid);
 		
 		//刷新用户
 		if (this.username == "" || this.username == null){

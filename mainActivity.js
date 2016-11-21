@@ -520,7 +520,7 @@ define(function(require){
 	//	        	var temp = "[{\"id\":4,\"title\":\"中共武汉市委组织部关于印发 2016年全市 干部教育培训工作要点 的通知\",\"description\":\"中共武汉市委组织部关于印发《2016年全市 干部教育培训工作要点》的通知\",\"date\":\"2016-08-16 08:56:54.0\"},{\"id\":4,\"title\":\"中共武汉市委组织部关于印发 2016年全市 干部教育培训工作要点 的通知\",\"description\":\"中共武汉市委组织部关于印发《2016年全市 干部教育培训工作要点》的通知\",\"date\":\"2016-08-16 08:56:54.0\"}]";
 //		        	var strs= JSON.parse(str);
 	//	        	alert(strs);			        	
-		        	json={"@type" : "table","news" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
+		        	var json={"@type" : "table","news" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
 		        	news.loadData(json, isApend);
 	//	        	alert(news.count());
 		        	localStorage.setItem('newsCache',json);
@@ -621,7 +621,7 @@ define(function(require){
 //	        		}
 //	        	);
 	        	
-	        	json={"@type" : "table","communicate" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :experiencesObj };
+	        	var json={"@type" : "table","communicate" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :experiencesObj };
 	        	
         		communicate.loadData(json, isApend);
 	        	localStorage.setItem('communicateCache',json);

@@ -27,7 +27,9 @@
         </div> 
       </div>  
     <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C731F1EA1830000137FE1EA617201D6E" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp">
-   <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="exam">
+   <div class="x-scroll-content" xid="div2"><span class="loading">  
+                  <img src="$UI/whganjiao/img/loading.gif" alt="" xid="image_loading" bind-visible="isloading"></img>
+                </span> <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="exam">
    <ul class="x-list-template" xid="listTemplateUl1">
     <li xid="li1" bind-click="li1Click">
     <dl>
@@ -37,7 +39,8 @@
   <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("endDate")'></span></ins></dd>
     </dl>  
   
-  </li></ul> </div></div>
+  </li></ul> </div>
+  </div>
    <div class="x-content-center x-pull-up" xid="div3">
     <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>
   </div> 

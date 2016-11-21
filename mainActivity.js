@@ -11,6 +11,7 @@ define(function(require){
 		
 //		this.server = "http://whce.whgky.cn";
 		this.server = global.server;
+		this.isloading = justep.Bind.observable(false);
 		
 		//用户登录信息
 		this.username = "";
@@ -185,8 +186,14 @@ define(function(require){
 		
 	
 		//2、获取新闻列表
-		
+		//加载本地缓存
+		var newsCache = localStorage.getItem("newsCache");
+		if (newsCache != undefined){
+			this.comp("news").loadData(newsCache, false);
+		}
+		//请求服务器
 		this.pageNo = 1;
+		this.isloading.set(true);
 		this.getNews(false);
 		
 		//6.获取用户状态
@@ -273,6 +280,11 @@ define(function(require){
 		this.comp("titleBar").set({"title" : "学习广场"});
 		
 		if (this.status == 1){
+			//加载本地缓存
+			var study_course_cache = localStorage.getItem("study_course_cache");
+			if (study_course_cache != undefined){
+				this.comp("study_course").loadData(study_course_cache, false);
+			}
 			//3.获取课程
 			this.pageNo_study = 1;
 			this.getCourse(false);
@@ -363,7 +375,7 @@ define(function(require){
 	        	if (pageNoObj > 0){
 		        	json={"@type" : "table","study_course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
 		        	study_course.loadData(json, isApend);
-		        	
+		        	localStorage.setItem('study_course_cache',json);
 	//	        	alert(news.count());
 	        	}
 	        	
@@ -441,6 +453,11 @@ define(function(require){
 		this.comp("titleBar").set({"title" : "交流广场"});
 		
 		if (this.status == 1){
+			//加载本地缓存
+			var communicateCache = localStorage.getItem("communicateCache");
+			if (communicateCache != undefined){
+				this.comp("communicate").loadData(communicateCache, false);
+			}
 			//5.获取交流
 			this.getCommunicate(false);
 		}else{
@@ -464,6 +481,7 @@ define(function(require){
 	Model.prototype.getNews = function (isApend){
 		var me = this;
 		var news = this.comp("news");
+		
 		$.ajax({
 	        type: "get",
 	        "async" : false,
@@ -505,10 +523,13 @@ define(function(require){
 		        	json={"@type" : "table","news" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
 		        	news.loadData(json, isApend);
 	//	        	alert(news.count());
+		        	localStorage.setItem('newsCache',json);
+		        	me.isloading.set(false);
 	        	}
 	        	
 	        },
 	         error:function (){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误");
 	         }
 	    });
@@ -603,7 +624,7 @@ define(function(require){
 	        	json={"@type" : "table","communicate" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :experiencesObj };
 	        	
         		communicate.loadData(json, isApend);
-	        	
+	        	localStorage.setItem('communicateCache',json);
 	        	
 //	        	alert("评论数据" + comment.count());
 	        	
@@ -803,11 +824,21 @@ define(function(require){
 		}else if (this.status == 1){
 			//登录了
 			
-			
+			//加载本地缓存
+			var study_course_cache = localStorage.getItem("study_course_cache");
+			if (study_course_cache != undefined){
+				this.comp("study_course").loadData(study_course_cache, false);
+			}
 			//刷新课件
 			this.getCourse(false);
 			//刷新课件组
 			this.getCourseGroup(false);
+			
+			//加载本地缓存
+			var communicateCache = localStorage.getItem("communicateCache");
+			if (communicateCache != undefined){
+				this.comp("communicate").loadData(communicateCache, false);
+			}
 			//刷新评论
 			this.getCommunicate(false);
 		}else{

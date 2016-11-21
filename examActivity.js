@@ -9,6 +9,7 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		this.isloading = justep.Bind.observable(false);//是否显示正在加载的动画框
 		this.userId;
 		this.pageNo_exam = 0;
 		this.totalPage_exam = 0;
@@ -23,6 +24,7 @@ define(function(require){
 		if (justep.Browser.isX5App) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 		
+		 this.isloading.set(true);
 		this.getExam(false);
 		
 	};
@@ -64,12 +66,13 @@ define(function(require){
 	        	json={"@type" : "table","exam" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :examuserssObj };
 	        	
         		exam.loadData(json, isApend);
-	        	
+	        	 me.isloading.set(false);
 	        	
 //	        	alert("评论数据" + comment.count());
 	        	
 	        },
 	         error:function (){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误");
 	         }
 	    });

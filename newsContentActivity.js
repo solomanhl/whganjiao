@@ -11,6 +11,7 @@ define(function(require){
 //		this.server = "http://whce.whgky.cn";
 		this.server = global.server;
 		this.contentId;
+		this.isloading = justep.Bind.observable(false);//是否显示正在加载的动画框
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
@@ -22,6 +23,7 @@ define(function(require){
 	    if (justep.Browser.isX5App) 
 	    cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 
+	    this.isloading.set(true);
 	    this.getContent();
 	};
 
@@ -86,8 +88,10 @@ define(function(require){
 	        	
 	        	label_date.innerText = "发表时间";
 	        	label_author.innerText = "作者";
+	        	me.isloading.set(false);
 	        },
 	         error:function (){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误");
 	         }
 	    });

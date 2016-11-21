@@ -10,6 +10,7 @@ define(function(require){
 		
 		this.server = "http://whce.whgky.cn";
 		this.server = global.server;
+		this.isloading = justep.Bind.observable(false);//是否显示正在加载的动画框
 		
 		this.loaded = false;
 		
@@ -41,11 +42,25 @@ define(function(require){
 	    this.from = event.params.from;
 	    
 	    if (this.from == "mainActivity" && !this.loaded ){
+	    	localStorage.setItem('courselist_classCache',json);
+	    	//加载本地缓存
+			var courselistCache = localStorage.getItem("courselistCache");
+			if (courselistCache != undefined){
+				this.comp("course").loadData(courselistCache, false);
+			}
+	    	this.isloading.set(true);
 	    	this.getCourseList(false);//我的课程
 	    	this.loaded = true;
 	    }else if (this.from = "peixunActivity" && !this.loaded){
 	    	this.trainingclassId = event.params.trainingclassId;
 	    	if (this.trainingclassId != undefined){
+	    		//加载本地缓存
+				var courselist_classCache = localStorage.getItem("courselist_classCache");
+				if (courselist_classCache != undefined){
+					//存在有不同的培训班，不适合调取缓存
+//					this.comp("course").loadData(courselist_classCache, false);
+				}
+	    		this.isloading.set(true);
 	    		this.getCourseList_class(false);//培训班的课程
 	    		this.loaded = true;
 	    	}
@@ -90,14 +105,15 @@ define(function(require){
 //	        	);
 	        	
 	        	json={"@type" : "table","course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
-	        	
+	        	localStorage.setItem('courselistCache',json);
         		course.loadData(json, isApend);
-	        	
+	        	me.isloading.set(false);
 	        	
 //	        	alert("评论数据" + comment.count());
 	        	
 	        },
 	         error:function (){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误");
 	         }
 	    });
@@ -147,14 +163,15 @@ define(function(require){
 //	        	);
 	        	
 	        	json={"@type" : "table","course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
-	        	
+	        	localStorage.setItem('courselist_classCache',json);
         		course.loadData(json, isApend);
-	        	
+	        	me.isloading.set(false);
 	        	
 //	        	alert("评论数据" + comment.count());
 	        	
 	        },
 	         error:function (){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误");
 	         }
 	    });

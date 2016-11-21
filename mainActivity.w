@@ -88,9 +88,11 @@
                       </div> 
                     </div> 
                   </div></div>  
-                   
+                <span class="loading">  
+                  <img src="$UI/whganjiao/img/loading.gif" alt="" xid="image_loading" bind-visible="isloading"></img>
+                </span> 
                 <div component="$UI/system/components/justep/panel/panel" class="x-panel x-card" xid="panel5">
-   <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="news" limit="20"> 
+                <div component="$UI/system/components/justep/list/list" class="x-list" xid="list1" data="news" limit="20"> 
                     <ul class="x-list-template" xid="listTemplateUl1"> 
                       <li xid="li1" bind-click="li1Click"> 
                         <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title" bind-ref="ref(&quot;title&quot;)" />  
@@ -299,4 +301,5 @@
                         </li>
                       </ul> 
                     </div></div></div>
-  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:10px;left:53px;"></span></div>
+  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:10px;left:53px;"></span>
+  </div>

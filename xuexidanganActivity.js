@@ -7,6 +7,7 @@ define(function(require){
 
 	var Model = function(){
 		this.callParent();
+		this.isloading = justep.Bind.observable(false);//是否显示正在加载的动画框
 		this.userId;
 	};
 
@@ -20,6 +21,12 @@ define(function(require){
 		if (justep.Browser.isX5App) 
 		cordova.plugins.screenorientation.setOrientation('portrait');//竖屏模式
 		
+		//加载本地缓存
+		var danganCache = localStorage.getItem("danganCache");
+		if (danganCache != undefined){
+			this.comp("dangan").loadData(danganCache, false);
+		}
+		this.isloading.set(true);
 		this.getData(false);
 	};
 	
@@ -67,6 +74,7 @@ define(function(require){
 	        	
 	        	json={"@type" : "table","dangan" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :archivesObj };
 	        	
+	        	localStorage.setItem('danganCache',json);
         		dangan.loadData(json, isApend);
 	        	dangan.first();
 //	        	alert("数据" + dangan.count());
@@ -85,8 +93,11 @@ define(function(require){
 	        	dataTables1.reload();
 	        	dataTables2.reload();
 	        	dataTables3.reload();
+	        	
+	        	me.isloading.set(false);
 	        },
 	         error:function (){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误");
 	         }
 	    });

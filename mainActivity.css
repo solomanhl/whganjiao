@@ -16,6 +16,10 @@ body{font-family: 微软雅黑}
 .content_home .x-list li .message{color: #666;font-size: 1rem;line-height: 1.6rem;margin-bottom: 10px}
 .content_home .x-list li .date{color: #959595;font-size: 1rem;text-align: right;}
 
+.content_home .loading{display: block;width: 100%;margin: 0 auto;}
+.content_home .loading img{width: 100%;}
+.content_home .loading ins{text-decoration: none;display: block;text-align: center;}
+
 /*首页样式*/
 
 .x-panel-bottom .buttonGroup{height: 48px;padding: 3px 0;border-top: 1px solid #ededed;background: #fff}

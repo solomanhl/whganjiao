@@ -30,7 +30,9 @@
       <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
         xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
         <div class="x-scroll-content" xid="div2">
-          <div component="$UI/system/components/justep/list/list" class="x-list"
+          <span class="loading">  
+                  <img src="$UI/whganjiao/img/loading.gif" alt="" xid="image_loading" bind-visible="isloading"></img>
+                </span> <div component="$UI/system/components/justep/list/list" class="x-list"
             xid="list1" data="course"> 
             <ul class="x-list-template" xid="listTemplateUl1"> 
               <li xid="li1" bind-click="li1Click">

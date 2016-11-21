@@ -13,6 +13,7 @@ define(function(require){
 		
 //		this.server = "http://whce.whgky.cn";
 		this.server = global.server;
+		this.isloading = justep.Bind.observable(false);
 		
 		this.from;
 		this.trainingclassId;
@@ -46,6 +47,7 @@ define(function(require){
 
 	    if (this.userId >0 ){
 	    	if ( !this.loaded){
+	    		this.isloading.set(true);
 	    		this.getCourse();
 	    		this.getComment(false);
 	    		this.loaded = true;
@@ -195,9 +197,10 @@ define(function(require){
 //				alert(url + img);
 				
 //	        	alert("课程数据" + course.getValue("times"));
-	        	
+	        	me.isloading.set(false);
 	        },
 	         error:function (msg){  
+	        	 me.isloading.set(false);
 	        	 alert("服务器数据错误" + JSON.stringify(msg));
 	         }
 	    });

@@ -26,7 +26,9 @@
         </div> 
       </div>  
     <div class="x-panel-content article_box" xid="content1">
-      <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title"></div>
+      <span class="loading">  
+                  <img src="$UI/whganjiao/img/loading.gif" alt="" xid="image_loading" bind-visible="isloading"></img>
+                </span> <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title"></div>
       <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 date" xid="labelEdit_date">
         <label class="x-label" xid="label_date"><![CDATA[]]></label>
         <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_date"></div>

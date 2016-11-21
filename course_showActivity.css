@@ -46,3 +46,8 @@
 .userComment .comm_list li .media-body .text{padding: 0;font-size: 1rem;line-height: 1.5rem;color: #959595;height: 3rem;overflow: hidden;}
 
 /*课程列表*/
+
+
+.loading{display: block;width: 100%;margin: 0 auto;}
+.loading img{width: 100%;}
+.loading ins{text-decoration: none;display: block;text-align: center;}

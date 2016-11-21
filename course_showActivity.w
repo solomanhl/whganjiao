@@ -59,7 +59,9 @@
 		<!-- <script type="text/javascript" src="$UI2/whganjiao/js/ckplayerDisableDrag.js" charset="utf-8"></script> -->
 			
     </div>
-    <span xid="span_title" bind-text='$model.course.val("name")' class="top_title"></span>    
+    <span class="loading">  
+                  <img src="$UI/whganjiao/img/loading.gif" alt="" xid="image_loading" bind-visible="isloading"></img>
+                </span> <span xid="span_title" bind-text='$model.course.val("name")' class="top_title"></span>    
     <div xid="div_info" class="div_info">
     <div xid="div_left" class="div_left"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_teacher">
    <label class="x-label" xid="label_teacher"><![CDATA[课程教师：]]></label>

@@ -11,6 +11,5 @@ body{font-family: 微软雅黑}
 .files .x-panel-content .same table td,.files .x-panel-content .same table th{border:1px solid #e6e6e6;text-align: center;background: #fff;font-size: 1.1rem;padding:6px 0;color: #666}
 .files .x-panel-content .same table th{background: #f8f5f0 none repeat scroll 0 0;color: #ac6531;font-weight: normal;}
 
-.loading{display: block;width: 100%;margin: 0 auto;}
-.loading img{width: 100%;}
+.loading{display: block;width: 100%;margin: 0 auto;text-align: center;}
 .loading ins{text-decoration: none;display: block;text-align: center;} 

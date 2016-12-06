@@ -1,5 +1,6 @@
 .login{background: #f5f5f5;}
-.login .x-panel-top .x-titlebar{background: #f5f5f5;}
+.login .x-panel-top .x-titlebar{background: #2fa4e7;}
+.login .x-panel-top .x-titlebar-title{font-weight:normal;}
 .login .x-panel-content{padding: 30px 10%}
 .login .x-panel-content .user_img{height: 92px;width: 92px;margin:0 auto 40px;padding: 5px;border:1px solid #dfdfdf;border-radius: 100%;text-align: center;}
 .login .x-panel-content .user_img img{height: 80px;width: 80px;border-radius: 100%}

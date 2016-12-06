@@ -76,7 +76,12 @@ define(function(require){
 		        	
 		        },
 		         error:function (msg){  
-		        	 alert("服务器数据错误" + JSON.stringify(msg));
+		        	 var msg = "获取数据失败";
+		        	 if ( justep.Browser.isX5App ){
+						window.plugins.toast.show(msg, "long", "center");
+					}else{
+						 justep.Util.hint(msg);
+					}
 		         }
 		    });
 		}

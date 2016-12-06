@@ -74,11 +74,48 @@ define(function(require){
 	        },
 	         error:function (){  
 	        	  me.isloading.set(false);
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
 
+	//显示培训班状态
+	Model.prototype.setStatus = function (status){
+		var rtn;
+		switch (status){
+			case -2 : rtn = "未学完"; //培训班到期，没学完
+				break;
+			case 0 : rtn = "已加入";
+				break;
+			case 1 : rtn = "学习中";
+				break;
+			case 2 : rtn = "已完成";
+				break;
+			default: rtn = "";
+		}
+		return rtn;
+	}
+	
+	Model.prototype.bindStatusCSS = function( status ){
+		switch (status){
+			case -2: return "status1" ; //未学完  灰色
+				break;
+			case 0: return "status2" ;
+				break;
+			case 1: return "status3" ;
+				break;
+			case 2: return "status4" ;
+				break;
+			default : return "status1"; 
+		}
+
+	}
+	
 	Model.prototype.scrollView1PullDown = function(event){	
 		this.pageNo_exam = 0;
 		this.totalPage_exam = 0;

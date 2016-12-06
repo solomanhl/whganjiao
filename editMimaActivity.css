@@ -5,13 +5,13 @@ body{font-family: 微软雅黑}
 .change_pass .x-label-edit span{font-size: 1.2rem;color: #333;border-bottom: 1px solid #eee;width:72%;height: 4rem;line-height: 4rem}
 .change_pass .x-panel-content label{width: 28%;padding-right: 5px;font-size: 1.2rem;color: #959595;border-bottom: 1px solid #eee;height: 4rem;line-height: 4rem}
 .change_pass .x-label-edit .dif{display: block;height: 4rem;line-height: 4rem;}
-.change_pass .x-panel-content input{background: #fff;border:1px solid #c5ebff;outline: none;padding:0 5px;border-radius: 3px;font-weight: normal;height: 2.6rem;line-height: 2.6rem;width: 90%}
+.change_pass .x-panel-content input{background: #fff;border:1px solid #c5ebff;-webkit-appearance:none;outline: none;padding:0 5px;border-radius: 3px;font-weight: normal;height: 2.6rem;line-height: 2.6rem;width: 90%}
 .change_pass .x-label-edit input:focus{outline: none;}
 .change_pass .label-first{border-top: 1px solid #eee;}
 .change_pass .label-last{border-bottom: 1px solid #eee;}
 .change_pass .label-last label{border:none}
 .change_pass .label-last .x-edit{border:none;}
-.change_pass .x-panel-content .btn{width: 90%;height: 3rem;line-height: 3rem;border:none;margin: 2rem auto 0;border-radius: 3px;padding: 0;display: block;font-size: 1.3rem;}
+.change_pass .x-panel-content .btn{width: 90%;height: 3.4rem;line-height: 3.4rem;border:none;margin: 2rem auto 0;border-radius: 3px;padding: 0;display: block;font-size: 1.3rem;}
 
 
 

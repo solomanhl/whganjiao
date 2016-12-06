@@ -6,9 +6,9 @@ input{outline: none;}
 .user_info .x-label-edit label{width: 28%;padding-right: 5px;font-size: 1.2rem;color: #959595;border-bottom: 1px solid #eee;height: 4rem;line-height: 4rem}
 .user_info .x-label-edit .x-edit{font-size: 1.2rem;color: #333;border-bottom: 1px solid #eee;width:72%;height: 4rem;line-height: 4rem}
 .user_info .x-label-edit .dif{display: block;height: 4rem;line-height: 4rem;}
-.user_info .x-label-edit input{background: #fff;border:1px solid #c5ebff;outline: none;padding:0 5px;border-radius: 3px;font-weight: normal;height: 2.6rem;line-height: 2.6rem;width: 90%}
+.user_info .x-label-edit input{background: #fff;border:1px solid #c5ebff;-webkit-appearance:none;outline: none;padding:0 5px;border-radius: 3px;font-weight: normal;height: 2.6rem;line-height: 2.6rem;width: 90%}
 .user_info .x-label-edit input:focus{outline: none;}
-.user_info .sub_btn{display: block;width: 90%;margin: 2rem auto 0;height: 2.8rem;line-height: 2.8rem;padding: 0;}
+.user_info .sub_btn{display: block;width: 90%;margin: 2rem auto 0;height:3.4rem;line-height: 3.4rem;padding: 0;}
 .user_info .label-first{border-top: 1px solid #eee;}
 .user_info .label-last{border-bottom: 1px solid #eee;}
 .user_info .label-last label{border:none}

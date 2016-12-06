@@ -1,7 +1,7 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	var allData = require("./js/loadData");
+//	var allData = require("./js/loadData");
 	
 	var global = require("./globalvar");
 	require("cordova!cordova-plugin-screen-orientation");
@@ -23,7 +23,7 @@ define(function(require){
 		//首页新闻
 		this.pageNo = 0;
 		this.totalPage = 0;
-		this.channelId = 1;
+		this.channelId = 1;//1通知公告 2工作动态 3干教咨询
 		this.typeId = 1;
 		
 		//学习课程
@@ -31,7 +31,9 @@ define(function(require){
 		this.totalPage_study = 0;
 		this.typeId_study = ""; //课程分类默认1
 		this.popshow = 0;//课程分类下拉框是否显示
-		this.shouldShowSearch = justep.Bind.observable(false);
+		this.shouldShowSearch = justep.Bind.observable(false);//是否显示搜索框
+		this.showLogin = justep.Bind.observable(false);//显示登录
+		this.showContent = justep.Bind.observable(false);//显示正常内容
 		
 		//交流页
 		this.pageNo_communicate = 0;
@@ -42,6 +44,12 @@ define(function(require){
 	Model.prototype.toUrl = function(url){
 		return url ? require.toUrl(url) : "";	
 	};
+	
+	Model.prototype.newsCustomRefresh = function(event) {
+		this.pageNo = 1;
+		this.isloading.set(true);
+		this.getNews(false);
+	}
 	
 	Model.prototype.imgDataCustomRefresh = function(event) {
 		/*
@@ -171,10 +179,10 @@ define(function(require){
 
 		var fImgUrl = localStorage.getItem("index_BannerImg_src");
 		if (fImgUrl == undefined) {
-			$(carousel.domNode).find("img").eq(0).attr({
-				"src" : "./main/img/carouselBox61.jpg",
-				"pagename" : "./detail.w"
-			});
+//			$(carousel.domNode).find("img").eq(0).attr({
+//				"src" : "./main/img/carouselBox61.jpg",
+//				"pagename" : "./detail.w"
+//			});
 		} else {
 			var fUrl = localStorage.getItem("index_BannerImg_url");
 			$(carousel.domNode).find("img").eq(0).attr({
@@ -192,20 +200,21 @@ define(function(require){
 			this.comp("news").loadData(newsCache, false);
 		}
 		//请求服务器
-		this.pageNo = 1;
-		this.isloading.set(true);
-		this.getNews(false);
+//		this.pageNo = 1;
+//		this.isloading.set(true);
+//		this.getNews(false);
 		
 		//6.获取用户状态
 		this.getUserStatus();
 		//刷新用户
 		if (this.username == "" || this.username == null){
-			
-			$("#label_username").text("请登录");
-			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+			$("#span_name").text("请登录");
+//			$("#label_username").text("请登录");
+//			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
 		}else{
-			$("#label_username").text(this.realname);
-			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+			$("#span_name").text(this.realname);
+//			$("#label_username").text(this.realname);
+//			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
 		}
 	};
 
@@ -216,12 +225,35 @@ define(function(require){
 		this.userid = localStorage.getItem('userid');
 		this.status = localStorage.getItem('status');
 		
-		if (this.userid == "undefined" || this.userid == undefined || this.userid == null){
+		if (this.userid == "undefined" || this.userid == undefined || this.userid == null || this.userid == ""){
 			this.userid = 0;
 			this.username = "";
+			this.showLogin.set(true);
+			this.showContent.set(false);
+		}else{
+			this.showLogin.set(false);
+			this.showContent.set(true);
 		}
 	};
 
+	Model.prototype.button_gonggaoClick = function(event){
+		this.channelId = 1;
+		this.isloading.set(true);
+		this.getNews(false);
+	};
+
+	Model.prototype.button_dongtaiClick = function(event){
+		this.channelId = 2;
+		this.isloading.set(true);
+		this.getNews(false);
+	};
+
+	Model.prototype.button_zixunClick = function(event){
+		this.channelId = 3;
+		this.isloading.set(true);
+		this.getNews(false);
+	};
+	
 	// 下划刷新
 	Model.prototype.scrollView1PullDown = function(event){
 		/*
@@ -293,7 +325,7 @@ define(function(require){
 			
 			this.shouldShowSearch.set(true);
 		}else{
-			this.jumpToLogin();
+//			this.jumpToLogin();
 		}
 		
 	};
@@ -381,7 +413,12 @@ define(function(require){
 	        	
 	        },
 	         error:function (){  
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
@@ -389,7 +426,6 @@ define(function(require){
 
 	//获取课程分类
 	Model.prototype.getCourseGroup = function (isApend){
-		var me = this;
 		var course_group = this.comp("course_group");
 		
 		$.ajax({
@@ -419,7 +455,7 @@ define(function(require){
 //	        	);
 	        	
 	        	if (pageNoObj > 0){
-		        	json={"@type" : "table","course_group" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :typesObj };
+		        	var json={"@type" : "table","course_group" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :typesObj };
 		        	course_group.loadData(json, false);
 		        	
 	//	        	alert(news.count());
@@ -427,7 +463,12 @@ define(function(require){
 	        	
 	        },
 	         error:function (){  
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
@@ -451,7 +492,7 @@ define(function(require){
 	
 	Model.prototype.content_commActive = function(event){
 		this.comp("titleBar").set({"title" : "交流广场"});
-		
+
 		if (this.status == 1){
 			//加载本地缓存
 			var communicateCache = localStorage.getItem("communicateCache");
@@ -461,7 +502,7 @@ define(function(require){
 			//5.获取交流
 			this.getCommunicate(false);
 		}else{
-			this.jumpToLogin();
+//			this.jumpToLogin();
 		}
 	};
 	
@@ -530,7 +571,13 @@ define(function(require){
 	        },
 	         error:function (){  
 	        	 me.isloading.set(false);
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+//	        	 alert(msg);
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	    
@@ -630,7 +677,12 @@ define(function(require){
 	        	
 	        },
 	         error:function (){  
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
@@ -771,7 +823,69 @@ define(function(require){
 	};
 
 
+	Model.prototype.div_xinxiClick = function(event){
+		var url = require.toUrl("./editUserActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        userId : this.userid
+	    }
+		justep.Shell.showPage(url, params);
+	};
 
+	Model.prototype.div_mimaClick = function(event){
+		var url = require.toUrl("./editMimaActivity.w");
+		var params = {
+	        from : "mainActivity",
+	        userId : this.userid
+	    }
+		justep.Shell.showPage(url, params);
+	};
+
+	Model.prototype.button_exitClick = function(event){
+		localStorage.setItem('realname',""); 
+		localStorage.setItem('username',""); 
+		localStorage.setItem('userid',""); 
+		localStorage.setItem('password',"");
+		localStorage.setItem('status',""); 
+		this.userid = "";
+		
+		this.getUserStatus();
+		this.comp("content_me").update();
+		
+		
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/logout.jspx",
+//	        url: "http://192.168.1.22:8080/app/logout.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : me.userid
+//	        	"userId" : 2982
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+//	        	var statusObj = resultData.status;
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	};
 
 
 
@@ -807,19 +921,20 @@ define(function(require){
 		
 		//刷新用户
 		if (this.username == "" || this.username == null){
-			
-			$("#label_username").text("请登录");
-			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
+			$("#span_name").text("请登录");
+//			$("#label_username").text("请登录");
+//			$("#image_usericon").attr('src', require.toUrl("./img/user.png" )); 
 		}else{
-			$("#label_username").text(this.realname);
-			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
+			$("#span_name").text(this.realname);
+//			$("#label_username").text(this.realname);
+//			$("#image_usericon").attr('src', require.toUrl("./img/user_pic.png" )); 
 		}
 		
 		if (this.status == 0){
 			if (this.comp("contents1").getActiveXid() != "content_me")
 			{
 				//未登录，跳到首页只能看新闻
-				this.comp("contents1").to(0);
+//				this.comp("contents1").to(0);
 			}
 		}else if (this.status == 1){
 			//登录了
@@ -842,7 +957,7 @@ define(function(require){
 			//刷新评论
 			this.getCommunicate(false);
 		}else{
-			this.comp("contents1").to(0);
+//			this.comp("contents1").to(0);
 		}
 		
 	};
@@ -876,7 +991,12 @@ define(function(require){
 		        	
 		        },
 		         error:function (){  
-		        	 alert("服务器数据错误");
+		        	 var msg = "获取数据失败";
+		        	 if ( justep.Browser.isX5App ){
+						window.plugins.toast.show(msg, "long", "center");
+					}else{
+						 justep.Util.hint(msg);
+					}
 		         }
 		    });
 //		}
@@ -941,4 +1061,3 @@ $(function(){
 	$(".content_home .banner img").height($(window).width()/1.84);
 
 })
-

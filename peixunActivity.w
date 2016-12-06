@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:315px;left:172px;" onParamsReceive="modelParamsReceive" onLoad="modelLoad" onunLoad="modelUnLoad"> 
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" idColumn="id" limit="6"><column label="线上培训集id" name="id" type="Integer" xid="xid1"></column>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" idColumn="id" limit="-1"><column label="线上培训集id" name="id" type="Integer" xid="xid1"></column>
   <column label="线上培训集名字" name="name" type="String" xid="xid3"></column>
   <column label="" name="udate" type="String" xid="xid5"></column>
   <column name="level" type="String" xid="xid2"></column>
@@ -39,10 +39,9 @@
   <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("startDate")'></span></ins>
   <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("endDate")'></span></ins></dd>
   </dl>
-  </li></ul> </div>
+  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_status" bind-text=' $model.setStatus( val("status"))' bind-css=' $model.bindStatusCSS( val("status"))'></div></li></ul> </div>
   </div>
-   <div class="x-content-center x-pull-up" xid="div3">
-    <span class="x-pull-up-label" xid="span2">加载更多...</span></div> </div></div>
+   </div></div>
   </div> 
   <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
   <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource>

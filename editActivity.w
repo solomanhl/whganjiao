@@ -20,7 +20,9 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content" xid="content1"><textarea component="$UI/system/components/justep/textarea/textarea" class="form-control" xid="textarea1"></textarea><a component="$UI/system/components/justep/button/button" class="btn btn-default" label="发表心得" xid="button1" bind-click="button1Click">
+    <div class="x-panel-content" xid="content1">
+    	<div class="inputBox"><textarea component="$UI/system/components/justep/textarea/textarea" class="form-control" xid="textarea1"></textarea></div>
+    <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="发表心得" xid="button1" bind-click="button1Click">
    <i xid="i1"></i>
    <span xid="span1">发表心得</span></a>
   </div>

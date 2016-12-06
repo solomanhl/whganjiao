@@ -2,13 +2,15 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;"
   xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:194px;left:15px;height:auto;" onParamsReceive="modelParamsReceive" onLoad="modelLoad" onunLoad="modelUnLoad"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="id" name="id" type="Integer" xid="xid1"></column>
+  <div component="$UI/system/components/justep/model/model" xid="model" style="top:194px;left:15px;height:auto;" onParamsReceive="modelParamsReceive" onLoad="modelLoad" onunLoad="modelUnLoad"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id" limit="-1"><column label="id" name="id" type="Integer" xid="xid1"></column>
   <column label="播放次数" name="time" type="String" xid="xid2"></column>
   <column name="level" type="String" xid="xid3"></column>
   <column label="课程状态" name="status" type="String" xid="xid4"></column>
   <column label="课程名" name="name" type="String" xid="xid5"></column>
   <column label="图片" name="titleImg" type="String" xid="xid7"></column>
-  <column label="课程id" name="courseId" type="String" xid="xid6"></column></div></div>  
+  <column label="课程id" name="courseId" type="String" xid="xid6"></column>
+  <column label="选课人数" name="users" type="Integer" xid="xid8"></column>
+  <column label="完成人数" name="completes" type="Integer" xid="xid9"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full myCourse"
     xid="panel1"> 
     <div class="x-panel-top" xid="top1"> 
@@ -26,7 +28,7 @@
         <div class="x-titlebar-right reverse"></div> 
       </div> 
     </div>  
-    <div class="x-panel-content  x-scroll-view course_box" xid="content1" _xid="C731F4F130A00001EE6263D0E270D2F0">
+    <div class="x-panel-content  x-scroll-view course_box" xid="content1" style="bottom: 0px;" _xid="C75222A70ED0000125B11CD319487450" supportpulldown="true">
       <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
         xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
         <div class="x-scroll-content" xid="div2">
@@ -49,19 +51,19 @@
                                 <label class="x-label" xid="label_courseCount"><![CDATA[选课人数：]]></label>  
                                 <div component="$UI/system/components/justep/output/output"
                                   class="x-output x-edit" xid="output_courseCount"
-                                  bind-ref='ref("time")'/>
+                                  bind-ref='ref("users")'/>
                               </div> 
                             </div>
-                          </div> 
+                          <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_status" bind-text=' $model.setStatus( val("status"))' bind-css=' $model.bindStatusCSS( val("status"))'></div></div> 
                         </div>
               </li>
             </ul> 
           </div>
         </div>  
         <div class="x-content-center x-pull-up" xid="div3"> 
-          <span class="x-pull-up-label" xid="span2">加载更多...</span>
-        </div> 
-      </div>
+                  <span class="x-pull-up-label" xid="span14">加载更多...</span> 
+                </div>
+        </div>
     </div> 
   </div> 
   <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>

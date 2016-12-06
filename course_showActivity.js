@@ -201,7 +201,12 @@ define(function(require){
 	        },
 	         error:function (msg){  
 	        	 me.isloading.set(false);
-	        	 alert("服务器数据错误" + JSON.stringify(msg));
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
@@ -250,7 +255,12 @@ define(function(require){
 	        	
 	        },
 	         error:function (){  
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
@@ -567,6 +577,7 @@ define(function(require){
 			
 		}else if (this.shapeId == 2){
 			//中经三分频，老scorm内核，不支持手机
+			//爱迪科森新课件支持手机
 			//通过服务器页面代理，
 //			var course = this.comp("course");
 //			var path = course.getValue("path");

@@ -28,11 +28,9 @@ define(function(require){
 		 
 		 var iframe1 = this.getElementByXid("iframe1");
 		 iframe1.src = this.url;
-		 var width = document.getElementById("div2").offsetWidth;
-		 var height = width * 0.7;
-//		 alert(width);
-		 iframe1.Height =  height;
-//		 iframe1.style.zoom=2;
+//		 var width = document.getElementById("div2").offsetWidth;
+//		 var height = width * 0.7;
+//		 iframe1.Height =  height;
 
 	};
 

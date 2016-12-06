@@ -15,9 +15,12 @@ body{font-family: 微软雅黑}
 .content_home .x-list li .title{font-size: 1.2rem;color: #444;margin-bottom: 8px;line-height: 2rem}
 .content_home .x-list li .message{color: #666;font-size: 1rem;line-height: 1.6rem;margin-bottom: 10px}
 .content_home .x-list li .date{color: #959595;font-size: 1rem;text-align: right;}
+.content_home .option_tab a{border: none;height: 40px;font-size: 15px;}
+.content_home .option_tab span{font-weight: normal;}
+.content_home .option_tab .x-card.btn-group .btn{color: #333;}
 
-.content_home .loading{display: block;width: 100%;margin: 0 auto;}
-.content_home .loading img{width: 100%;}
+.content_home .loading{display: block;width: 100%;margin: 0 auto;text-align: center;}
+.content_home .loading img{}
 .content_home .loading ins{text-decoration: none;display: block;text-align: center;}
 
 /*首页样式*/
@@ -109,7 +112,13 @@ body{font-family: 微软雅黑}
 .content_me .div_banji{margin-bottom: 0}
 .content_me .div_huancun{margin-bottom: 0;border-top:1px solid #ededed;}
 .content_me .div_huancun img{width: 2rem;height: auto}
-.content_me .div_shezhi{border-top:1px solid #ededed;}
+.content_me .div_xinxi{border-top:1px solid #ededed;margin-bottom: 0}
+.content_me .exit_btn{width: 100%;background: #fff;padding:0;height: 4rem;line-height: 4rem;border-radius: 0;border:none;border-bottom:1px solid #ededed;margin-top: 1.2rem;color: #db0000;font-size: 1.28rem;}
+
+.content_me .user_head{background: #44bbea;text-align: center;padding: 25px 0;overflow: hidden;}
+.content_me .user_head ins{width: 86px;height: 86px;border-radius: 100%;display: inline-block;}
+.content_me .user_head img{height:80px;width: 80px;border-radius: 100%;border:3px solid #fff;}
+.content_me .user_head span{display: block;text-align: center;color: #fff;font-size: 1.35rem;}
 
 /*个人中心*/
 

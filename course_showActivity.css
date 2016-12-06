@@ -48,6 +48,5 @@
 /*课程列表*/
 
 
-.loading{display: block;width: 100%;margin: 0 auto;}
-.loading img{width: 100%;}
+.loading{display: block;width: 100%;margin: 0 auto;text-align: center;}
 .loading ins{text-decoration: none;display: block;text-align: center;}

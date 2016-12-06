@@ -114,7 +114,12 @@ define(function(require){
 	        },
 	         error:function (){  
 	        	 me.isloading.set(false);
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	};
@@ -122,11 +127,34 @@ define(function(require){
 	//课程状态
 	Model.prototype.getcourseStatus = function (status){
 		switch (status){
-			case 0: return "" ;break;
-			default : return ""; break;
+			case -1: return "" ; //未加入
+				break;
+			case 0: return "已加入" ;
+				break;
+			case 1: return "学习中" ;
+				break;
+			case 2: return "已完成" ;
+				break;
+			default : return ""; 
 		}
-		return status;
+
 	};
+	
+	//
+	Model.prototype.bindStatusCSS = function( status ){
+		switch (status){
+			case -1: return "status1" ; //未加入
+				break;
+			case 0: return "status2" ;
+				break;
+			case 1: return "status3" ;
+				break;
+			case 2: return "status4" ;
+				break;
+			default : return "status1"; 
+		}
+
+	}
 	
 	Model.prototype.getCourseList_class = function(isApend){
 		var me = this;
@@ -140,6 +168,7 @@ define(function(require){
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
 	        data: {
+	        	"userId" : me.userId,
 	        	"pageNo" : me.pageNo,
 	        	"trainingclassId" : me.trainingclassId
 	        },
@@ -172,10 +201,32 @@ define(function(require){
 	        },
 	         error:function (){  
 	        	 me.isloading.set(false);
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	};
+	
+	//显示课程状态
+	Model.prototype.setStatus = function (status){
+		var rtn;
+		switch (status){
+			case -1 : rtn = ""; //未加入
+				break;
+			case 0 : rtn = "已选课";
+				break;
+			case 1 : rtn = "学习中";
+				break;
+			case 2 : rtn = "已完成";
+				break;
+			default: rtn = "";
+		}
+		return rtn;
+	}
 
 	Model.prototype.scrollView1PullDown = function(event){
 		this.pageNo = 0;

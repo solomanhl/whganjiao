@@ -73,11 +73,43 @@ define(function(require){
 	        },
 	         error:function (){  
 	        	 me.isloading.set(false);
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	}
 
+	//显示考试状态
+	Model.prototype.setStatus = function (status){
+		var rtn;
+		switch (status){
+			case 0 : rtn = "已加入";
+				break;
+			case 1 : rtn = "进行中";
+				break;
+			case 2 : rtn = "已结束";
+				break;
+			default: rtn = "";
+		}
+		return rtn;
+	}
+	
+	Model.prototype.bindStatusCSS = function( status ){
+		switch (status){
+			case 0: return "status1" ;
+				break;
+			case 1: return "status2" ;
+				break;
+			case 2: return "status3" ;
+				break;
+			default : return "status1"; 
+		}
+
+	}
 	
 	Model.prototype.scrollView1PullDown = function(event){
 		this.pageNo_exam = 0;
@@ -141,7 +173,12 @@ define(function(require){
 //	        	alert(resultData.author);
 	        },
 	         error:function (){  
-	        	 alert("服务器数据错误");
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
 	         }
 	    });
 	};

@@ -5,7 +5,7 @@
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full login" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
-        <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar">
+        <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="用户登录">
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
               label="" class="btn btn-link btn-only-icon" icon="icon-chevron-left"
@@ -14,7 +14,7 @@
               <span></span> 
             </a> 
           </div>  
-          <div class="x-titlebar-title"></div>  
+          <div class="x-titlebar-title">用户登录</div>  
           <div class="x-titlebar-right reverse"> 
           </div>
         </div> 

@@ -5,7 +5,7 @@
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:106px;left:266px;"
     onModelConstruct="modelModelConstruct" onLoad="modelLoad" onunLoad="modelUnLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="news" idColumn="id"> 
+      xid="news" idColumn="id" onCustomRefresh="newsCustomRefresh"> 
       <column label="ID" name="id" type="Integer" xid="xid1"/>  
       <column label="标题" name="title" type="String" xid="xid2"/>  
       <column label="摘要" name="description" type="String" xid="xid3"/>  
@@ -79,9 +79,18 @@
               <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView1" onPullDown="scrollView1PullDown" onPullUp="scrollView1PullUp"> 
                 <div class="x-scroll-content" xid="div2"> 
-                  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-card" xid="panel3">
+                  <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group x-card btn-group-justified option_tab" tabbed="true" xid="buttonGroup_classify" selected="button_gonggao"><a component="$UI/system/components/justep/button/button" class="btn btn-default" label="通知公告" xid="button_gonggao" onClick="button_gonggaoClick">
+   <i xid="i6"></i>
+   <span xid="span6">通知公告</span></a>
+  <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="工作动态" xid="button_dongtai" onClick="button_dongtaiClick">
+   <i xid="i7"></i>
+   <span xid="span7">工作动态</span></a>
+  <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="干教咨询" xid="button_zixun" onClick="button_zixunClick">
+   <i xid="i8"></i>
+   <span xid="span8">干教咨询</span></a></div>
+   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-card" xid="panel3">
    <div component="$UI/system/components/bootstrap/carousel/carousel" class="x-carousel banner" xid="carousel1" auto="true"> 
-                    <ol class="carousel-indicators" xid="ol1" />  
+                    <ol class="carousel-indicators" xid="ol1" bind-visible="false"/>  
                     <div class="x-contents carousel-inner" role="listbox" component="$UI/system/components/justep/contents/contents" active="0" slidable="true" wrap="true" swipe="true" routable="false" xid="contentsImg"> 
                       <div class="x-contents-content" xid="contentImg"> 
                         <img src="" alt="" xid="image1" class="tb-img1" bind-click="openPageClick" pagename="./detail.w" /> 
@@ -111,7 +120,7 @@
         <div class="x-panel-content x-contents-content content_study  x-scroll-view " xid="content_study"
           onActive="content_studyActive" onactive="content_studyActive" onInactive="content_studyInactive"> 
           <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
-            xid="panel2"> 
+            xid="panel2" bind-visible="showContent"> 
             <div class="x-panel-top studyTop" xid="top3">
               
             <div xid="div_studyMore"  class="studyMore">
@@ -166,52 +175,45 @@
             </div> 
           </div>  
          <!--  <div id="blackbg"/>  -->
-        </div>  
+        <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer1" src='./pleaseLogin.w' bind-visible="showLogin"></div></div>  
         <div class="x-contents-content  x-scroll-view content_comm" xid="content_comm"
           onActive="content_commActive"> 
-          <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
-            xid="scrollView_comm" onPullDown="scrollView_commPullDown" onPullUp="scrollView_commPullUp"> 
+           
+        <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel4" bind-visible="showContent">
+   <div class="x-panel-content" xid="content4"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView_comm" onPullDown="scrollView_commPullDown" onPullUp="scrollView_commPullUp"> 
             <div class="x-content-center x-pull-down container" xid="div15"> 
-              <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i10"/>  
+              <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i10" />  
               <span class="x-pull-down-label" xid="span19">下拉刷新...</span> 
             </div>  
             <div class="x-scroll-content" xid="div16"> 
-              <div component="$UI/system/components/justep/list/list" class="x-list"
-                xid="list_comm" data="communicate" limit="5"> 
+              <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_comm" data="communicate" limit="5"> 
                 <ul class="x-list-template" xid="listTemplateUl2"> 
-                  <li xid="li_comm" bind-click="li_commClick"> 
+                  <li xid="li_comm"> 
                     <div class="media" xid="media_comm1"> 
                       <div class="media-left" xid="mediaLeft1"> 
                         <a href="#" xid="a1"> 
-                          <img class="media-object" alt="" xid="image12" src="$UI/whganjiao/img/user_pic.png"/>  
-                          <span/> 
+                          <img class="media-object" alt="" xid="image12" src="$UI/whganjiao/img/user_pic.png" />  
+                          <span /> 
                         </a> 
                       </div>  
                       <div class="media-body" xid="mediaBody1"> 
                         <div xid="div_info" class="info"> 
-                          <div component="$UI/system/components/justep/output/output"
-                            class="x-output author" xid="output_comm_author" bind-ref='ref("realname")'/>
-                          <div component="$UI/system/components/justep/output/output"
-                            class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)"/> 
+                          <div component="$UI/system/components/justep/output/output" class="x-output author" xid="output_comm_author" bind-ref='ref("realname")' />
+                          <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)" /> 
                         </div>  
-                        <div component="$UI/system/components/justep/output/output"
-                          class="x-output message" xid="output_txt" bind-ref="ref(&quot;content&quot;)"/>
-                        <div class="media detail" xid="media_orien"> 
+                        <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_txt" bind-ref="ref(&quot;content&quot;)" />
+                        <div class="media detail" xid="media_orien" bind-click="li_commClick"> 
                           <div class="media-left" xid="mediaLeft_orien"> 
                             <a href="#" xid="a_orien"> 
-                              <span xid="span15"/>
-                              <img class="media-object" src="" alt="" xid="image_orien"
-                                bind-attr-src='$model.getServerImg(val("titleImg")) '/>
+                              <span xid="span15" />
+                              <img class="media-object" src="" alt="" xid="image_orien" bind-attr-src='$model.getServerImg(val("titleImg")) ' />
                             </a> 
                           </div>
                           <div class="media-body" xid="mediaBody2"> 
-                            <div component="$UI/system/components/justep/output/output"
-                              class="x-output title" xid="output_title1" bind-ref="ref(&quot;title&quot;)"/>  
-                            <div component="$UI/system/components/justep/labelEdit/labelEdit"
-                              class="x-label-edit x-label30 author2" xid="labelEdit_author2"> 
+                            <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_title1" bind-ref="ref(&quot;title&quot;)" />  
+                            <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 author2" xid="labelEdit_author2"> 
                               <label class="x-label" xid="label_author2"><![CDATA[讲师：]]></label>  
-                              <div component="$UI/system/components/justep/output/output"
-                                class="x-output x-edit" xid="output_author2" bind-ref="ref(&quot;teacher&quot;)"/>
+                              <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_author2" bind-ref="ref(&quot;teacher&quot;)" />
                             </div>
                           </div> 
                         </div> 
@@ -224,42 +226,54 @@
             <div class="x-content-center x-pull-up" xid="div17"> 
               <span class="x-pull-up-label" xid="span20">加载更多...</span> 
             </div> 
-          </div> 
-        </div>  
+          </div></div>
+   </div>
+  <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer2" src="./pleaseLogin.w" bind-visible="showLogin"></div></div>  
         <div class="x-contents-content content_me" xid="content_me" onActive="content_meActive"> 
-          <div xid="div_user" class="div_user" bind-click="div_userClick"> 
-            <img alt="" xid="image_usericon" id="image_usericon"/>  
-            <label xid="label_username" id="label_username" bind-text="localStorage['realname']"><![CDATA[请登录]]></label> 
-          </div>  
-          <div xid="div_project" class="div_project same_me" bind-click="div_projectClick"> 
-            <img src="$UI/whganjiao/img/daohang.png" alt="" xid="image_projecticon"/>  
+          <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel6" bind-visible="showContent">
+   <div class="x-panel-content" xid="content5"><div xid="div_icon" class="user_head">
+    <ins><img src="$UI/whganjiao/img/user_pic.png" alt="" xid="image_icon"></img></ins>
+    <span id="span_name" xid="span_name"><![CDATA[]]></span></div>
+   <div xid="div_xinxi" class="same_me div_xinxi" bind-click="div_xinxiClick"><img src="$UI/whganjiao/img/personal_icon3.png" alt="" xid="image_xinxi"></img>
+  <label xid="span_xinxi">修改信息</label></div>
+  <div xid="div_mima" class="same_me div_mima" bind-click="div_mimaClick"><img src="$UI/whganjiao/img/personal_icon4.png" alt="" xid="image_mima"></img>
+  <label xid="span_mima">修改密码</label></div>
+  <div xid="div_project" class="div_project same_me" bind-click="div_projectClick"> 
+            <img src="$UI/whganjiao/img/daohang.png" alt="" xid="image_projecticon" />  
             <label xid="label_project"><![CDATA[我的课程]]></label> 
-          </div>  
-          <div xid="div_peixun" class="div_peixun same_me" bind-click="div_peixunClick"> 
-            <img src="$UI/whganjiao/img/rili.png" alt="" xid="image_peixunicon"/>  
+          </div><div xid="div_peixun" class="div_peixun same_me" bind-click="div_peixunClick"> 
+            <img src="$UI/whganjiao/img/rili.png" alt="" xid="image_peixunicon" />  
             <label xid="label_peixun"><![CDATA[培训计划]]></label> 
-          </div>  
-          <div xid="div_banji" class="same_me div_banji" bind-click="div_banjiClick"> 
-            <img src="$UI/whganjiao/img/laba.png" alt="" xid="image_banjiicon"/>  
+          </div><div xid="div_banji" class="same_me div_banji" bind-click="div_banjiClick"> 
+            <img src="$UI/whganjiao/img/laba.png" alt="" xid="image_banjiicon" />  
             <label xid="label_banji"><![CDATA[我的考试]]></label> 
-          </div>  
-          <div xid="div_dangan" class="div_dangan same_me" bind-click="div_danganClick"> 
-            <img src="$UI/whganjiao/img/wenjianjia.png" alt="" xid="image_danganicon"/>  
+          </div><div xid="div_dangan" class="div_dangan same_me" bind-click="div_danganClick"> 
+            <img src="$UI/whganjiao/img/wenjianjia.png" alt="" xid="image_danganicon" />  
             <label xid="label_dangan"><![CDATA[学习档案]]></label> 
-          </div>  
-          <div xid="div_huancun" class="same_me div_huancun" bind-visible="false"> 
-            <img src="$UI/whganjiao/img/huancun.png" alt="" xid="image_huancunicon"/>  
+          </div><div xid="div_huancun" class="same_me div_huancun" bind-visible="false"> 
+            <img src="$UI/whganjiao/img/huancun.png" alt="" xid="image_huancunicon" />  
             <label xid="label_huancun"><![CDATA[离线缓存]]></label> 
-          </div>  
-          <div xid="div_dayi" class="div_dayi same_me" bind-click="div_dayiClick" bind-visible="false"> 
-            <img src="$UI/whganjiao/img/zixun.png" alt="" xid="image_dayiicon"/>  
+          </div><div xid="div_dayi" class="div_dayi same_me" bind-click="div_dayiClick" bind-visible="false"> 
+            <img src="$UI/whganjiao/img/zixun.png" alt="" xid="image_dayiicon" />  
             <label xid="label_dayi"><![CDATA[咨询答疑]]></label> 
-          </div>  
-          <div xid="div_shezhi" class="same_me div_shezhi" bind-visible="false"> 
-            <img src="$UI/whganjiao/img/shezhi.png" alt="" xid="image_shezhiicon"/>  
+          </div><div xid="div_shezhi" class="same_me div_shezhi" bind-visible="false"> 
+            <img src="$UI/whganjiao/img/shezhi.png" alt="" xid="image_shezhiicon" />  
             <label xid="label_shezhi"><![CDATA[设置]]></label> 
-          </div> 
-        </div> 
+          </div><a component="$UI/system/components/justep/button/button" class="btn btn-default exit_btn" label="退出账号" xid="button_exit" onClick="button_exitClick">
+   <i xid="i9"></i>
+   <span xid="span17">退出账号</span></a></div>
+   </div>  
+            
+            
+            
+            
+            
+           
+        
+  
+  
+  <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer3" src="./pleaseLogin.w" bind-visible="showLogin"></div>
+  </div> 
       </div> 
     </div>  
     <div class="x-panel-bottom" xid="bottom1"> 

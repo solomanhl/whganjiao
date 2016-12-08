@@ -39,7 +39,7 @@ define(function(require){
 	        },
 	        success: function(resultData) {
 	        	var dataObj;
-	        	dataObj = resultData.info;
+	        	dataObj = resultData.edit;
 
 //	        	$.each(resultData,function(name,value) { 
 //	        		alert(name); 

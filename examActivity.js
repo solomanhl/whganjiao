@@ -100,13 +100,13 @@ define(function(require){
 	
 	Model.prototype.bindStatusCSS = function( status ){
 		switch (status){
-			case 0: return "status1" ;
+			case 0: return "status0" ;
 				break;
-			case 1: return "status2" ;
+			case 1: return "status1" ;
 				break;
-			case 2: return "status3" ;
+			case 2: return "status2" ;
 				break;
-			default : return "status1"; 
+			default : return "status2"; 
 		}
 
 	}

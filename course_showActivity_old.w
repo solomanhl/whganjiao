@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/smartContainer/smartContainer" class="x-smartcontainer" xid="smartContainer1"></div><div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:16px;left:65px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/smartContainer/smartContainer" class="x-smartcontainer" xid="smartContainer1"></div><div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:110px;left:16px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="课程id" name="id" type="Integer" xid="xid1"></column>
   <column label="申请量" name="users" type="String" xid="xid2"></column>
   <column label="状态" name="status" type="String" xid="xid3"></column>
@@ -69,21 +69,21 @@
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_classify">
    <label class="x-label" xid="label_classify"><![CDATA[课程分类：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_classify" bind-text=' $model.course.val("typeName")'></div></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 edit_time" xid="labelEdit_time">
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_time">
    <label class="x-label" xid="label_time"><![CDATA[学时：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_time" bind-text=' $model.classhourToXueshi($model.course.val("classhour"))'></div></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 schedule" xid="labelEdit_schedule">
+  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_schedule">
    <label class="x-label" xid="label_schedule"><![CDATA[进度：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text=' $model.calcTime($model.course.val("times"))'></div></div>
   </div>
   <div xid="div_right" class="div_right">
   
   
-  <div xid="div_click" class="x-label-edit x-label30"><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_click" bind-text=' $model.course.val("clicks")'></div><label xid="label_click"><span><![CDATA[点击]]></span></label></div>
-  <div xid="div_comment" class="x-label-edit x-label30"><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_comment" bind-text=' $model.course.val("speaks")'></div><label xid="label_comment"><span><![CDATA[评论]]></span></label></div>
-  <div xid="div_ask" class="x-label-edit x-label30"><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_ask" bind-text=' $model.course.val("users")'></div><label xid="label_ask"><span><![CDATA[申请]]></span></label></div>
-  <div xid="div_xuexi" class="x-label-edit x-label30"><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_xuexi" bind-text=' $model.course.val("learns")'></div><label xid="label_xuexi"><span><![CDATA[学习]]></span></label></div>
-  <div xid="div_wanchen" class="x-label-edit x-label30"><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_wanchen" bind-text=' $model.course.val("completes")'></div><label xid="label_wanchen"><span><![CDATA[完成]]></span></label></div>
+  <div xid="div_click" class="x-label-edit x-label30"><label xid="label_click"><span><![CDATA[点击]]></span></label><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_click" bind-text=' $model.course.val("clicks")'></div></div>
+  <div xid="div_comment" class="x-label-edit x-label30"><label xid="label_comment"><span><![CDATA[评论]]></span></label><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_comment" bind-text=' $model.course.val("speaks")'></div></div>
+  <div xid="div_ask" class="x-label-edit x-label30"><label xid="label_ask"><span><![CDATA[申请]]></span></label><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_ask" bind-text=' $model.course.val("users")'></div></div>
+  <div xid="div_xuexi" class="x-label-edit x-label30"><label xid="label_xuexi"><span><![CDATA[学习]]></span></label><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_xuexi" bind-text=' $model.course.val("learns")'></div></div>
+  <div xid="div_wanchen" class="x-label-edit x-label30"><label xid="label_wanchen"><span><![CDATA[完成]]></span></label><div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_wanchen" bind-text=' $model.course.val("completes")'></div></div>
   
   </div>
 </div>

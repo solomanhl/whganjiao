@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;" onLoad="modelLoad" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad"> 
   </div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full" xid="panel1"> 
@@ -20,9 +20,6 @@
           </div>
         </div> 
       </div>  
-    <div class="x-panel-content" xid="content1">
-  
-  <div xid="div2" id="div2" bind-visible="justep.Browser.isX5App"><iframe xid="iframe1" width="1010" height="700"></iframe></div></div>
+    <div class="x-panel-content" xid="content1"><div xid="div1" style="height:100%;width:100%;"><iframe src="" xid="iframe1" width="100%" height="100%"></iframe></div></div>
   </div> 
-<span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="120000" onTimer="timer1Timer" style="top:10px;left:45px;"></span></div>
-
+<span component="$UI/system/components/justep/timer/timer" xid="timer1" style="top:12px;left:50px;" interval="120000" onTimer="timer1Timer"></span></div>

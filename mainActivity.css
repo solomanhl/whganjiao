@@ -101,17 +101,18 @@ body{font-family: 微软雅黑}
 /*交流界面*/
 
 .content_me{background: #f6f6f6;padding-top: 1rem}
-.content_me .div_user{border-bottom:1px solid #ededed;border-top:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 6.2rem;background-size:0.8rem;margin-bottom: 1rem}
+.content_me .div_user{border-bottom:1px solid #ededed;border-top:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 6.2rem;background-size:0.8rem;margin-bottom: 1rem;}
 .content_me .div_user img{width: 5rem;height: 5rem;border-radius: 100%;margin:0.6rem 14px 0.6rem 0;vertical-align: middle;float: left;}
 .content_me .div_user label{font-size: 1.24rem;font-weight: normal;height: 5rem;line-height: 5rem;margin: 0.6rem 0}
 .content_me .same_me{border-bottom:1px solid #ededed;padding: 0 3%;background:#fff url(./img/arrow.gif) no-repeat 97% center;height: 4rem;background-size:0.8rem;margin-bottom: 1rem;overflow: hidden;}
 .content_me .same_me img{height: 2rem;margin:1rem 14px 1rem 0;vertical-align: middle;float: left;}
 .content_me .same_me label{font-size: 1.24rem;font-weight: normal;line-height: 2rem;display:block;height: 2rem;margin: 1rem 0;float: left}
-.content_me .div_project{border-top:1px solid #ededed;}
-.content_me .div_peixun{border-top:1px solid #ededed;margin-bottom: 0}
+.content_me .div_project{margin-bottom: 0;border-top:1px solid #ededed;}
+.content_me .div_peixun{margin-bottom: 0}
 .content_me .div_banji{margin-bottom: 0}
 .content_me .div_huancun{margin-bottom: 0;border-top:1px solid #ededed;}
 .content_me .div_huancun img{width: 2rem;height: auto}
+.content_me .div_dangan{border-top:1px solid #ededed;}
 .content_me .div_xinxi{border-top:1px solid #ededed;margin-bottom: 0}
 .content_me .exit_btn{width: 100%;background: #fff;padding:0;height: 4rem;line-height: 4rem;border-radius: 0;border:none;border-bottom:1px solid #ededed;margin-top: 1.2rem;color: #db0000;font-size: 1.28rem;}
 

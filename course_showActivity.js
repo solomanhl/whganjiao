@@ -551,6 +551,7 @@ define(function(require){
 //		var options = "location=no,toolbar=yes";
 //		window.open(url,'_blank', options);//新scorm，弹出浏览器
 
+//		this.shapeId = 6;
 		if (this.shapeId == 4){
 			//精英在线
 			//通过服务器页面代理，
@@ -600,8 +601,32 @@ define(function(require){
 //		}
 		
 		
-	};
-}
+	}else if (this.shapeId == 6){
+			//爱迪科森新课件支持手机
+			var url = require.toUrl("./playScomAidiActivity.w");
+			var course = this.comp("course");
+			var path = course.getValue("path");
+			//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
+			var params = {
+		        from : "course_showActivity",
+		        courseId : this.courseId,
+		        userId : this.userId,
+		        trainingclassId : this.trainingclassId,
+		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2",
+//		        url : "http://www.whce.gov.cn/course/inner_member/scorm_play_demo.jspx?courseId=7566",
+		    };
+			justep.Shell.showPage(url, params);
+//		}
+		
+		
+	}else if (this.shapeId == 5){
+			//图书
+		
+	}else if (this.shapeId == 7){
+			//国家行政学院
+		
+	}
+};
 
 	return Model;
 });

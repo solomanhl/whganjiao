@@ -1,3 +1,36 @@
+//课程
+//	选择课件 courseJoined
+//	学习课件 courseLearning
+//	完成课件 courseFinished
+//	获得总学时 times
+//考试
+//	参加 examJoined
+//	考试 examLearning
+//	完成 examFinished
+//	通过 0
+//培训班
+//	参加 trainingclassJoined
+//	学习 trainingclassLearning
+//	完成 trainingclassFinished
+
+//课程
+//	选择课件 courseJoined
+//	学习课件 courseLearning
+//	完成课件 courseFinished
+//	课程获得学时 times
+//考试
+//	参加 examJoined
+//	考试 examLearning
+//	完成 examFinished
+//	通过 0
+//	考试获得学时 examcredithour
+//	
+//培训班
+//	参加 trainingclassJoined
+//	学习 trainingclassLearning
+//	完成 trainingclassFinished
+	
+	
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
@@ -79,11 +112,11 @@ define(function(require){
 	        	dangan.first();
 //	        	alert("数据" + dangan.count());
 	        	var ranking = dangan.getValue("ranking");
-	        	if (ranking == 0) ranking = "-";
+	        	if (ranking == undefined) ranking = "-";
 	        	
 	        	var titleValue = "截至<b>" + dangan.getValue("date") + "</b>为止，您总共选修<b>" +  dangan.getValue("coursejoined") + "</b>门课程，已学完<b>" 
-					+  dangan.getValue("coursefinish") + "</b>门<b>，" +  ( dangan.getValue("coursejoined") - dangan.getValue("coursefinish")) 
-					+ "</b>门未完成，累计参加<b>" +  dangan.getValue("examjoined") + "</b>次测试，修满<b>" +  dangan.getValue("times") 
+					+  dangan.getValue("coursefinish") + "</b>门，<b>" +  ( dangan.getValue("coursejoined") - dangan.getValue("coursefinish")) 
+					+ "</b>门未完成，累计参加<b>" +  dangan.getValue("examjoined") + "</b>次测试，修满<b>" +  dangan.getValue("examcredithour") 
 					+ "</b>学时，您的学时在全市排名<b>" +  ranking + "</b>，祝您学有所成！";
 					
 				outTitle.set({value : titleValue});

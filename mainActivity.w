@@ -238,7 +238,10 @@
   <label xid="span_xinxi">修改信息</label></div>
   <div xid="div_mima" class="same_me div_mima" bind-click="div_mimaClick"><img src="$UI/whganjiao/img/personal_icon4.png" alt="" xid="image_mima"></img>
   <label xid="span_mima">修改密码</label></div>
-  <div xid="div_project" class="div_project same_me" bind-click="div_projectClick"> 
+  <div xid="div_dangan" class="div_dangan same_me" bind-click="div_danganClick"> 
+            <img src="$UI/whganjiao/img/wenjianjia.png" alt="" xid="image_danganicon" />  
+            <label xid="label_dangan"><![CDATA[学习档案]]></label> 
+          </div><div xid="div_project" class="div_project same_me" bind-click="div_projectClick"> 
             <img src="$UI/whganjiao/img/daohang.png" alt="" xid="image_projecticon" />  
             <label xid="label_project"><![CDATA[我的课程]]></label> 
           </div><div xid="div_peixun" class="div_peixun same_me" bind-click="div_peixunClick"> 
@@ -247,9 +250,6 @@
           </div><div xid="div_banji" class="same_me div_banji" bind-click="div_banjiClick"> 
             <img src="$UI/whganjiao/img/laba.png" alt="" xid="image_banjiicon" />  
             <label xid="label_banji"><![CDATA[我的考试]]></label> 
-          </div><div xid="div_dangan" class="div_dangan same_me" bind-click="div_danganClick"> 
-            <img src="$UI/whganjiao/img/wenjianjia.png" alt="" xid="image_danganicon" />  
-            <label xid="label_dangan"><![CDATA[学习档案]]></label> 
           </div><div xid="div_huancun" class="same_me div_huancun" bind-visible="false"> 
             <img src="$UI/whganjiao/img/huancun.png" alt="" xid="image_huancunicon" />  
             <label xid="label_huancun"><![CDATA[离线缓存]]></label> 

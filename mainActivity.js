@@ -191,13 +191,12 @@ define(function(require){
 			});
 		}
 		
-		
-	
 		//2、获取新闻列表
 		//加载本地缓存
 		var newsCache = localStorage.getItem("newsCache");
 		if (newsCache != undefined){
 			this.comp("news").loadData(newsCache, false);
+			this.comp("news").refreshData();
 		}
 		//请求服务器
 //		this.pageNo = 1;
@@ -407,7 +406,7 @@ define(function(require){
 	        	if (pageNoObj > 0){
 		        	json={"@type" : "table","study_course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
 		        	study_course.loadData(json, isApend);
-		        	localStorage.setItem('study_course_cache',json);
+		        	localStorage.setItem('study_course_cache',JSON.stringify(json));
 	//	        	alert(news.count());
 	        	}
 	        	
@@ -564,7 +563,7 @@ define(function(require){
 		        	var json={"@type" : "table","news" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
 		        	news.loadData(json, isApend);
 	//	        	alert(news.count());
-		        	localStorage.setItem('newsCache',json);
+		        	localStorage.setItem('newsCache',JSON.stringify(json));
 		        	me.isloading.set(false);
 	        	}
 	        	
@@ -671,7 +670,7 @@ define(function(require){
 	        	var json={"@type" : "table","communicate" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :experiencesObj };
 	        	
         		communicate.loadData(json, isApend);
-	        	localStorage.setItem('communicateCache',json);
+	        	localStorage.setItem('communicateCache',JSON.stringify(json));
 	        	
 //	        	alert("评论数据" + comment.count());
 	        	

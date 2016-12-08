@@ -7,7 +7,8 @@
   <column label="分数" name="score" type="String" xid="xid4"></column>
   <column label="" name="udate" type="String" xid="xid5"></column>
   <column label="开始时间" name="startDate" type="String" xid="xid6"></column>
-  <column label="结束时间" name="endDate" type="String" xid="xid7"></column></div></div>  
+  <column label="结束时间" name="endDate" type="String" xid="xid7"></column>
+  <column name="status" type="Integer" xid="xid8"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full exam" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -39,7 +40,7 @@
   <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("endDate")'></span></ins></dd>
     </dl>  
   
-  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_status" bind-text=' $model.setStatus( val("status"))' bind-css=' $model.bindStatusCSS( val("status"))'></div></li></ul> </div>
+  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_status" bind-text=' $model.setStatus( val("status"))' bind-css=' $model.bindStatusCSS(  val("status") )'></div></li></ul> </div>
   </div>
    </div></div>
   </div> 

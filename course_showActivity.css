@@ -14,15 +14,21 @@
 
 .userComment .top_title{display: block;background: #fff;padding: 1rem 5%;font-size: 1.3rem;text-align: center;color: #333}
 .userComment .div_info{background: #fff;padding:0 5% 1.5rem;overflow: hidden;border-bottom: 1px solid #dfdfdf;margin-bottom: 10px}
-.userComment .div_info .div_left{width: 50%;padding:5px 3% 5px 1%;float: left;color: #959595;font-size: 1rem}
-.userComment .div_info label{width: auto;margin-right: 5px;padding: 0;}
+.userComment .div_info .div_left{width: 100%;padding:5px 3% 5px 1%;color: #555;font-size: 1rem}
+.userComment .div_info label{width: auto;margin-right: 5px;padding: 0;color: #959595;}
 .userComment .div_info .x-label-edit{padding:0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
-.userComment .div_info .x-output{color: #959595;font-size: 1rem;padding: 0;}
+.userComment .div_info .x-output{color: #555;font-size: 1rem;padding: 0;}
 .userComment .div_info .div_left .teacher{color: #1195db}
-.userComment .div_info .div_right{width: 50%;padding:5px 1% 5px 3%;float: right;color: #959595;font-size: 1rem;border-left: 1px solid #dfdfdf;}
-.userComment .div_info .div_right label{width: 65%;font-weight: normal;}
-.userComment .div_info .div_right label span{display: block;background: url(./img/block.gif) no-repeat right center;background-size: 64%;padding-right:64%;}
-.userComment .div_info .div_right .x-edit{width: 35%;}
+.userComment .div_info .div_left .edit_time label,.userComment .div_info .div_left .schedule label{display: inline;}
+.userComment .div_info .div_left .edit_time,.userComment .div_info .div_left .schedule{display: inline-block;width: auto;}
+.userComment .div_info .div_left .edit_time div,.userComment .div_info .div_left .schedule div{display: inline;}
+.userComment .div_info .div_left .schedule{margin-left: 16px;}
+.userComment .div_info .div_right{width: 100%;padding:5px 0 5px 0;color: #959595;font-size: 1rem;border: 1px solid #dfdfdf;background: #f3f3f3;overflow: hidden;}
+.userComment .div_info .div_right .x-label-edit{width: 20%;float: left;text-align: center;overflow: hidden;height: auto;background: url(./img/line.gif) no-repeat left center;}
+.userComment .div_info .div_right .x-label-edit:first-child{background: none;}
+.userComment .div_info .div_right label{font-weight: normal;display: block;width: 100%;overflow: hidden;color: #ac6531;}
+.userComment .div_info .div_right .x-edit{display: block;width: 100%;}
+.userComment .div_info .div_right .x-label-edit, .userComment .div_info .div_right .x-label-edit.x-label-left{display: block;}
 
 /*视频详情*/
 

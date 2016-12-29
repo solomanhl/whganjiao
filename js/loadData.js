@@ -4,7 +4,9 @@ define(function(require){
 
 	return {
 		loadDataFromFile : function(url,objData,operation) {			
-			if (operation) { objData.clear();}
+			if (operation) { 
+				objData.clear();
+			}
 			$.ajaxSettings.async = false;
 			$.getJSON(url, function(data) {
 				objData.loadData(data);

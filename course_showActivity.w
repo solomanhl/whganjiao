@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
-  <div component="$UI/system/components/justep/smartContainer/smartContainer" class="x-smartcontainer" xid="smartContainer1"></div><div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:16px;left:65px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
+  <div component="$UI/system/components/justep/smartContainer/smartContainer" class="x-smartcontainer" xid="smartContainer1"></div><div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:110px;left:16px;" onModelConstruct="modelModelConstruct" onParamsReceive="modelParamsReceive" onunLoad="modelUnLoad" onLoad="modelLoad"> 
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="course" idColumn="id"><column label="课程id" name="id" type="Integer" xid="xid1"></column>
   <column label="申请量" name="users" type="String" xid="xid2"></column>
   <column label="状态" name="status" type="String" xid="xid3"></column>
@@ -97,8 +97,8 @@
     <img src="$UI/whganjiao/img/user_pic.png" alt="" xid="image_userComment_icon"></img></div> 
    <div class="media-body" xid="mediaBody_userComment">
     <div xid="div_userComment_head" class="media_head"><div component="$UI/system/components/justep/output/output" class="x-output user" xid="output_comment_user" bind-ref='ref("realname")'></div>
-  <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_comment_date" bind-ref='ref("date")'></div></div>
-  <div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_comment_txt" bind-ref='ref("content")'></div></div> </div></li></ul> </div>
+  <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_comment_date" bind-ref='ref("date")' bind-text='"2016-03-10"'></div></div>
+  </div> </div><div component="$UI/system/components/justep/output/output" class="x-output text" xid="output_comment_txt" bind-ref='ref("content")'></div></li></ul> </div>
 </div>
    <div class="x-content-center x-pull-up" xid="div9">
     <span class="x-pull-up-label" xid="span4">加载更多...</span></div> </div></div>

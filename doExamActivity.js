@@ -4,6 +4,7 @@ define(function(require){
 	require("cordova!cordova-plugin-screen-orientation");
 	require("cordova!cordova-plugin-x-toast");
 	
+	var allData = require("./js/loadData");
 	var global = require("./globalvar");
 
 	var Model = function(){
@@ -13,6 +14,21 @@ define(function(require){
 		this.pageNo=1;
 		this.totalPage=1;
 		
+		this.upload_themeId;
+		this.upload_optionId;
+		this.upload_optionIds;
+		this.upload_text;
+		this.upload_checked;
+		
+		this.themeId;//题目id
+		this.themeType; //题目类型 0单选 1多选  2文本
+//		this.optionIds = [];	//选项id数组
+//		this.checked = [];	//选择数组
+//		this.text = [];	//文本框内容数组
+//		
+//		this.showSingleTxt = justep.Bind.observable(false);//显示单选文本
+//		this.showMultiTxt = justep.Bind.observable(false);//显示多选文本
+//		this.showTxt = justep.Bind.observable(false);//显示主观题文本
 	};
 
 	Model.prototype.modelParamsReceive = function(event){
@@ -38,12 +54,11 @@ define(function(require){
  	    });
 	};
 
+	//获取试题，单题
 	Model.prototype.getThemes = function(page, isApend){
 		var me = this;
 		var data = this.comp("themes");
 		var options = this.comp("options");
-		
-		var list_option_single = this.comp("list_option_single");
 		
 		$.ajax({
 	        type: "get",
@@ -66,23 +81,37 @@ define(function(require){
 	        	themesObj = resultData.themes;
 //	        	alert(JSON.stringify(themesObj));
 
-	        	
+	        	//调试 从本地json取本地图片路径
+//				var url = require.toUrl("./json/examData.json");
+//				var testObj;
+//				$.ajaxSettings.async = false;
+//				$.getJSON(url, function(data) {
+//					testObj = data;
+//				});
+//				themesObj = testObj.themes;
+				//-------------------------
 	        	
 	        	
 	        	json={"@type" : "table", "themes" : {"idColumnName" : "themeId","idColumnType" : "Integer", },"rows" :themesObj };
 	        	data.loadData(json, isApend);
+	        	data.refreshData();
+	        	me.upload_themeId = data.val("upload_themeId");
 	        	
-	        	
+//	        	debugger;
 	        	//option详细表
+	        	options.clear();//清空选项表
 				var optionsObj;
 				var newOptionStr = "[";
 				$.each(themesObj,function(i,item){
 //					alert(item.name);
 					optionsObj = item.options;
+					me.themeId = item.themeId;
+					me.themeType = item.type;//全局试题类型0 1 2
 					var themeId = item.themeId;
 					var name = item.name;
 					$.each(optionsObj,function(j,item){
 //						alert(item.content);
+//						debugger;
 						newOptionStr += "{";
 						
 						newOptionStr = newOptionStr +"\"id\":" + (i*j + j) + ",";
@@ -90,20 +119,23 @@ define(function(require){
 						newOptionStr = newOptionStr +"\"themeId\":" + themeId + ",";
 						newOptionStr = newOptionStr +"\"name\":\"" + name + "\",";
 						newOptionStr = newOptionStr +"\"content\":\"" + item.content + "\",";
+						newOptionStr = newOptionStr +"\"type\":\"" + item.type + "\",";
 						newOptionStr = newOptionStr +"\"optionId\":" + item.optionId;
 						
 						newOptionStr += "},";
 					});
-					newOptionStr = newOptionStr.substring(0, newOptionStr.length-1);
-					newOptionStr += "]";
-//					alert(newOptionStr);
-	
 					
-					json1={"@type" : "table", "options" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :JSON.parse(newOptionStr) };
-		        	options.loadData(json1, isApend);
-		        	options.refreshData();
-//		        	alert(options.count());
 				});
+				
+				newOptionStr = newOptionStr.substring(0, newOptionStr.length-1);
+				newOptionStr += "]";
+//				alert(newOptionStr);
+
+				
+				json1={"@type" : "table", "options" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :JSON.parse(newOptionStr) };
+	        	options.loadData(json1, false);
+	        	options.refreshData();
+//		        alert(options.count());
 				
 //				list_option_single.refresh();
 	        	
@@ -121,7 +153,7 @@ define(function(require){
 	    });
 	};
 	
-	
+	//现在不用单选组
 	Model.prototype.radioGroup_singleChange = function(event){
 //		alert("onChage");
 		var value = this.comp("radioGroup_single").val();	//这里绑定的是optionId
@@ -149,12 +181,20 @@ define(function(require){
 	}; 
 	
 	Model.prototype.button_preClick = function(event){
+//		this.save();
 		if (this.pageNo >1){
 			this.getThemes((this.pageNo-1), false);
 		}
 	};
 	
 	Model.prototype.button_nextClick = function(event){
+//		if (this.type == 0){//单选
+//			
+//		}else if (this.type == 1){//多选
+//		
+//		}else if (this.type == 2){//文本
+//		
+//		}
 		if (this.pageNo < this.totalPage){
 			this.getThemes((this.pageNo+1), false);
 		}
@@ -166,7 +206,7 @@ define(function(require){
 		this.exam_finish();
 	};
 	
-	//提交单题
+	//提交单题 弃用
 	Model.prototype.exam_save = function (themeId, optionIds, checked){
 		var me = this;
 		var strOptionIds = "{";
@@ -257,5 +297,340 @@ define(function(require){
 		this.comp("messageDialog1").show();
 	};
 	
+	//显示哪种题型
+	Model.prototype.showSingleGroup = function(){
+//	debugger;
+		var themes = this.comp("themes");
+		if (themes.count() > 0){
+			themes.first();
+			var t = themes.val("type");
+//			alert(t);
+			if (t == 0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	Model.prototype.showMultiGroup = function(){
+//	debugger;
+		var themes = this.comp("themes");
+		if (themes.count() > 0){
+			themes.first();
+			var t = themes.val("type");
+//			alert(t);
+			if (t == 1){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	Model.prototype.showTXTGroup = function(){
+//	debugger;
+		var themes = this.comp("themes");
+		if (themes.count() > 0){
+			themes.first();
+			var t = themes.val("type");
+//			alert(t);
+			if (t == 2){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	//单选题-------------
+	Model.prototype.radio1Change = function(event){
+//	debugger;
+		var row = event.bindingContext.$object;//获得当前行
+//		alert(row.val("optionId") + row.val("content"));
+
+		var selectedOptionId = row.val("optionId");//获得当前行选项的id
+//		var optionIds2 = [];
+//		var checked2 = [];	//选择数组
+		var options = this.comp("options");
+		var text = "";//有文本框的
+//		options.first();
+//		
+//		options.each(function(param){
+////		debugger;
+//			var curId = param.row.val('optionId');//当前遍历的选项id
+//			optionIds2.push(curId);
+//			if (selectedOptionId ==  curId){
+//				checked2.push(1);
+//				options.setValue("checked", true);//回写数据库
+//			}else{
+//				checked2.push(0);
+//				options.setValue("checked", false);//回写数据库
+//			}
+//			
+//		});
+		
+		options.first();
+		for (var i=0; i< options.count(); i++){
+//		debugger;
+			var cur_oid = options.val("optionId");
+	    	if (cur_oid == selectedOptionId){
+				options.setValue("checked", true);//回写数据库
+				text = options.val("text");
+			}else{
+				options.setValue("checked", false);//回写数据库
+			}
+			options.next();
+		}
+
+		if (text == undefined){
+			text = "";
+		}
+		this.exam_save_options(this.themeId, selectedOptionId);
+	};
+	
+	Model.prototype.getTextAndSubmit = function(event){
+		var row = event.bindingContext.$object;//获得当前行
+		var selectedOptionId = row.val("optionId");
+		var type = row.val("type");
+//		var optionIds2 = [];
+//		var text2 = [];
+		var text = event.source.get("value");
+		if (text == undefined){
+			text = "";
+		}
+		var options = this.comp("options");
+//		options.first();
+		
+//		options.each(function(param){
+//			var curId = param.row.val('optionId');//当前遍历的选项id
+//			optionIds2.push(curId);
+//			if (selectedOptionId ==  curId){
+//				if (type == 1){
+//					var input1 = event.source.get("value");
+//					text2.push(input1);
+//				}
+//			}else{
+//				text2.push("");
+//			}
+//		});
+//		debugger;
+		options.first();
+		for(var i=0; i<options.count(); i++){
+	    	if (options.val("optionId") == selectedOptionId){
+				if (type == 1){
+//				debugger;
+					options.setValue("checked", true);//回写数据库
+					options.setValue("text", text);//回写数据库
+					text = options.val("text");//再读一次
+				}
+			}else{
+				options.setValue("checked", false);//回写数据库
+				options.setValue("text", "");//回写数据库
+			}
+	    };
+//		alert(text);
+		if (text == undefined){
+			text = "";
+		}
+		
+		this.exam_save_text(this.themeId, selectedOptionId, text);
+	}
+		
+	Model.prototype.input1Change = function(event){
+		this.getTextAndSubmit(event);
+	};
+	
+	//input失去焦点
+	Model.prototype.input1Blur = function(event){
+		var row = event.bindingContext.$object;//获得当前行
+	};
+	
+	//获取单选当前行的input1控件
+	Model.prototype.li_option_singleClick = function(event){
+//	debugger;
+		var input1 = $(event.currentTarget).find("[xid='input1']");
+		var radio1 = $(event.currentTarget).find("[xid='radio1']");
+//		input1.attr("disabled","disabled");//禁用
+//		input1.attr("disabled",false);//启用
+//		radio1.checked = "checked";
+	};
+	
+	Model.prototype.showSingleTXT = function (type, checked){
+//	debugger;
+		if (type == 1 && checked == true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	//----------------------------------------------
+	
+		
+	//多选------------------------------------------
+	Model.prototype.checkbox2Change = function(event){
+		//	debugger;
+		var row = event.bindingContext.$object;//获得当前行
+		var checked = event.checked;
+//		alert(row.val("optionId") + row.val("content"));
+
+		var selectedOptionId = row.val("optionId");//获得当前行选项的id
+		var selectedOptionIds="";//选择的id集合
+//		var optionIds2 = [];
+//		var checked2 = [];	//选择数组
+		var options = this.comp("options");
+		var text = "";//有文本框的
+//		options.first();
+//		
+//		options.each(function(param){
+////		debugger;
+//			var curId = param.row.val('optionId');//当前遍历的选项id
+//			optionIds2.push(curId);
+//			if (selectedOptionId ==  curId){
+//				checked2.push(1);
+//				options.setValue("checked", true);//回写数据库
+//			}else{
+//				checked2.push(0);
+//				options.setValue("checked", false);//回写数据库
+//			}
+//			
+//		});
+		
+		options.first();
+		selectedOptionIds = "";
+		for (var i=0; i< options.count(); i++){
+//		debugger;
+			var cur_oid = options.val("optionId");
+	    	if (cur_oid == selectedOptionId){
+	    		if (checked){
+	    			options.setValue("checked", true);//回写数据库
+	    			text = options.val("text");
+	    			
+	    		}else{
+	    			options.setValue("checked", false);//回写数据库
+	    		}
+				
+			}else{
+//				options.setValue("checked", false);//回写数据库 多选不是自己的时候不管数据库
+			}
+			
+			if (options.val("checked")){
+				selectedOptionIds += cur_oid;	
+	    		selectedOptionIds += ",";
+			}
+			options.next();
+		}
+
+		if (text == undefined){
+			text = "";
+		}
+		this.exam_save_options(this.themeId, selectedOptionIds);
+	};
+	
+	//共用单选的input1Change，这个不用
+	Model.prototype.input2Change = function(event){
+		this.getTextAndSubmit(event);
+	};
+
+	Model.prototype.showMultiTXT = function (type, checked){
+//	debugger;
+		if (type == 2 && checked == true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	//----------------------------------
+	
+	//文本题-----------------------------
+	//共用单选的input1Change，这个不用
+	Model.prototype.textarea3Change = function(event){
+		this.getTextAndSubmit(event);
+	};
+	//----------------------------------
+	
+	//单选多选提交是一样的
+	Model.prototype.exam_save_options = function(themeId, optionIds){
+//	alert(themeId + "|" + optionIds);
+//	debugger;
+		var me = this;
+//		http://whce.gov.cn/exam/inner_member/option.jspx?themeId=1201&optionIds=1682,1683&userId=4991
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/exam/inner_member/option.jspx",
+//	        url: "http://192.168.1.22:8080/app/exam-save.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : me.userId,
+	        	"themeId" : themeId,
+	        	"optionIds" : optionIds,
+	        },
+	        success: function(resultData) {
+//	        	alert(JSON.stringify(resultData));
+	        	var result = resultData.result;
+	        	if (result == "true"){
+	        	
+	        	}else{
+	        	
+	        	}
+	        },
+	         error:function (){  
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	}
+
+	//带文本框的选项和文本试题是一样的
+	Model.prototype.exam_save_text = function(themeId, optionId, text){
+	alert(themeId + "|" + optionId + "|" + text);
+//	debugger;
+		var me = this;
+//		http://whce.gov.cn/exam/inner_member/option.jspx?themeId=1201&optionIds=1682,1683&userId=4991
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/exam/inner_member/option_text.jspx",
+//	        url: "http://192.168.1.22:8080/app/exam-save.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : me.userId,
+	        	"themeId" : themeId,
+	        	"optionId" : optionId,
+	        	"text" : text
+	        },
+	        success: function(resultData) {
+//	        	alert(JSON.stringify(resultData));
+	        	var result = resultData.result;
+	        	if (result == "true"){
+	        	
+	        	}else{
+	        	
+	        	}
+	        },
+	         error:function (){  
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	}
+
+
+
+
 	return Model;
 });

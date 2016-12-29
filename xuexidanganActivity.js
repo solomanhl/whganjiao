@@ -104,8 +104,10 @@ define(function(require){
 	        	
 	        	var titleValue = "截至<b>" + dangan.getValue("date") + "</b>为止，您总共选修<b>" +  dangan.getValue("courseJoined") + "</b>门课程，已学完<b>" 
 					+  dangan.getValue("courseFinished") + "</b>门，<b>" +  ( dangan.getValue("courseJoined") - dangan.getValue("courseFinished")) 
-					+ "</b>门未完成，累计参加<b>" +  dangan.getValue("examJoined") + "</b>次测试，修满<b>" +  dangan.getValue("examcredithour") 
-					+ "</b>学时，您的学时在全市排名<b>" +  ranking + "</b>，祝您学有所成！";
+					+ "</b>门未完成，累计获得" +dangan.getValue("times") + dangan.getValue("examcredithour") + dangan.getValue("pollcredithour") 
+					+ "学时。累计参加<b>" +  dangan.getValue("examJoined") + "</b>次测试，获得<b>" +  dangan.getValue("examcredithour") 
+					+ "</b>学时。累计完成<b>" + dangan.getValue("pollFinished") + "</b>调查问卷，获得<b>" + dangan.getValue("pollcredithour") 
+					+ "</b>学时。您的学时在全市排名<b>" +  ranking + "</b>，祝您学有所成！";
 					
 				outTitle.set({value : titleValue});
 				$("b").css("color","#dd0000");

@@ -595,15 +595,37 @@ define(function(require){
 		        courseId : this.courseId,
 		        userId : this.userId,
 		        trainingclassId : this.trainingclassId,
-		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2",
+		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
 		    };
+//		    alert(JSON.stringify(params))
 			justep.Shell.showPage(url, params);
 //		}
 		
 		
-	}else if (this.shapeId == 6){
-			//爱迪科森新课件支持手机
-			var url = require.toUrl("./playScomAidiActivity.w");
+		}else if (this.shapeId == 6){
+				//爱迪科森新课件支持手机
+				var url = require.toUrl("./playScomAidiActivity.w");
+				var course = this.comp("course");
+				var path = course.getValue("path");
+				//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
+				var params = {
+			        from : "course_showActivity",
+			        courseId : this.courseId,
+			        userId : this.userId,
+			        trainingclassId : this.trainingclassId,
+			        url : this.server + "/course/course_inner_member_play_scorm_app_adks.htm?courseId=" + this.courseId + "&URL="  + path + "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
+	//		        url : "http://www.whce.gov.cn/course/inner_member/scorm_play_demo.jspx?courseId=7566",
+			    };
+				justep.Shell.showPage(url, params);
+	//		}
+			
+			
+		}else if (this.shapeId == 5){
+				//图书
+			
+		}else if (this.shapeId == 7){
+			//国家行政学院
+			var url = require.toUrl("./playScomGuojiaxinzhen.w");
 			var course = this.comp("course");
 			var path = course.getValue("path");
 			//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
@@ -612,19 +634,9 @@ define(function(require){
 		        courseId : this.courseId,
 		        userId : this.userId,
 		        trainingclassId : this.trainingclassId,
-		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2",
-//		        url : "http://www.whce.gov.cn/course/inner_member/scorm_play_demo.jspx?courseId=7566",
+		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
 		    };
 			justep.Shell.showPage(url, params);
-//		}
-		
-		
-	}else if (this.shapeId == 5){
-			//图书
-		
-	}else if (this.shapeId == 7){
-			//国家行政学院
-		
 	}
 };
 

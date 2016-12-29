@@ -128,6 +128,7 @@ define(function(require){
 	
 	Model.prototype.li1Click = function(event){
 		var current = event.bindingContext.$object;//获得当前行
+//debugger;
 		var examId = current.val("id");
 //		examId = 3;
 //		alert(examId);
@@ -152,24 +153,36 @@ define(function(require){
 //	        		alert(value); 
 //	        		}
 //	        	);
+
+	        	//调试都可以进
 	        	
+//	        	me.startExam(examId);
+	        	//----------
+	        	
+	        	var msg = "";
 	        	if (statusObj == 0){
 	        		//已完成
-	        		if (justep.Browser.isX5App) window.plugins.toast.show("考试已完成", "long", "center");
+	        		msg = "考试已完成";
 	        	}else if (statusObj == 1){
 	        		//可以考试
 	        		me.startExam(examId);
 	        	}else if (statusObj == -1){
 	        		//已结束
-	        		if (justep.Browser.isX5App) window.plugins.toast.show("考试已结束", "long", "center");
+	        		msg = "考试已结束";
 	        	}else if (statusObj == -2){
 	        		//未开始
-	        		if (justep.Browser.isX5App) window.plugins.toast.show("考试未开始", "long", "center");
+	        		msg = "考试未开始";
 	        	}else if (statusObj == -100){
 	        		//异常
-	        		if (justep.Browser.isX5App) window.plugins.toast.show("状态异常，请联系管理员", "long", "center");
+	        		msg = "状态异常，请联系管理员";
 	        	}
 	        	
+	        	if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "short", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+				
 //	        	alert(resultData.author);
 	        },
 	         error:function (){  

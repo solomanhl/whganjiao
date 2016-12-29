@@ -43,13 +43,14 @@
 .userComment .comm_list{background: #fff;padding: 0 3%;border-bottom: 1px solid #dfdfdf;}
 .userComment .comm_list li{border-bottom: 1px dashed #dfdfdf;padding: 1rem 0;}
 .userComment .comm_list li:last-child{border-bottom: none}
-.userComment .comm_list li .media-left{width: 70px;height: 70px;overflow: hidden;}
-.userComment .comm_list li .media-left img{width:50px;height: 50px;border-radius: 100%;}
+.userComment .comm_list li .media-left{width: 2.6rem;height: 2.6rem;overflow: hidden;}
+.userComment .comm_list li .media-left img{width: 2rem;height: 2rem;border-radius: 100%;}
 .userComment .comm_list li .media-body{padding: 5px 0;}
 .userComment .comm_list li .media-body .media_head{height: 20px;line-height: 20px;position: relative;font-size: 1.2rem;margin-bottom: 5px;}
 .userComment .comm_list li .media-body .media_head .user{padding: 0;}
-.userComment .comm_list li .media-body .media_head .date{padding: 0;position: absolute;right: 0;top: 0;color: #959595}
-.userComment .comm_list li .media-body .text{padding: 0;font-size: 1rem;line-height: 1.5rem;color: #959595;height: 3rem;overflow: hidden;}
+.userComment .comm_list li .media-body .media_head .date{padding: 0;position: absolute;right: 0;top: 0;color: #959595;font-size:1.1rem;}
+.userComment .comm_list li .media-body .text{padding: 0;font-size: 1rem;line-height: 1.5rem;color: #959595;height: 3rem;overflow: hidden;text-indent:2rem;}
+.userComment .comm_list li .text{text-indent:2rem;}
 
 /*课程列表*/
 

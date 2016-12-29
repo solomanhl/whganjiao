@@ -131,17 +131,29 @@ define(function(require){
 
 	Model.prototype.li1Click = function(event){
 		var current = event.bindingContext.$object;//获得当前行
-		var url = require.toUrl("./myCoursesActivity.w");
-		var params = {
-	        from : "peixunActivity",
-	        userId : this.userId,
-	        trainingclassId : current.val("id"),
-	        data : {
-	            // 将data中的一行数据传给对话框
-//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
-	        }
-	    }
-		justep.Shell.showPage(url, params);
+		
+		if(current.val("status") == 1){
+			//学习中
+			var url = require.toUrl("./myCoursesActivity.w");
+			var params = {
+		        from : "peixunActivity",
+		        userId : this.userId,
+		        trainingclassId : current.val("id"),
+		        data : {
+		            // 将data中的一行数据传给对话框
+	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+		        }
+		    }
+			justep.Shell.showPage(url, params);
+		}else{
+			var msg = "该培训班不在学习周期";
+        	 if ( justep.Browser.isX5App ){
+				window.plugins.toast.show(msg, "short", "center");
+			}else{
+				 justep.Util.hint(msg);
+			}
+		}
+		
 	};
 
 	Model.prototype.modelLoad = function(event){

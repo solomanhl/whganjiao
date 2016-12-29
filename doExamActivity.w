@@ -4,13 +4,16 @@
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="themes" idColumn="themeId" isTree="true"><column label="题号" name="themeId" type="Integer" xid="xid1"></column>
   <column label="题目" name="name" type="String" xid="xid2"></column>
   <column label="选项" name="options" type="String" xid="xid3"></column>
-  <treeOption xid="default1"></treeOption></div>
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="options" limit="-1" idColumn="id"><column label="题目id" name="themeId" type="Integer" xid="xid4"></column>
+  <column label="0单选，1多选，2文本，" name="type" type="Integer" xid="xid12"></column></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="options" limit="-1" idColumn="optionId" confirmRefresh="false"><column label="题目id" name="themeId" type="Integer" xid="xid4"></column>
   <column label="题目名字" name="name" type="String" xid="xid5"></column>
   <column label="选项id" name="optionId" type="Integer" xid="xid6"></column>
   <column label="选项内容" name="content" type="String" xid="xid7"></column>
   <column label="序号" name="id" type="Integer" xid="xid8"></column>
-  <column label="选项排序" name="id2" type="Integer" xid="xid10"></column></div></div>  
+  <column label="选项排序" name="id2" type="Integer" xid="xid10"></column>
+  <column label="0选项，1选项后有文本" name="type" type="Integer" xid="xid9"></column>
+  <column label="文本" name="text" type="String" xid="xid11"></column>
+  <column label="选中当前选项" name="checked" type="Boolean" xid="xid13"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full doExam" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -37,10 +40,18 @@
    <ul class="x-list-template" xid="listTemplateUl1">
     <li xid="li_theme"><div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_id" bind-ref='ref("themeId")'></div><div component="$UI/system/components/justep/output/output" class="x-output head" xid="output_name" bind-ref='ref("name")'></div>
   
-  <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_single" data="$model.options" filter='($row.val("themeId") == val("themeId"))  &amp;&amp; ($row.val("id2") == 1) '>
+  <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_single" data="options" autoLoad="true" bind-visible=" $model.showSingleGroup()">
    <ul class="x-list-template" xid="listTemplateUl2">
-    <li xid="li_option_single"><span component="$UI/system/components/justep/select/radioGroup" class="x-radio-group x-radio-group-vertical" xid="radioGroup_single" bind-itemset="$model.options" bind-itemsetLabel='ref("content")' bind-itemsetValue='ref("optionId")' onChange="radioGroup_singleChange"></span></li></ul> </div>
+    <li xid="li_option_single" bind-click="li_option_singleClick"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio1" bind-value='ref("optionId")' checked="false" onChange="radio1Change" bind-label='ref("content")' name="single"></span>
+  <input component="$UI/system/components/justep/input/input" class="form-control" xid="input1" bind-visible='$model.showSingleTXT( val("type"), val("checked")) ' onChange="input1Change" bind-ref='ref("text")' onBlur="input1Blur"></input>
   </li></ul> </div>
+  <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_multi" data="options" bind-visible=" $model.showMultiGroup()">
+   <ul class="x-list-template" xid="listTemplateUl3">
+    <li xid="li_option_multi"><span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox2" bind-label='ref("content")' bind-value='ref("optionId")' checked="false" name="multi" onChange="checkbox2Change"></span><input component="$UI/system/components/justep/input/input" class="form-control" xid="input2" bind-visible='$model.showSingleTXT( val("type"), val("checked")) ' bind-ref='ref("text")' onChange="input2Change"></input>
+  </li></ul> </div>
+  <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_text" data="options">
+   <ul class="x-list-template" xid="listTemplateUl4">
+    <li xid="li2"><textarea component="$UI/system/components/justep/textarea/textarea" class="form-control" xid="textarea3" bind-ref='ref("text")' bind-visible=" $model.showTXTGroup()" onChange="textarea3Change"></textarea></li></ul> </div></li></ul> </div>
   
   </div>
    </div></div>

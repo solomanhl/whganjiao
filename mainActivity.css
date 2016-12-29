@@ -78,16 +78,16 @@ body{font-family: 微软雅黑}
 
 .content_comm .x-scroll-content{background: #f6f6f6;}
 .content_comm .x-scroll-content li{background: #fff;padding: 1rem 2%;border-bottom: 1px solid #ededed;margin-bottom: 10px}
-.content_comm .x-scroll-content li .media-left{width: 3.5rem;}
-.content_comm .x-scroll-content li .media-left img{width: 3.5rem;height: 3.5rem;border-radius: 100%}
+.content_comm .x-scroll-content li .media-left{width: 2rem;}
+.content_comm .x-scroll-content li .media-left img{width: 2rem;height: 2rem;border-radius: 100%}
 .content_comm .x-scroll-content li .media-body .info{height: 2.5rem;line-height: 2.5rem;position: relative;overflow: hidden;margin-bottom: 5px}
 .content_comm .x-scroll-content li .media-body .author{font-size: 1.25rem;padding:0;line-height: 2.5rem}
-.content_comm .x-scroll-content li .media-body .date{font-size: 1rem;color: #959595;padding: 0;position: absolute;right: 0;top: 0;line-height: 2.5rem}
-.content_comm .x-scroll-content li .message{font-size:1.1rem;margin-bottom: 10px;padding: 0;color: #666}
+.content_comm .x-scroll-content li .media-body .date{font-size: 1.1rem;color: #959595;padding: 0;position: absolute;right: 0;top: 0;line-height: 2.5rem}
+.content_comm .x-scroll-content li .message{font-size:1.1rem;margin-bottom: 10px;padding: 0;color: #666;text-indent: 2.2rem;}
 .content_comm .x-scroll-content li .detail{background: #f6f6f6;padding: 8px;border:none;margin-bottom: 1rem}
-.content_comm .x-scroll-content li .detail .media-left{width: 4rem;height:4rem;overflow: hidden;position: relative;}
-.content_comm .x-scroll-content li .detail .media-left span{display: block;overflow: hidden;background:#000 url(./img/pause.png) no-repeat center center;background-size: 2.5rem;position: absolute;left: 0;top: 0;z-index: 900;width: 4rem;height: 4rem;opacity: 0.35}
-.content_comm .x-scroll-content li .detail .media-left img{width: 4rem;height: 4rem;border-radius: 0}
+.content_comm .x-scroll-content li .detail .media-left{width: 6rem;height:4rem;overflow: hidden;position: relative;}
+.content_comm .x-scroll-content li .detail .media-left span{display: block;overflow: hidden;background:#000 url(./img/pause.png) no-repeat center center;background-size: 2.5rem;position: absolute;left: 0;top: 0;z-index: 900;width: 6rem;height: 4rem;opacity: 0.35}
+.content_comm .x-scroll-content li .detail .media-left img{width: 6rem;height: 4rem;border-radius: 0}
 .content_comm .x-scroll-content li .detail .media-body{padding: 0.2rem 0;background-size: 3rem}
 .content_comm .x-scroll-content li .detail .media-body .title{font-size: 1.1rem;padding: 0;height: 1.8rem;overflow: hidden;line-height: 1.8rem}
 .content_comm .x-scroll-content li .detail .media-body .author2{color: #959595;font-size: 1.1rem;padding: 0;height: 1.8rem;line-height: 1.8rem;overflow: hidden;}
@@ -123,13 +123,49 @@ body{font-family: 微软雅黑}
 
 /*个人中心*/
 
-.x-popOver-content{padding: 10px 3% 30px;width: 100%;background: #fff;overflow: hidden;}
+/*.x-popOver-content{padding: 10px 3% 30px;width: 100%;background: #fff;}
 .x-popOver li{margin: 0 1% 10px;float: left;text-align: center;line-height: 1.4rem;border:1px solid #1195db;border-radius: 5px;color: #1195db;padding: 10px}
 .x-popOver li label{font-weight: normal;font-size: 1.1rem}
-.x-popOver li:hover{background: #1195db;color: #fff}
+.x-popOver li:hover{background: #1195db;color: #fff}*/
 
 /*学习页弹窗*/
 
+.content_study .buttonGroup_study{width: 98%;border:1px solid #2fa4e7;margin: 5px auto;border-radius: 5px;display: block;height: 36px;padding:2px;overflow: hidden;background: #fff;}
+.content_study .buttonGroup_study a{color: #2fa4e7;font-size: 1.2rem;border: none;font-weight: normal;text-align: center;width: 33.3%;display: block;height: 30px;line-height: 30px;float: left;}
+.content_study .buttonGroup_study .this{background: #2fa4e7;border-radius: 5px;color: #fff;}
+.content_study .x-full{top: 48px;}
+.content_study #panel_course .button_more{position:absolute;bottom:5.2rem;right: 2rem;z-index: 999;width: auto;font-size: 1.2rem;text-align: center;padding: 0.15rem;width: 3.7rem;height: 3.7rem;}
+.content_study #panel_course .button_more span{display: block;line-height: 1.5rem;}
 
+/*课程状态*/
+.content_study #panel_course .x-scroll-content li .status{position:absolute;bottom:1rem;right:2%;display:inline-block;padding:3px 10px;color:#fff;background:#2fa4e7;border-radius:3px;}
+.content_study #panel_course .x-scroll-content li .status1{background:#fff;}
+.content_study #panel_course .x-scroll-content li .status2{background:#2fa4e7;}
+.content_study #panel_course .x-scroll-content li .status3{background:#bb0000;}
+.content_study #panel_course .x-scroll-content li .status4{background:#26c072;}
 
+/*培训班状态*/
+.content_study #panel_class .x-scroll-content li,.content_study #panel_exam .x-scroll-content li{position: relative;}
+.content_study #panel_class .x-scroll-content li .status,.content_study #panel_exam .x-scroll-content li .status{position:absolute;bottom:1rem;right:2%;display:inline-block;padding:3px 10px;color:#fff;background:#2fa4e7;border-radius:3px;}
+.content_study #panel_class .x-scroll-content li .status1{background:#aaa;}
+.content_study #panel_class.x-scroll-content li .status2{background:#2fa4e7;}
+.content_study #panel_class .x-scroll-content li .status3{background:#bb0000;}
+.content_study #panel_class .x-scroll-content li .status4{background:#26c072;}
 
+/*考试状态*/
+.content_study #panel_exam .x-scroll-content li .status{position:absolute;bottom:1rem;right:2%;display:inline-block;padding:3px 10px;color:#fff;background:#2fa4e7;border-radius:3px;}
+.content_study #panel_exam .x-scroll-content li .status0{background:#2fa4e7;}
+.content_study #panel_exam .x-scroll-content li .status1{background:#26c072;}
+.content_study #panel_exam .x-scroll-content li .status2{background:#aaa;}
+
+/*学习页新增分类按钮*/
+
+.popOver_moreCourse{height: 100%;}
+.popOver_moreCourse .x-popOver-content{height: auto;overflow: hidden;width: 100%;left: 0;position: absolute;background:#fff;}
+.popOver_moreCourse .x-scroll-content{z-index: 9999}
+.popOver_moreCourse .x-scroll-content ul{display: block;overflow: hidden;padding:0 3%;}
+.popOver_moreCourse .x-scroll-content li{position: relative;}
+.popOver_moreCourse .x-scroll-content li .x-output{color: #005a9b;padding: 1rem 0;border-bottom: 1px solid #dfdfdf;background-size: 100% 2px;}
+.popOver_moreCourse .x-scroll-content li .count{position: absolute;right: 0;top: 0;color: #666}
+
+/*学习页侧边栏*/

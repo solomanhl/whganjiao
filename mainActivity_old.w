@@ -24,10 +24,10 @@
     </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="course_group" idColumn="id" limit="-1">
-      <column label="课程分类id" name="id" type="Integer" xid="xid22"></column>
-  <column label="课程分类名" name="name" type="String" xid="xid23"></column>
-  <data xid="default3">[]</data>
-  <column label="分类下课程数量" name="count" type="Integer" xid="xid45"></column></div>
+      <column label="课程分类id" name="id" type="Integer" xid="xid22"/>  
+      <column label="课程分类名" name="name" type="String" xid="xid23"/>  
+      <data xid="default3">[{"id":1,"name":"11"},{"id":2,"name":"22"}]</data>
+    </div>
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="imgData" onCustomRefresh="imgDataCustomRefresh" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid5"></column>
@@ -49,24 +49,7 @@
   <column label="课程标题" name="title" type="Integer" xid="xid15"></column>
   <column label="课程id" name="courseId" type="String" xid="xid24"></column>
   <data xid="default2">[]</data></div> 
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="peixun" limit="-1" idColumn="id"><column label="线上培训集id" name="id" type="Integer" xid="xid29"></column>
-  <column label="线上培训集名字" name="name" type="String" xid="xid30"></column>
-  <column name="udate" type="String" xid="xid31"></column>
-  <column name="level" type="String" xid="xid32"></column>
-  <column name="times" type="String" xid="xid33"></column>
-  <column label="培训班开始时间" name="startDate" type="String" xid="xid34"></column>
-  <column label="结束时间" name="endDate" type="String" xid="xid35"></column>
-  <column name="status" type="Integer" xid="xid36"></column>
-  <column label="图片" name="titleImg" type="String" xid="xid46"></column></div>
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="exam" limit="-1" idColumn="id"><column label="考试id" name="id" type="Integer" xid="xid37"></column>
-  <column label="级别" name="level" type="String" xid="xid38"></column>
-  <column label="考试名" name="name" type="String" xid="xid39"></column>
-  <column label="分数" name="score" type="String" xid="xid40"></column>
-  <column name="udate" type="String" xid="xid41"></column>
-  <column label="开始时间" name="startDate" type="String" xid="xid42"></column>
-  <column label="结束时间" name="endDate" type="String" xid="xid43"></column>
-  <column name="status" type="Integer" xid="xid44"></column>
-  <column label="图片" name="titleImg" type="String" xid="xid47"></column></div></div>  
+  </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
     <div class="x-panel-top" xid="top1"> 
@@ -75,7 +58,7 @@
         <div class="x-titlebar-left"> 
           <a component="$UI/system/components/justep/button/button" label=""
             class="btn btn-link btn-only-icon" icon="icon-chevron-left" onClick="{operation:'window.close'}"
-            xid="backBtn" target="content_home"> 
+            xid="backBtn"> 
             <span/> 
           </a> 
         </div>  
@@ -129,30 +112,25 @@
                   </div></div></div>  
                  
               <div class="x-content-center x-pull-up" xid="div3"> 
-                  <span class="x-pull-up-label" xid="span14"></span> 
+                  <span class="x-pull-up-label" xid="span14">加载更多...</span> 
                 </div></div>
             </div> 
           </div>
         </div>  
         <div class="x-panel-content x-contents-content content_study  x-scroll-view " xid="content_study"
           onActive="content_studyActive" onactive="content_studyActive" onInactive="content_studyInactive"> 
-          <div component="$UI/system/components/justep/button/buttonGroup" class="buttonGroup_study" tabbed="true" xid="buttonGroup_study" bind-visible="showContent" >
-            <a component="$UI/system/components/justep/button/button" class="this" label="课程" xid="button1" onClick="button1Click">
-          <span xid="span9">课程</span></a>
-        <a component="$UI/system/components/justep/button/button" class="" label="培训班" xid="button2" onClick="button2Click">
-   <span xid="span11">培训班</span></a>
-  <a component="$UI/system/components/justep/button/button" class="" label="考试" xid="button3" onClick="button3Click">
-   <span xid="span13">考试</span></a>
- </div>
-
-   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
-            xid="panel_course" bind-visible="showCourse" id="panel_course"> 
+          <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
+            xid="panel2" bind-visible="showContent"> 
+            <div class="x-panel-top studyTop" xid="top3">
+              
+            <div xid="div_studyMore"  class="studyMore">
+                
+                <a component="$UI/system/components/justep/button/button" class="btn btn-default btn_more" label="更多课程" xid="button_studyMore" onClick="button_studyMoreClick"> 
+                  <span xid="span11">更多课程</span>  
+                  <img src="img/arrow2.png" alt="" /> 
+                </a></div></div>  
             <div class="x-panel-content study_box" xid="content3">
-              <a component="$UI/system/components/justep/button/button" class="btn btn-default button_more " xid="button_more" icon="" onClick="button_moreClick">
-   <!-- <i xid="i14" class="linear linear-sad"></i> -->
-   <span xid="span16">更多</span>
-   <span xid="span16">课程</span>
- </a><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
+              <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
                 xid="scrollView_study" onPullUp="scrollView_studyPullUp" onPullDown="scrollView_studyPullDown"> 
                 <div class="x-scroll-content" xid="div5">
                   <div component="$UI/system/components/justep/list/list" class="x-list"
@@ -184,7 +162,7 @@
                                   bind-ref="ref(&quot;users&quot;)"/>
                               </div> 
                             </div>
-                          <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_coursestatus" bind-text='$model.setCourseStatus( val("status"))' bind-css='$model.bindCourseStatusCSS( val("status"))'></div></div> 
+                          </div> 
                         </div>
                       </li>
                     </ul> 
@@ -197,47 +175,7 @@
             </div> 
           </div>  
          <!--  <div id="blackbg"/>  -->
-        <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel_class" bind-visible="showClass" id="panel_class">
-   <div class="x-panel-content  x-scroll-view" xid="content7" _xid="C75596630C3000015D701F8810A057D0" style="top: 0px; bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView2">
-   
-   <div class="x-scroll-content study_box" xid="div4"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list2" data="peixun">
-   <ul class="x-list-template" xid="listTemplateUl3">
-    <li xid="li2" bind-click="li2Click"><div class="media media_study" xid="media1">
-   <div class="media-left" xid="mediaLeft2">
-    <a href="#" xid="a2">
-     <img class="media-object" alt="" xid="image2" bind-attr-src='$model.getServerImg(val("titleImg"))'></img></a> </div> 
-   <div class="media-body" xid="mediaBody3">
-    <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_classtitle" bind-ref='ref("name")'></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit1">
-   <label class="x-label" xid="label1"><![CDATA[开始时间：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output2" bind-ref='ref("startDate")'></div></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit2">
-   <label class="x-label" xid="label2"><![CDATA[结束时间：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output3" bind-ref='ref("endDate")'></div></div>
-  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_classstate" bind-text='$model.setClassStatus( val("status"))' bind-css='$model.bindClassStatusCSS( val("status"))' bind-visible="false"></div></div> </div></li></ul> </div></div>
-   </div></div>
-   </div><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel_exam" bind-visible="showExam" id="panel_exam">
-   <div class="x-panel-content  x-scroll-view" xid="content8" _xid="C75596645980000116FA35202B701CC1" style="top: 0px; bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView3">
-   
-   <div class="x-scroll-content study_box" xid="div11"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list3" data="exam">
-   <ul class="x-list-template" xid="listTemplateUl4">
-    <li xid="li3" bind-click="li3Click"><div class="media media_study" xid="media2">
-   <div class="media-left" xid="mediaLeft3">
-    <a href="#" xid="a3">
-     <img class="media-object" src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image3" bind-attr-src='$model.getServerImg(val("titleImg"))'></img></a> </div> 
-   <div class="media-body" xid="mediaBody4">
-    <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_examtitle" bind-ref='ref("name")'></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit3">
-   <label class="x-label" xid="label3"><![CDATA[开始时间]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output6" bind-ref='ref("startDate")'></div></div>
-  <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit4">
-   <label class="x-label" xid="label4"><![CDATA[结束时间：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output7" bind-ref='ref("endDate")'></div></div>
-  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_examstate" bind-text='$model.setExamStatus( val("status"))' bind-css='$model.bindExamStatusCSS(  val("status") )' bind-visible="false"></div></div> </div></li></ul> </div></div>
-   </div></div>
-   </div><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer1" src='./pleaseLogin.w' bind-visible="showLogin"></div>
-  
-  </div>  
+        <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer1" src='./pleaseLogin.w' bind-visible="showLogin"></div></div>  
         <div class="x-contents-content  x-scroll-view content_comm" xid="content_comm"
           onActive="content_commActive"> 
            
@@ -261,13 +199,10 @@
                       <div class="media-body" xid="mediaBody1"> 
                         <div xid="div_info" class="info"> 
                           <div component="$UI/system/components/justep/output/output" class="x-output author" xid="output_comm_author" bind-ref='ref("realname")' />
-                          <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)" bind-text='"2016-03-10"'/> 
+                          <div component="$UI/system/components/justep/output/output" class="x-output date" xid="output_dateline" bind-ref="ref(&quot;date&quot;)" /> 
                         </div>  
-                        
-                         
-                      </div> 
-                    </div> 
-                  <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_txt" bind-ref="ref(&quot;content&quot;)" /><div class="media detail" xid="media_orien" bind-click="li_commClick"> 
+                        <div component="$UI/system/components/justep/output/output" class="x-output message" xid="output_txt" bind-ref="ref(&quot;content&quot;)" />
+                        <div class="media detail" xid="media_orien" bind-click="li_commClick"> 
                           <div class="media-left" xid="mediaLeft_orien"> 
                             <a href="#" xid="a_orien"> 
                               <span xid="span15" />
@@ -281,7 +216,10 @@
                               <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_author2" bind-ref="ref(&quot;teacher&quot;)" />
                             </div>
                           </div> 
-                        </div></li> 
+                        </div> 
+                      </div> 
+                    </div> 
+                  </li> 
                 </ul> 
               </div> 
             </div>  
@@ -368,19 +306,14 @@
     <require xid="require1" url="css!$UI/whganjiao/base"/>  
     <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"/>
   </resource>
-<div component="$UI/system/components/justep/popOver/popOver" class="x-popOver popOver_moreCourse" direction="left-bottom" xid="popOver_moreCourse" anchor="titleBar" opacity="0.2" position="left">
+<div component="$UI/system/components/justep/popOver/popOver" class="x-popOver" direction="auto" xid="popOver_moreCourse" anchor="titleBar" opacity="0.2">
    <div class="x-popOver-overlay" xid="div7"></div>
-   <div class="x-popOver-content  x-scroll-view" xid="div8">
-  <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView4">
-   
-   <div class="x-scroll-content" xid="div10"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_courseGroup" data="course_group"> 
-        <ul class="x-list-template" xid="listTemplateUl_courseGroup"> 
-          <li xid="li_courseGroup" bind-click="li_courseGroupClick">
-            <div component="$UI/system/components/justep/output/output" class="x-output" xid="output_groupname" bind-ref='ref("name")'></div>
-  <span component="$UI/system/components/justep/output/output" class="x-output count" xid="output_groupcount" bind-ref='ref("count")'></span></li>
-        </ul> 
-      </div></div>
-   </div></div>
- </div>
-  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:8px;left:107px;"></span>
+   <div class="x-popOver-content" xid="div8"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_courseGroup" data="course_group"> 
+                      <ul class="x-list-template" xid="listTemplateUl_courseGroup"> 
+                        <li xid="li_courseGroup" bind-click="li_courseGroupClick">
+                          <label xid="label_groupname" bind-text="ref(&quot;name&quot;)"><![CDATA[]]></label>
+                        </li>
+                      </ul> 
+                    </div></div></div>
+  <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:10px;left:53px;"></span>
   </div>

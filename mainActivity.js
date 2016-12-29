@@ -33,7 +33,11 @@ define(function(require){
 		this.popshow = 0;//课程分类下拉框是否显示
 		this.shouldShowSearch = justep.Bind.observable(false);//是否显示搜索框
 		this.showLogin = justep.Bind.observable(false);//显示登录
-		this.showContent = justep.Bind.observable(false);//显示正常内容
+		this.showContent = justep.Bind.observable(false);//显示内容
+		
+		this.showCourse = justep.Bind.observable(true);//显示课程
+		this.showClass = justep.Bind.observable(false);//显示培训班
+		this.showExam = justep.Bind.observable(false);//显示考试
 		
 		//交流页
 		this.pageNo_communicate = 0;
@@ -119,7 +123,7 @@ define(function(require){
 //	        	);
 	        	
 	        	if (contentsObj.length > 0){
-		        	json={"@type" : "table","imgData" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
+		        	var json={"@type" : "table","imgData" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :contentsObj };
 		        	data.loadData(json, false);
 		        	
 					var carousel = me.comp("carousel1");
@@ -308,6 +312,7 @@ define(function(require){
 	
 	//学习激活
 	Model.prototype.content_studyActive = function(event){
+//	debugger;
 		this.comp("titleBar").set({"title" : "学习广场"});
 		
 		if (this.status == 1){
@@ -315,6 +320,12 @@ define(function(require){
 			var study_course_cache = localStorage.getItem("study_course_cache");
 			if (study_course_cache != undefined){
 				this.comp("study_course").loadData(study_course_cache, false);
+			}
+			//加载本地缓存
+			var study_courseGroup_cache = localStorage.getItem("study_courseGroup_cache");
+			if (study_courseGroup_cache != undefined){
+				this.comp("course_group").loadData(study_courseGroup_cache, false);
+				this.comp("course_group").refreshData();
 			}
 			//3.获取课程
 			this.pageNo_study = 1;
@@ -404,7 +415,7 @@ define(function(require){
 //	        	);
 	        	
 	        	if (pageNoObj > 0){
-		        	json={"@type" : "table","study_course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
+		        	var json={"@type" : "table","study_course" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :coursesObj };
 		        	study_course.loadData(json, isApend);
 		        	localStorage.setItem('study_course_cache',JSON.stringify(json));
 	//	        	alert(news.count());
@@ -429,7 +440,7 @@ define(function(require){
 		
 		$.ajax({
 	        type: "get",
-	        "async" : false,
+	        "async" : true,
 	        url: global.server + "/app/course-type-list.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
@@ -456,7 +467,7 @@ define(function(require){
 	        	if (pageNoObj > 0){
 		        	var json={"@type" : "table","course_group" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :typesObj };
 		        	course_group.loadData(json, false);
-		        	
+		        	localStorage.setItem('study_courseGroup_cache',JSON.stringify(json));
 	//	        	alert(news.count());
 	        	}
 	        	
@@ -473,7 +484,7 @@ define(function(require){
 	}
 
 
-	//弹出课程分类
+	//弹出课程分类  弃用
 	Model.prototype.button_studyMoreClick = function(event){
 		var popOver_moreCourse = this.comp("popOver_moreCourse");
 //		if (this.popshow == 0){
@@ -487,7 +498,6 @@ define(function(require){
 //		}
 		
 	};
-	
 	
 	Model.prototype.content_commActive = function(event){
 		this.comp("titleBar").set({"title" : "交流广场"});
@@ -646,7 +656,7 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 //	        	"shapeId" : 3,  //单视频的评论
-	        	"pageNo" : me.pageNo_comment
+	        	"pageNo" : this.pageNo_communicate
 	        },
 	        success: function(resultData) {
 //	        	alert(resultData.result);
@@ -887,21 +897,16 @@ define(function(require){
 	};
 
 
-
-	Model.prototype.popOver_moreCourseClick = function(event){
-		if (this.popshow == 0){
-			this.popshow = 1;
-			this.comp("popOver_moreCourse").show();
-		}else{
-			this.popshow = 0;
-			this.comp("popOver_moreCourse").hide();
-		}
+	Model.prototype.button_moreClick = function(event){
+//		if (this.popshow == 0){
+//			this.popshow = 1;
+//			this.comp("popOver_moreCourse").show();
+//		}else{
+//			this.popshow = 0;
+//			this.comp("popOver_moreCourse").hide();
+//		}
+		this.comp("popOver_moreCourse").show();
 	};
-
-
-
-
-
 
 	Model.prototype.modelLoad = function(event){
 //		justep.Shell.setIsSinglePage(true);
@@ -945,6 +950,12 @@ define(function(require){
 			}
 			//刷新课件
 			this.getCourse(false);
+			
+			//加载本地缓存
+			var study_courseGroup_cache = localStorage.getItem("study_courseGroup_cache");
+			if (study_courseGroup_cache != undefined){
+				this.comp("course_group").loadData(study_courseGroup_cache, false);
+			}
 			//刷新课件组
 			this.getCourseGroup(false);
 			
@@ -1003,17 +1014,388 @@ define(function(require){
 		
 	};
 
+	//学习页课程 培训班 考试切换
+	Model.prototype.button1Click = function(event){
+		this.showCourse.set(true);//课程
+		this.showClass.set(false);
+		this.showExam.set(false);
+		
+		//加载本地缓存
+		var study_course_cache = localStorage.getItem("study_course_cache");
+		if (study_course_cache != undefined){
+			this.comp("study_course").loadData(study_course_cache, false);
+		}
+		//加载本地缓存
+		var study_courseGroup_cache = localStorage.getItem("study_courseGroup_cache");
+		if (study_courseGroup_cache != undefined){
+			this.comp("course_group").loadData(study_courseGroup_cache, false);
+		}
+		
+		//3.获取课程
+		this.pageNo_study = 1;
+		this.getCourse(false);
+		//4.获取课程分类
+		this.getCourseGroup();
+		
+		this.shouldShowSearch.set(true);
+	};
+	
+	Model.prototype.button2Click = function(event){
+		this.showCourse.set(false);
+		this.showClass.set(true);//培训班
+		this.showExam.set(false);
+		
+		this.getPeixunban(false);
+		
+		this.shouldShowSearch.set(false);
+	};
 
+	Model.prototype.button3Click = function(event){
+		this.showCourse.set(false);
+		this.showClass.set(false);
+		this.showExam.set(true);//考试
+		
+		this.getExam(false);
+		
+		this.shouldShowSearch.set(false);
+	};
+	
+		//课程状态
+	Model.prototype.setCourseStatus = function (status){
+		switch (status){
+			case -1: return "" ; //未加入
+				break;
+			case 0: return "已加入" ;
+				break;
+			case 1: return "学习中" ;
+				break;
+			case 2: return "已完成" ;
+				break;
+			default : return ""; 
+		}
 
+	};
+	
+	//
+	Model.prototype.bindCourseStatusCSS = function( status ){
+		switch (status){
+			case -1: return "status1" ; //未加入
+				break;
+			case 0: return "status2" ;
+				break;
+			case 1: return "status3" ;
+				break;
+			case 2: return "status4" ;
+				break;
+			default : return "status1"; 
+		}
+
+	};
+
+	//显示培训班状态
+	Model.prototype.setClassStatus = function (status){
+		var rtn;
+		switch (status){
+			case -2 : rtn = "未学完"; //培训班到期，没学完，还可以点进去学，不计学分
+				break;
+			case 0 : rtn = "已加入";
+				break;
+			case 1 : rtn = "学习中";
+				break;
+			case 2 : rtn = "已完成";
+				break;
+			default: rtn = "";
+		}
+		return rtn;
+	};
+	
+	Model.prototype.bindClassStatusCSS = function( status ){
+		switch (status){
+			case -2: return "status1" ; //未学完  灰色
+				break;
+			case 0: return "status2" ;
+				break;
+			case 1: return "status3" ;
+				break;
+			case 2: return "status4" ;
+				break;
+			default : return "status1"; 
+		}
+
+	}
+	
+	Model.prototype.getPeixunban = function(isApend){
+		var me = this;
+		var peixun = this.comp("peixun");
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/trainingclass-list.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+//	        	"pageNo" : me.pageNo_exam,
+//	        	"userId" : me.userid,
+//	        	"trainingclassId" : 1
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+	        	var trainingclassusersObj = resultData.trainingclassusers;
+	        	var pageNoObj = resultData.pageNo;
+	        	var totalPageObj = resultData.totalPage;
+	        	
+	        	me.pageNo_exam = pageNoObj;
+	        	me.totalPage_exam = totalPageObj;
+//	        	alert(me.totalPage_study);
+//	        	alert(experiencesObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	var json={"@type" : "table","peixun" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :trainingclassusersObj };
+	        	
+        		peixun.loadData(json, isApend);
+	        	 me.isloading.set(false);
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	  me.isloading.set(false);
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	}
+	
+	//显示考试状态
+	Model.prototype.setExamStatus = function (status){
+		var rtn;
+		switch (status){
+			case 0 : rtn = "已加入";
+				break;
+			case 1 : rtn = "进行中";
+				break;
+			case 2 : rtn = "已结束";
+				break;
+			default: rtn = "";
+		}
+		return rtn;
+	}
+	
+	Model.prototype.bindExamStatusCSS = function( status ){
+//	debugger;
+		switch (status){
+			case 0: return "status0" ;
+			case 1: return "status1" ;
+			case 2: return "status2" ;
+			default : return "status2"; 
+		}
+
+	};
+	
+	Model.prototype.getExam = function(isApend){
+		var me = this;
+		var exam = this.comp("exam");
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/exam-list.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+//	        	"pageNo" : me.pageNo_exam,
+//	        	"userId" : me.userid
+	        },
+	        success: function(resultData) {
+//	        	alert(resultData.result);
+//	        	alert(resultData + "/" + JSON.stringify(resultData));
+	        	
+	        	var examuserssObj = resultData.examusers;
+	        	var pageNoObj = resultData.pageNo;
+	        	var totalPageObj = resultData.totalPage;
+	        	
+	        	me.pageNo_exam = pageNoObj;
+	        	me.totalPage_exam = totalPageObj;
+//	        	alert(me.totalPage_study);
+//	        	alert(experiencesObj);
+	        	        	
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+	        	
+	        	var json={"@type" : "table","exam" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :examuserssObj };
+	        	
+        		exam.loadData(json, isApend);
+	        	 me.isloading.set(false);
+	        	
+//	        	alert("评论数据" + comment.count());
+	        	
+	        },
+	         error:function (){  
+	        	 me.isloading.set(false);
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	};
+	
+	//点击培训班
+	Model.prototype.li2Click = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+		if(current.val("status") == 0 || current.val("status") == 1){
+			//0已加入 1学习中
+			var url = require.toUrl("./myCoursesActivity.w");
+			var params = {
+		        from : "peixunActivity",
+		        userId : this.userid,
+		        trainingclassId : current.val("id"),
+		        data : {
+		            // 将data中的一行数据传给对话框
+	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+		        }
+		    }
+			justep.Shell.showPage(url, params);
+		}else if (current.val("status") == -2){
+			var msg = "该培训班已结束，继续学习不会获得学分";
+        	 if ( justep.Browser.isX5App ){
+				window.plugins.toast.show(msg, "short", "center");
+			}else{
+				 justep.Util.hint(msg);
+			}
+			
+        	var url = require.toUrl("./myCoursesActivity.w");
+			var params = {
+		        from : "peixunActivity",
+		        userId : this.userid,
+		        trainingclassId : current.val("id"),
+		        data : {
+		            // 将data中的一行数据传给对话框
+	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+		        }
+		    }
+			justep.Shell.showPage(url, params);
+		}else if(current.val("status") == 2){
+			var msg = "该培训班已学完";
+        	 if ( justep.Browser.isX5App ){
+				window.plugins.toast.show(msg, "short", "center");
+			}else{
+				 justep.Util.hint(msg);
+			}
+		}
+	};
+	
+	//点击考试
+		Model.prototype.li3Click = function(event){
+		var current = event.bindingContext.$object;//获得当前行
+
+		var examId = current.val("id");
+//		examId = 3;
+//		alert(examId);
+		var me = this;
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/exam-user-checked.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : me.userid,
+	        	"examId" : examId
+	        },
+	        success: function(resultData) {
+	        	var statusObj;	
+	        	statusObj = resultData.status;
+//	        	alert(statusObj);
+//	        	$.each(resultData,function(name,value) { 
+//	        		alert(name); 
+//	        		alert(value); 
+//	        		}
+//	        	);
+//	        	debugger;
+	        	//调试都可以进
+	        	me.startExam(examId);
+	        	//--------
+	        	
+	        	var msg = "";
+//	        	if (statusObj == 0){
+//	        		//可以考试
+//	        		me.startExam(examId);
+//	        	}else if (statusObj == 1){
+//	        		//已完成
+//	        		msg = "考试已完成";
+//	        	}else if (statusObj == -1){
+//	        		//未开始
+//	        		msg = "考试未开始";
+//	        	}else if (statusObj == -2){
+//	        		//一结束
+//	        		msg = "考试已结束";
+//	        	}else if (statusObj == -100){
+//	        		//异常
+//	        		msg = "状态异常，请联系管理员";
+//	        	}
+//	        	
+	        	if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "short", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	        	
+//	        	alert(resultData.author);
+	        },
+	         error:function (){  
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "long", "center");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	};
+	
+	Model.prototype.startExam = function(examId){
+		var url = require.toUrl("./doExamActivity.w");
+		var params = {
+	        from : "examActivity",
+	        examId : examId,
+	        userId : this.userid,
+	        data : {
+	            // 将data中的一行数据传给对话框
+//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+	        }
+	    }
+		justep.Shell.showPage(url, params);
+	};
 
 	return Model;
 });
 
 $(function(){
 	$(".content_home .home_nav a").click(function(){
-		$(".content_home .home_nav a .this").removeClass("this")
+		$(".content_home .home_nav a .this").removeClass("this");
 		$(this).find("span").addClass("this");
-	})
+	});
 
 	// 首页头部导航切换
 
@@ -1047,16 +1429,24 @@ $(function(){
 	$(".content_study .studyMore .btn_more").click(function(){
 		$(".content_study .studyMore .moreCourse").show();
 		$("#blackbg").show();
-	})	
+	})	;
 
 	$("#blackbg").click(function(){
 		$("#blackbg").hide();
 		$(".content_study .studyMore .moreCourse").hide();
-	})
+	});
 
 	// 更多课程弹窗
 
 	$(".content_home .banner").height($(window).width()/1.84);
 	$(".content_home .banner img").height($(window).width()/1.84);
 
-})
+	$(".content_study .buttonGroup_study a").click(function(){
+		$(this).addClass("this").siblings(".this").removeClass("this");
+	})
+
+	// 学习页面顶部按钮切换
+
+	$(".popOver_moreCourse .x-popOver-content").height($(window).height()-48);
+
+});

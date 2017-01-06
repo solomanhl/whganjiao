@@ -8,7 +8,8 @@
   <column name="times" type="String" xid="xid4"></column>
   <column name="status" type="String" xid="xid6"></column>
   <column label="培训班开始时间" name="startDate" type="String" xid="xid7"></column>
-  <column label="结束时间" name="endDate" type="String" xid="xid8"></column></div></div>  
+  <column label="结束时间" name="endDate" type="String" xid="xid8"></column>
+  <column name="titleImg" type="String" xid="xid9"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full peixun" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
@@ -16,10 +17,9 @@
           class="x-titlebar">
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
-              label="" class="btn btn-link btn-only-icon" icon="icon-chevron-left"
-              onClick="{operation:'window.close'}" xid="backBtn"> 
+              label="返回" class="btn btn-default" onClick="{operation:'window.close'}" xid="backBtn"> 
               <i class="icon-chevron-left"/>  
-              <span></span> 
+              <span>返回</span> 
             </a> 
           </div>  
           <div class="x-titlebar-title">我的培训</div>  
@@ -34,7 +34,7 @@
    <ul class="x-list-template" xid="listTemplateUl1">
     <li xid="li1" bind-click="li1Click">
       <dl>
-      <dt><img src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image1"></img></dt><dd>
+      <dt><img alt="" xid="image1" bind-attr-src='$model.getServerImg( val("titleImg"))'></img></dt><dd>
   <span xid="span_title" bind-text='val("name")' class="title"></span>
   <ins><label xid="label1"><![CDATA[开始时间：]]></label><span xid="span4" bind-text='val("startDate")'></span></ins>
   <ins><label xid="label2"><![CDATA[结束时间：]]></label><span xid="span5" bind-text='val("endDate")'></span></ins></dd>

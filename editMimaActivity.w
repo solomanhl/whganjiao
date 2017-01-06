@@ -9,10 +9,9 @@
           class="x-titlebar">
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
-              label="" class="btn btn-link btn-only-icon" icon="icon-chevron-left"
-              onClick="{operation:'window.close'}" xid="backBtn"> 
+              label="返回" class="btn btn-default" onClick="{operation:'window.close'}" xid="backBtn"> 
               <i class="icon-chevron-left"/>  
-              <span></span> 
+              <span>返回</span> 
             </a> 
           </div>  
           <div class="x-titlebar-title">修改密码</div>  

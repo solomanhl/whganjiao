@@ -9,6 +9,8 @@ define(function(require){
 	var Model = function(){
 		this.callParent();
 		
+		this.server = global.server;
+		
 		this.isloading = justep.Bind.observable(false);//是否显示正在加载的动画框
 		this.userId;
 		this.pageNo_exam = 0;
@@ -26,7 +28,15 @@ define(function(require){
 		
 		 this.isloading.set(true);
 		this.getExam(false);
+//		debugger;
+	};
+	
 		
+	Model.prototype.modelActive = function(event){
+//		考试页doexame返回到本页面会触发
+//		debugger; 
+		this.isloading.set(true);
+		this.getExam(false);
 	};
 
 	Model.prototype.getExam = function(isApend){
@@ -75,7 +85,7 @@ define(function(require){
 	        	 me.isloading.set(false);
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -109,6 +119,14 @@ define(function(require){
 			default : return "status2"; 
 		}
 
+	}
+	
+	Model.prototype.shouldShowScore = function (status){
+		if (status == 1 || status == 2){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	Model.prototype.scrollView1PullDown = function(event){
@@ -160,54 +178,94 @@ define(function(require){
 	        	//----------
 	        	
 	        	var msg = "";
-	        	if (statusObj == 0){
-	        		//已完成
-	        		msg = "考试已完成";
-	        	}else if (statusObj == 1){
-	        		//可以考试
+	        	if (statusObj == 1){
+	        		//可以考试 考试中
 	        		me.startExam(examId);
+	        	}else if (statusObj == 2){
+	        		//已完成 还是可以考试
+	        		me.startExam(examId);
+	        	}else if (statusObj == 3){
+	        		//已完成 还有重试次数，还是可以考试,先提示，确认进入考试
+	        		me.comp("messageDialog1").show({
+	        			message : "您上次考试分数为"  + resultData.socre + "分，合格分数是" + resultData.passscore + "分，是否清空分数再考一次？",
+	        			inputValue : examId
+	        		});
+	        		//me.startExam(examId);
 	        	}else if (statusObj == -1){
-	        		//已结束
-	        		msg = "考试已结束";
+	        		msg = "测试次数已超过最大限制!";
 	        	}else if (statusObj == -2){
-	        		//未开始
-	        		msg = "考试未开始";
-	        	}else if (statusObj == -100){
-	        		//异常
-	        		msg = "状态异常，请联系管理员";
+	        		msg = "培训班未完成!";
+	        	}else if (statusObj == -3){
+	        		msg = "未加入培训班!";
+	        	}else if (statusObj == -4){
+	        		msg = "考试完成，未通过!";
+	        	}else{
+	        		msg = "系统异常！";
 	        	}
 	        	
-	        	if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "short", "center");
-				}else{
-					 justep.Util.hint(msg);
-				}
+	        	if (msg != ""){
+	        		if ( justep.Browser.isX5App ){
+						window.plugins.toast.show(msg, "short", "bottom");
+					}else{
+						 justep.Util.hint(msg);
+					}
+	        	}
+
 				
 //	        	alert(resultData.author);
 	        },
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
 	         }
 	    });
 	};
+	
+	//选“确定”，清空分数，重新考试。
+	Model.prototype.messageDialog1OK = function(event){
+	var examId = event.source.inputValue;
+//	debugger;
+		this.startExam(examId);
+	};
 
 	Model.prototype.startExam = function(examId){
-		var url = require.toUrl("./doExamActivity.w");
-		var params = {
-	        from : "examActivity",
-	        examId : examId,
-	        userId : this.userId,
-	        data : {
-	            // 将data中的一行数据传给对话框
-//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+		var me = this;
+		
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/exam/start.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : this.userId,
+	        	"examId" : examId,
+	        },
+	        success: function(resultData) {
+	        	if (resultData.status == 0){
+	        		var url = require.toUrl("./doExamActivity.w");
+					var params = {
+				        from : "examActivity",
+				        examId : examId,
+				        userId : me.userId,
+				        data : {
+				            // 将data中的一行数据传给对话框
+			//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+				        }
+				    }
+					justep.Shell.showPage(url, params);
+	        	}
+	        },
+	        error: function(e){
+	        
 	        }
-	    }
-		justep.Shell.showPage(url, params);
+        });
+		
 	};
 	
 	Model.prototype.modelLoad = function(event){
@@ -219,6 +277,24 @@ define(function(require){
  			document.removeEventListener('backbutton', listener, false);
  	    });
 	};
+	
+	Model.prototype.getServerImg = function(path){
+		var rtn = "";
+		if (path != "" && path !=null){
+			rtn = this.server + path;
+		}
+		return rtn;
+	};
+	
+	//考试是否通过
+	Model.prototype.isPass = function (pass){
+		if (pass){
+			return "通过";
+		}else {
+			return "未通过";
+		}
+	}
+
 	
 	return Model;
 });

@@ -425,7 +425,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -475,7 +475,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -583,7 +583,7 @@ define(function(require){
 	        	 var msg = "获取数据失败";
 //	        	 alert(msg);
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -688,7 +688,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -888,7 +888,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -1003,7 +1003,7 @@ define(function(require){
 		         error:function (){  
 		        	 var msg = "获取数据失败";
 		        	 if ( justep.Browser.isX5App ){
-						window.plugins.toast.show(msg, "long", "center");
+						window.plugins.toast.show(msg, "short", "bottom");
 					}else{
 						 justep.Util.hint(msg);
 					}
@@ -1079,9 +1079,7 @@ define(function(require){
 	//
 	Model.prototype.bindCourseStatusCSS = function( status ){
 		switch (status){
-			case -1: return "status1" ; //未加入
-				break;
-			case 0: return "status2" ;
+			case 0: return "status2" ;//已开始
 				break;
 			case 1: return "status3" ;
 				break;
@@ -1094,15 +1092,14 @@ define(function(require){
 
 	//显示培训班状态
 	Model.prototype.setClassStatus = function (status){
+//	debugger;
 		var rtn;
 		switch (status){
-			case -2 : rtn = "未学完"; //培训班到期，没学完，还可以点进去学，不计学分
+			case 0 : rtn = "已开始";
 				break;
-			case 0 : rtn = "已加入";
+			case 1 : rtn = "进行中";
 				break;
-			case 1 : rtn = "学习中";
-				break;
-			case 2 : rtn = "已完成";
+			case 2 : rtn = "已结束";
 				break;
 			default: rtn = "";
 		}
@@ -1110,19 +1107,14 @@ define(function(require){
 	};
 	
 	Model.prototype.bindClassStatusCSS = function( status ){
+//	debugger;
 		switch (status){
-			case -2: return "status1" ; //未学完  灰色
-				break;
-			case 0: return "status2" ;
-				break;
-			case 1: return "status3" ;
-				break;
-			case 2: return "status4" ;
-				break;
-			default : return "status1"; 
+			case 0: return "status1" ;//蓝色
+			case 1: return "status2" ;//蓝色
+			case 2: return "status3" ; 	//绿色
+			default : return "status3"; 
 		}
-
-	}
+	};
 	
 	Model.prototype.getPeixunban = function(isApend){
 		var me = this;
@@ -1137,7 +1129,7 @@ define(function(require){
 	        jsonp: "CallBack",
 	        data: {
 //	        	"pageNo" : me.pageNo_exam,
-//	        	"userId" : me.userid,
+	        	"userId" : me.userid,
 //	        	"trainingclassId" : 1
 	        },
 	        success: function(resultData) {
@@ -1171,19 +1163,19 @@ define(function(require){
 	        	  me.isloading.set(false);
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
 	         }
 	    });
-	}
+	};
 	
 	//显示考试状态
 	Model.prototype.setExamStatus = function (status){
 		var rtn;
 		switch (status){
-			case 0 : rtn = "已加入";
+			case 0 : rtn = "已开始";
 				break;
 			case 1 : rtn = "进行中";
 				break;
@@ -1251,7 +1243,7 @@ define(function(require){
 	        	 me.isloading.set(false);
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -1261,6 +1253,7 @@ define(function(require){
 	
 	//点击培训班
 	Model.prototype.li2Click = function(event){
+//	debugger;
 		var current = event.bindingContext.$object;//获得当前行
 		if(current.val("status") == 0 || current.val("status") == 1){
 			//0已加入 1学习中
@@ -1275,29 +1268,10 @@ define(function(require){
 		        }
 		    }
 			justep.Shell.showPage(url, params);
-		}else if (current.val("status") == -2){
-			var msg = "该培训班已结束，继续学习不会获得学分";
+		}else {
+			var msg = "不能进入培训班";
         	 if ( justep.Browser.isX5App ){
-				window.plugins.toast.show(msg, "short", "center");
-			}else{
-				 justep.Util.hint(msg);
-			}
-			
-        	var url = require.toUrl("./myCoursesActivity.w");
-			var params = {
-		        from : "peixunActivity",
-		        userId : this.userid,
-		        trainingclassId : current.val("id"),
-		        data : {
-		            // 将data中的一行数据传给对话框
-	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
-		        }
-		    }
-			justep.Shell.showPage(url, params);
-		}else if(current.val("status") == 2){
-			var msg = "该培训班已学完";
-        	 if ( justep.Browser.isX5App ){
-				window.plugins.toast.show(msg, "short", "center");
+				window.plugins.toast.show(msg, "short", "bottom");
 			}else{
 				 justep.Util.hint(msg);
 			}
@@ -1334,39 +1308,49 @@ define(function(require){
 //	        	);
 //	        	debugger;
 	        	//调试都可以进
-	        	me.startExam(examId);
+//	        	me.startExam(examId);
 	        	//--------
 	        	
 	        	var msg = "";
-//	        	if (statusObj == 0){
-//	        		//可以考试
-//	        		me.startExam(examId);
-//	        	}else if (statusObj == 1){
-//	        		//已完成
-//	        		msg = "考试已完成";
-//	        	}else if (statusObj == -1){
-//	        		//未开始
-//	        		msg = "考试未开始";
-//	        	}else if (statusObj == -2){
-//	        		//一结束
-//	        		msg = "考试已结束";
-//	        	}else if (statusObj == -100){
-//	        		//异常
-//	        		msg = "状态异常，请联系管理员";
-//	        	}
-//	        	
-	        	if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "short", "center");
-				}else{
-					 justep.Util.hint(msg);
-				}
+	        	if (statusObj == 1){
+	        		//可以考试 考试中
+	        		me.startExam(examId);
+	        	}else if (statusObj == 2){
+	        		//已完成 还是可以考试
+	        		me.startExam(examId);
+	        	}else if (statusObj == 3){
+	        		//已完成 还有重试次数，还是可以考试，要弹框确认分出清零，再重考
+	        		me.comp("messageDialog1").show({
+	        			message : "您上次考试分数为"  + resultData.socre + "分，合格分数是" + resultData.passscore + "分，是否清空分数再考一次？",
+	        			inputValue : examId
+	        		});
+	        	}else if (statusObj == -1){
+	        		msg = "测试次数已超过最大限制!";
+	        	}else if (statusObj == -2){
+	        		msg = "培训班未完成!";
+	        	}else if (statusObj == -3){
+	        		msg = "未加入培训班!";
+	        	}else if (statusObj == -4){
+	        		msg = "考试完成，未通过!";
+	        	}else{
+	        		msg = "系统异常！";
+	        	}
+	        	
+	        	if (msg != ""){
+	        		if ( justep.Browser.isX5App ){
+						window.plugins.toast.show(msg, "short", "bottom");
+					}else{
+						 justep.Util.hint(msg);
+					}
+	        	}
+
 	        	
 //	        	alert(resultData.author);
 	        },
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -1374,18 +1358,58 @@ define(function(require){
 	    });
 	};
 	
+	//确认分数清零重考
+	Model.prototype.messageDialog1OK = function(event){
+		var examId = event.source.inputValue;
+		this.startExam(examId);
+	};
+	
 	Model.prototype.startExam = function(examId){
-		var url = require.toUrl("./doExamActivity.w");
-		var params = {
-	        from : "examActivity",
-	        examId : examId,
-	        userId : this.userid,
-	        data : {
-	            // 将data中的一行数据传给对话框
-//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+		var me = this;
+//		
+//		var url = require.toUrl("./doExamActivity.w");
+//					var params = {
+//				        from : "examActivity",
+//				        examId : examId,
+//				        userId : me.userid,
+//				        data : {
+//				            // 将data中的一行数据传给对话框
+//			//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+//				        }
+//				    }
+//					justep.Shell.showPage(url, params);
+					
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/exam/start.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : this.userid,
+	        	"examId" : examId,
+	        },
+	        success: function(resultData) {
+	        	if (resultData.status == 0){
+	        		var url = require.toUrl("./doExamActivity.w");
+					var params = {
+				        from : "examActivity",
+				        examId : examId,
+				        userId : me.userid,
+				        data : {
+				            // 将data中的一行数据传给对话框
+			//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+				        }
+				    }
+					justep.Shell.showPage(url, params);
+	        	}
+	        },
+	        error: function(e){
+	        
 	        }
-	    }
-		justep.Shell.showPage(url, params);
+        });
+		
 	};
 
 	return Model;

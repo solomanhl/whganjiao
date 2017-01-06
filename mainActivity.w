@@ -75,7 +75,7 @@
         <div class="x-titlebar-left"> 
           <a component="$UI/system/components/justep/button/button" label=""
             class="btn btn-link btn-only-icon" icon="icon-chevron-left" onClick="{operation:'window.close'}"
-            xid="backBtn" target="content_home"> 
+            xid="backBtn" target="content_home" disabled="true"> 
             <span/> 
           </a> 
         </div>  
@@ -214,7 +214,7 @@
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit2">
    <label class="x-label" xid="label2"><![CDATA[结束时间：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output3" bind-ref='ref("endDate")'></div></div>
-  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_classstate" bind-text='$model.setClassStatus( val("status"))' bind-css='$model.bindClassStatusCSS( val("status"))' bind-visible="false"></div></div> </div></li></ul> </div></div>
+  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_classstate" bind-text='$model.setClassStatus( val("status"))' bind-css='$model.bindClassStatusCSS( val("status"))'></div></div> </div></li></ul> </div></div>
    </div></div>
    </div><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel_exam" bind-visible="showExam" id="panel_exam">
    <div class="x-panel-content  x-scroll-view" xid="content8" _xid="C75596645980000116FA35202B701CC1" style="top: 0px; bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView3">
@@ -224,7 +224,7 @@
     <li xid="li3" bind-click="li3Click"><div class="media media_study" xid="media2">
    <div class="media-left" xid="mediaLeft3">
     <a href="#" xid="a3">
-     <img class="media-object" src="$UI/whganjiao/img/exam_pic.jpg" alt="" xid="image3" bind-attr-src='$model.getServerImg(val("titleImg"))'></img></a> </div> 
+     <img class="media-object" alt="" xid="image3" bind-attr-src='$model.getServerImg(val("titleImg"))'></img></a> </div> 
    <div class="media-body" xid="mediaBody4">
     <div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_examtitle" bind-ref='ref("name")'></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit3">
@@ -233,7 +233,7 @@
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 courseTeacher" xid="labelEdit4">
    <label class="x-label" xid="label4"><![CDATA[结束时间：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output7" bind-ref='ref("endDate")'></div></div>
-  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_examstate" bind-text='$model.setExamStatus( val("status"))' bind-css='$model.bindExamStatusCSS(  val("status") )' bind-visible="false"></div></div> </div></li></ul> </div></div>
+  <div component="$UI/system/components/justep/output/output" class="x-output status" xid="output_examstate" bind-text='$model.setExamStatus( val("status"))' bind-css='$model.bindExamStatusCSS(  val("status") )'></div></div> </div></li></ul> </div></div>
    </div></div>
    </div><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer1" src='./pleaseLogin.w' bind-visible="showLogin"></div>
   
@@ -383,4 +383,4 @@
    </div></div>
  </div>
   <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:8px;left:107px;"></span>
-  </div>
+  <span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" title="提示" type="OKCancel" onOK="messageDialog1OK"></span></div>

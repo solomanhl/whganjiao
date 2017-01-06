@@ -123,7 +123,7 @@ define(function(require){
 	        	 me.isloading.set(false);
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}

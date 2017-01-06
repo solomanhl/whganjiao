@@ -1,6 +1,6 @@
 body{font-family: 微软雅黑}
 .x-panel .x-panel-top .x-titlebar-title{font-weight: normal;padding: 7px 0;}
-.x-titlebar .x-titlebar-title.flex5{-moz-box-flex: 6;flex: 6 1 0;}
+.x-titlebar .x-titlebar-title.flex5{-moz-box-flex:4;flex: 4 1 0;}
 .x-panel .x-panel-top .x-titlebar-title input{width: 100%;border:none;background: #298fca url(./img/search_icon.png) no-repeat 8px center;background-size: 16px;padding-left: 30px;color: #fff;height: 34px;border-radius: 12px;}
 input::-webkit-input-placeholder {
 　　color: #fff !important; /* WebKit browsers */

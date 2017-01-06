@@ -30,6 +30,8 @@ define(function(require){
 		
 		this.shouldShowCKplaer = justep.Bind.observable(true);
 		this.shouldShowImgTitle = justep.Bind.observable(false);
+		
+		this.isSurportMobile = false;
 	};
 
 	
@@ -203,7 +205,7 @@ define(function(require){
 	        	 me.isloading.set(false);
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -257,7 +259,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+	        		 window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -551,94 +553,124 @@ define(function(require){
 //		var options = "location=no,toolbar=yes";
 //		window.open(url,'_blank', options);//新scorm，弹出浏览器
 
-//		this.shapeId = 6;
-		if (this.shapeId == 4){
-			//精英在线
-			//通过服务器页面代理，
-//			var course = this.comp("course");
-//			var path = course.getValue("path");
-//			var url = this.server + path + "?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId;
-//			var options = "location=no,toolbar=yes";
-//			window.open(url,'_blank', options);//，弹出浏览器
-			
-			
-			var url = require.toUrl("./playJinYinActivity.w");
-			var course = this.comp("course");
-			var path = course.getValue("path");
-//			path = "/course/lessionnew/gc/GC31I3314035_1405/index.html";
-//			alert(path);
-			var params = {
-		        from : "course_showActivity",
-		        courseId : this.courseId,
-		        userId : this.userId,
-		        trainingclassId : this.trainingclassId,
-		        url : this.server + path + "?url=" + global.serverWithOutHttp + "/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId
-		    };
-			justep.Shell.showPage(url, params);
-			
-		}else if (this.shapeId == 2){
-			//中经三分频，老scorm内核，不支持手机
-			//爱迪科森新课件支持手机
-			//通过服务器页面代理，
-//			var course = this.comp("course");
-//			var path = course.getValue("path");
-//			var url = this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2";
-//			var options = "location=no,toolbar=yes";
-//			window.open(url,'_blank', options);//，弹出浏览器
 
-			var url = require.toUrl("./playScomActivity.w");
-			var course = this.comp("course");
-			var path = course.getValue("path");
-			//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
-			var params = {
-		        from : "course_showActivity",
-		        courseId : this.courseId,
-		        userId : this.userId,
-		        trainingclassId : this.trainingclassId,
-		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
-		    };
-//		    alert(JSON.stringify(params))
-			justep.Shell.showPage(url, params);
-//		}
+		if(this.isSurportMobile){//支持手机才播放
+			//		this.shapeId = 6;
+				if (this.shapeId == 4){
+					//精英在线
+					//通过服务器页面代理，
+		//			var course = this.comp("course");
+		//			var path = course.getValue("path");
+		//			var url = this.server + path + "?url=whce.whgky.cn/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId;
+		//			var options = "location=no,toolbar=yes";
+		//			window.open(url,'_blank', options);//，弹出浏览器
+					
+					
+					var url = require.toUrl("./playJinYinActivity.w");
+					var course = this.comp("course");
+					var path = course.getValue("path");
+		//			path = "/course/lessionnew/gc/GC31I3314035_1405/index.html";
+		//			alert(path);
+					var params = {
+				        from : "course_showActivity",
+				        courseId : this.courseId,
+				        userId : this.userId,
+				        trainingclassId : this.trainingclassId,
+				        url : this.server + path + "?url=" + global.serverWithOutHttp + "/course/inner_member/jinyinzaixian/o_play_log.jspx&userId=" + this.userId + "&courseID=" + this.courseId
+				    };
+					justep.Shell.showPage(url, params);
+					
+				}else if (this.shapeId == 2){
+					//中经三分频，老scorm内核，不支持手机
+					//爱迪科森新课件支持手机
+					//通过服务器页面代理，
+		//			var course = this.comp("course");
+		//			var path = course.getValue("path");
+		//			var url = this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2";
+		//			var options = "location=no,toolbar=yes";
+		//			window.open(url,'_blank', options);//，弹出浏览器
 		
-		
-		}else if (this.shapeId == 6){
-				//爱迪科森新课件支持手机
-				var url = require.toUrl("./playScomAidiActivity.w");
-				var course = this.comp("course");
-				var path = course.getValue("path");
-				//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
-				var params = {
-			        from : "course_showActivity",
-			        courseId : this.courseId,
-			        userId : this.userId,
-			        trainingclassId : this.trainingclassId,
-			        url : this.server + "/course/course_inner_member_play_scorm_app_adks.htm?courseId=" + this.courseId + "&URL="  + path + "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
-	//		        url : "http://www.whce.gov.cn/course/inner_member/scorm_play_demo.jspx?courseId=7566",
-			    };
-				justep.Shell.showPage(url, params);
-	//		}
-			
-			
-		}else if (this.shapeId == 5){
-				//图书
-			
-		}else if (this.shapeId == 7){
-			//国家行政学院
-			var url = require.toUrl("./playScomGuojiaxinzhen.w");
-			var course = this.comp("course");
-			var path = course.getValue("path");
-			//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
-			var params = {
-		        from : "course_showActivity",
-		        courseId : this.courseId,
-		        userId : this.userId,
-		        trainingclassId : this.trainingclassId,
-		        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
-		    };
-			justep.Shell.showPage(url, params);
-	}
+					var url = require.toUrl("./playScomActivity.w");
+					var course = this.comp("course");
+					var path = course.getValue("path");
+					//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
+					var params = {
+				        from : "course_showActivity",
+				        courseId : this.courseId,
+				        userId : this.userId,
+				        trainingclassId : this.trainingclassId,
+				        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
+				    };
+		//		    alert(JSON.stringify(params))
+					justep.Shell.showPage(url, params);
+		//		}
+				
+				
+				}else if (this.shapeId == 6){
+						//爱迪科森新课件支持手机
+						var url = require.toUrl("./playScomAidiActivity.w");
+						var course = this.comp("course");
+						var path = course.getValue("path");
+						//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
+						var params = {
+					        from : "course_showActivity",
+					        courseId : this.courseId,
+					        userId : this.userId,
+					        trainingclassId : this.trainingclassId,
+					        url : this.server + "/course/course_inner_member_play_scorm_app_adks.htm?courseId=" + this.courseId + "&URL="  + path + "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
+			//		        url : "http://www.whce.gov.cn/course/inner_member/scorm_play_demo.jspx?courseId=7566",
+					    };
+						justep.Shell.showPage(url, params);
+			//		}
+					
+					
+				}else if (this.shapeId == 5){
+						//图书
+					
+				}else if (this.shapeId == 7){
+					//国家行政学院
+					var url = require.toUrl("./playScomGuojiaxinzhen.w");
+					var course = this.comp("course");
+					var path = course.getValue("path");
+					//path = "/course/lessionnew/gc/GC16A2916025_1605/index.html";
+					var params = {
+				        from : "course_showActivity",
+				        courseId : this.courseId,
+				        userId : this.userId,
+				        trainingclassId : this.trainingclassId,
+				        url : this.server + "/course/course_inner_member_play_scorm_app.htm?courseId=" + this.courseId + "&URL="  + path+ "&pretime=" + this.pretime + "&status=2" + "&userId=" + this.userId,
+				    };
+					justep.Shell.showPage(url, params);
+			}
+		}else{
+			 var msg = "该课件仅支持电脑播放";
+        	 if ( justep.Browser.isX5App ){
+        		 window.plugins.toast.show(msg, "short", "bottom");
+			}else{
+				 justep.Util.hint(msg);
+			}
+		}
+
 };
+
+	//显示适合手机 电脑。0手机，1电脑，2都适合
+	Model.prototype.isShowMobile = function(platform){
+		if (platform == 0 || platform == 2){
+			this.isSurportMobile = true;
+			return true;
+		}else{
+			return false;
+		}
+	};
+	
+	//显示适合电脑 电脑。0手机，1电脑，2都适合
+	Model.prototype.isShowPC = function(platform){
+		if (platform == 1 || platform == 2){
+			return true;
+		}else{
+			return false;
+		}
+	};
 
 	return Model;
 });

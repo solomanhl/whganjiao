@@ -33,3 +33,11 @@ td,th{vertical-align:middle; }
 @media screen and (min-width: 720px){html,body{font-size: 20px;}}
 @media screen and (min-width: 800px){html,body{font-size: 22px;}}
 @media screen and (min-width: 1024px){html,body{font-size: 24px;}}
+
+
+.x-titlebar-title{font-weight: normal;}
+.x-titlebar-left a{font-weight: normal;border:none;background: none;padding: 0;}
+.x-titlebar-left a i{font-size: 2.3rem;vertical-align: middle;display: inline-block;display: none;}
+.x-titlebar-left a span{display: inline-block;background: url(./img/back.png) no-repeat left center;padding-left: 1.6rem;background-size: auto 1.5rem;margin-left: 0.4rem;color: #fff;}
+
+/*返回箭头*/

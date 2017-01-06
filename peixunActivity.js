@@ -7,6 +7,8 @@ define(function(require){
 	
 	var Model = function(){
 		this.callParent();
+		
+		this.server = global.server;
 		this.isloading = justep.Bind.observable(false);//是否显示正在加载的动画框
 		
 		this.pageNo_exam = 0;
@@ -76,7 +78,7 @@ define(function(require){
 	        	  me.isloading.set(false);
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -88,13 +90,15 @@ define(function(require){
 	Model.prototype.setStatus = function (status){
 		var rtn;
 		switch (status){
-			case -2 : rtn = "未学完"; //培训班到期，没学完
-				break;
 			case 0 : rtn = "已加入";
 				break;
 			case 1 : rtn = "学习中";
 				break;
 			case 2 : rtn = "已完成";
+				break;
+			case 3 : rtn = "未通过";
+				break;
+			case 4 : rtn = "通过";
 				break;
 			default: rtn = "";
 		}
@@ -103,15 +107,17 @@ define(function(require){
 	
 	Model.prototype.bindStatusCSS = function( status ){
 		switch (status){
-			case -2: return "status1" ; //未学完  灰色
+			case 0: return "status1" ;//蓝色
 				break;
-			case 0: return "status2" ;
+			case 1: return "status1" ;//蓝色
 				break;
-			case 1: return "status3" ;
+			case 2: return "status2" ; 	//绿色
 				break;
-			case 2: return "status4" ;
+			case 3: return "status3" ;//灰色
 				break;
-			default : return "status1"; 
+			case 4: return "status3" ;//灰色
+				break;
+			default : return "status3"; 
 		}
 
 	}
@@ -131,28 +137,40 @@ define(function(require){
 
 	Model.prototype.li1Click = function(event){
 		var current = event.bindingContext.$object;//获得当前行
+		//全部可以进
+		var url = require.toUrl("./myCoursesActivity.w");
+		var params = {
+	        from : "peixunActivity",
+	        userId : this.userId,
+	        trainingclassId : current.val("id"),
+	        data : {
+	            // 将data中的一行数据传给对话框
+//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+	        }
+	    }
+		justep.Shell.showPage(url, params);
 		
-		if(current.val("status") == 1){
-			//学习中
-			var url = require.toUrl("./myCoursesActivity.w");
-			var params = {
-		        from : "peixunActivity",
-		        userId : this.userId,
-		        trainingclassId : current.val("id"),
-		        data : {
-		            // 将data中的一行数据传给对话框
-	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
-		        }
-		    }
-			justep.Shell.showPage(url, params);
-		}else{
-			var msg = "该培训班不在学习周期";
-        	 if ( justep.Browser.isX5App ){
-				window.plugins.toast.show(msg, "short", "center");
-			}else{
-				 justep.Util.hint(msg);
-			}
-		}
+//		if(current.val("status") == 1){
+//			//学习中
+//			var url = require.toUrl("./myCoursesActivity.w");
+//			var params = {
+//		        from : "peixunActivity",
+//		        userId : this.userId,
+//		        trainingclassId : current.val("id"),
+//		        data : {
+//		            // 将data中的一行数据传给对话框
+//	//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
+//		        }
+//		    }
+//			justep.Shell.showPage(url, params);
+//		}else{
+//			var msg = "该培训班不在学习周期";
+//        	 if ( justep.Browser.isX5App ){
+//				window.plugins.toast.show(msg, "short", "bottom");
+//			}else{
+//				 justep.Util.hint(msg);
+//			}
+//		}
 		
 	};
 
@@ -182,5 +200,13 @@ define(function(require){
 			this.getExam(false);
 	};
 
+	Model.prototype.getServerImg = function(path){
+		var rtn = "";
+		if (path != "" && path !=null){
+			rtn = this.server + path;
+		}
+		return rtn;
+	};
+	
 	return Model;
 });

@@ -17,11 +17,11 @@
       <div component="$UI/system/components/justep/titleBar/titleBar" title="我的课程"
         class="x-titlebar"> 
         <div class="x-titlebar-left"> 
-          <a component="$UI/system/components/justep/button/button" label=""
-            class="btn btn-link btn-only-icon" icon="icon-chevron-left" onClick="{operation:'window.close'}"
+          <a component="$UI/system/components/justep/button/button" label="返回"
+            class="btn btn-default" onClick="{operation:'window.close'}"
             xid="backBtn"> 
             <i class="icon-chevron-left"/>  
-            <span/> 
+            <span>返回</span>
           </a> 
         </div>  
         <div class="x-titlebar-title">我的课程</div>  

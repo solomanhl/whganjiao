@@ -53,13 +53,45 @@ define(function(require){
  			document.removeEventListener('backbutton', listener, false);
  	    });
 	};
+	
+	//选项是否选中
+	Model.prototype.isChecked = function (checked){
+//	debugger;
+		if (checked){
+			return true;
+		}else{
+			return false;
+		}
+	};
+	
+	//bind-single-image
+	Model.prototype.bindSingleImage = function( ischecked){
+//	debugger;
+		if (ischecked){
+			return require.toUrl("./img/radio_bg2.png");
+		}else{
+			return require.toUrl("./img/radio_bg1.png");
+		}
+	}
+	
+	//bind-single-image
+	Model.prototype.bindMultiImage = function( ischecked){
+//	debugger;
+		if (ischecked){
+			return require.toUrl("./img/checkbox_bg2.png");
+		}else{
+			return require.toUrl("./img/checkbox_bg1.png");
+		}
+	}
 
 	//获取试题，单题
 	Model.prototype.getThemes = function(page, isApend){
 		var me = this;
 		var data = this.comp("themes");
 		var options = this.comp("options");
-		
+		var button_pre = this.comp("button_pre");
+	    var button_next = this.comp("button_next");
+	    
 		$.ajax({
 	        type: "get",
 	        "async" : false,
@@ -98,46 +130,64 @@ define(function(require){
 	        	me.upload_themeId = data.val("upload_themeId");
 	        	
 //	        	debugger;
-	        	//option详细表
-	        	options.clear();//清空选项表
-				var optionsObj;
-				var newOptionStr = "[";
-				$.each(themesObj,function(i,item){
-//					alert(item.name);
-					optionsObj = item.options;
-					me.themeId = item.themeId;
-					me.themeType = item.type;//全局试题类型0 1 2
-					var themeId = item.themeId;
-					var name = item.name;
-					$.each(optionsObj,function(j,item){
-//						alert(item.content);
-//						debugger;
-						newOptionStr += "{";
+	        	if (JSON.stringify(themesObj) == "[]"){
+	        		alert("没有试题");
+	        	}else{
+	        		me.comp("output_id").set({"value" : "第" + me.pageNo + "题"});//显示题号
+//	        	debugger;
+	        		//是否显示上一题 下一题
+	        		button_pre.set({"disabled": false});
+	        		button_next.set({"disabled": false});
+	        		if (resultData.pageNo <= 1){
+	        			button_pre.set({"disabled": true});
+	        		}
+	        		if (resultData.pageNo >= resultData.totalPage){
+	        			button_next.set({"disabled": true});
+	        		}
+	        		
+	        		//option详细表
+		        	options.clear();//清空选项表
+					var optionsObj;
+					var newOptionStr = "[";
+					$.each(themesObj,function(i,item){
+	//					alert(item.name);
+						optionsObj = item.options;
+						me.themeId = item.themeId;
+						me.themeType = item.type;//全局试题类型0 1 2
+						var themeId = item.themeId;
+						var name = item.name;
+						$.each(optionsObj,function(j,item){
+	//						alert(item.content);
+	//						debugger;
+							newOptionStr += "{";
+							
+							newOptionStr = newOptionStr +"\"id\":" + (i*j + j) + ",";
+							newOptionStr = newOptionStr +"\"id2\":" + j + ",";
+							newOptionStr = newOptionStr +"\"themeId\":" + themeId + ",";
+							newOptionStr = newOptionStr +"\"name\":\"" + name + "\",";
+							newOptionStr = newOptionStr +"\"content\":\"" + item.content + "\",";
+							newOptionStr = newOptionStr +"\"type\":\"" + item.type + "\",";
+							newOptionStr = newOptionStr +"\"optionId\":" + item.optionId;
+							
+							newOptionStr += "},";
+						});
 						
-						newOptionStr = newOptionStr +"\"id\":" + (i*j + j) + ",";
-						newOptionStr = newOptionStr +"\"id2\":" + j + ",";
-						newOptionStr = newOptionStr +"\"themeId\":" + themeId + ",";
-						newOptionStr = newOptionStr +"\"name\":\"" + name + "\",";
-						newOptionStr = newOptionStr +"\"content\":\"" + item.content + "\",";
-						newOptionStr = newOptionStr +"\"type\":\"" + item.type + "\",";
-						newOptionStr = newOptionStr +"\"optionId\":" + item.optionId;
-						
-						newOptionStr += "},";
 					});
 					
-				});
-				
-				newOptionStr = newOptionStr.substring(0, newOptionStr.length-1);
-				newOptionStr += "]";
-//				alert(newOptionStr);
-
-				
-				json1={"@type" : "table", "options" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :JSON.parse(newOptionStr) };
-	        	options.loadData(json1, false);
-	        	options.refreshData();
-//		        alert(options.count());
-				
-//				list_option_single.refresh();
+					newOptionStr = newOptionStr.substring(0, newOptionStr.length-1);
+					newOptionStr += "]";
+	//				alert(newOptionStr);
+	
+					
+					json1={"@type" : "table", "options" : {"idColumnName" : "id","idColumnType" : "Integer", },"rows" :JSON.parse(newOptionStr) };
+		        	options.loadData(json1, false);
+		        	
+		        	options.refreshData();
+	//		        alert(options.count());
+					
+		        	//这里获取当前题目的答案，更新options表
+		        	me.getAnswer(me.userId, me.examId, me.themeId);
+	        	}
 	        	
 	        	
 //	        	alert(data.count());
@@ -145,7 +195,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -153,32 +203,65 @@ define(function(require){
 	    });
 	};
 	
-	//现在不用单选组
-	Model.prototype.radioGroup_singleChange = function(event){
-//		alert("onChage");
-		var value = this.comp("radioGroup_single").val();	//这里绑定的是optionId
-//		alert(value);
-		var options = this.comp("options");
-		options.first();
-		var count = options.count();//选项数量
-		var themeId = options.getValue("themeId");
-		var optionIds = [];	//选项id数组
-		var checked = [];	//选择数组
-		
-		options.each(function(param){
-			var curId = param.row.val('optionId');
-			optionIds.push(curId);
-			if (value ==  curId){
-				checked.push(1);
-			}else{
-				checked.push(0);
-			}
-		});
-//		alert(themeId);
-//		alert(optionIds);
-//		alert(checked);
-		this.exam_save(themeId, optionIds, checked);
-	}; 
+	//获取当前题答案
+	Model.prototype.getAnswer = function(userId, examId, themeId){
+		var me = this;
+		var data = this.comp("options");
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/exam/getAnswer.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : userId,
+	        	"examId" : examId,
+	        	"themeId" : themeId
+	        },
+	        success: function(resultData) {
+//	        	alert(JSON.stringify(resultData));
+	        	var userOptions = resultData.userOptions;
+//	        	alert(JSON.stringify(userOptions))
+	        	var userOptions2;
+	        	
+	        	$.each(userOptions, function(i) {
+//				    alert(JSON.stringify(userOptions[i]));
+//				    alert(i);
+	        		userOptions2 = userOptions[i];
+	        		$.each(userOptions2, function(key) {
+//	        			alert(key);
+//	        			alert(userOptions2[key]);
+	        			if (key == "optionId"){
+//	        			debugger;
+	        				var optionId = userOptions2[key];
+//	        				alert(optionId)
+	        				//更新options表
+//	        				var rows = data.find(['optionId'],[optionId],true,true,true);
+//	        				if(rows.length>=0){
+//	        					data.setValue('checked', true);
+//	        				}
+	        				var lRow = data.getLastRow(), row;
+	        				data.first();
+	        				do{
+	        					row = data.getCurrentRow();
+	        					if (optionId == data.val('optionId')){
+	        						data.setValue('checked', true);
+	        					}
+	        					data.next();
+							}while (lRow != row);
+	        			}
+	        			
+	        		});
+				});
+	        	data.refreshData();
+	        },
+	        error: function(e){
+	        
+	        }
+        });
+	}
+	
 	
 	Model.prototype.button_preClick = function(event){
 //		this.save();
@@ -248,7 +331,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -263,7 +346,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: global.server + "/app/exam-finish.jspx",
+	        url: global.server + "/app/exam/finish.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
 	        jsonp: "CallBack",
@@ -273,18 +356,49 @@ define(function(require){
 	        },
 	        success: function(resultData) {
 //	        	alert(JSON.stringify(resultData));
-	        	var result = resultData.result;
-	        	if (result == "true"){
-	        		if (justep.Browser.isX5App) window.plugins.toast.show("考试结束", "long", "center");
+	        	var status = resultData.status;
+	        	var score = resultData.score;
+	        	var pass = resultData.pass;
+	        	var pass1;
+	        	if (pass){
+	        		pass1 = "通过";
+	        	}else {
+	        		pass1 = "未通过";
+	        	}
+//	        	debugger;
+	        	if (status == 1){
+	        		var msg = "考试结束，本次考试得分：" + score + "，" + pass1 + "考试";
+	        		if (justep.Browser.isX5App){
+	        			window.plugins.toast.show(msg , "long", "center");
+	        		}else{
+						 justep.Util.hint(msg);
+					}
 	        		justep.Shell.closePage();
+	        	}else if (status == -100){	//题目没做完
+	        		var doneNo = resultData.count;
+	        		if (doneNo == undefined){
+	        			doneNo == 0;
+	        		}
+	        		var diff = me.totalPage - doneNo;
+	        		var msg = "您还有" + diff + "题没做完，请做完所有题目后再再交卷。";
+	        		if (justep.Browser.isX5App){
+	        			window.plugins.toast.show(msg, "long", "center");
+	        		}else{
+						 justep.Util.hint(msg);
+					}
 	        	}else{
-	        		if (justep.Browser.isX5App) window.plugins.toast.show("交卷失败，请重新提交", "long", "center");
+	        		var msg = "交卷失败，请重新提交";
+	        		if (justep.Browser.isX5App){
+	        			window.plugins.toast.show(msg, "long", "center");
+	        		}else{
+						 justep.Util.hint(msg);
+					}
 	        	}
 	        },
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -343,38 +457,58 @@ define(function(require){
 		}
 	}
 	
+	//开始考试
+	Model.prototype.startExam = function (examId, userId){
+		var me = this;
+		$.ajax({
+	        type: "get",
+	        "async" : false,
+	        url: global.server + "/app/exam/start.jspx",
+//	        url: "http://192.168.1.22:8080/app/exam-save.jspx",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "jsonp",
+	        jsonp: "CallBack",
+	        data: {
+	        	"userId" : userId,
+	        	"examId" : examId,
+	        },
+	        success: function(resultData) {
+//	        	alert(JSON.stringify(resultData));
+	        	var result = resultData.result;
+	        	if (result == "true"){
+	        	
+	        	}else{
+	        	
+	        	}
+	        },
+	         error:function (){  
+	        	 var msg = "获取数据失败";
+	        	 if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "short", "bottom");
+				}else{
+					 justep.Util.hint(msg);
+				}
+	         }
+	    });
+	}
+	
 	//单选题-------------
-	Model.prototype.radio1Change = function(event){
+	//获取单选选中
+	Model.prototype.li_option_singleClick = function(event){
 //	debugger;
+//		var input1 = $(event.currentTarget).find("[xid='input1']");
+//		input1.attr("disabled","disabled");//禁用
+//		input1.attr("disabled",false);//启用
+//		radio1.checked = "checked";
 		var row = event.bindingContext.$object;//获得当前行
-//		alert(row.val("optionId") + row.val("content"));
-
-		var selectedOptionId = row.val("optionId");//获得当前行选项的id
-//		var optionIds2 = [];
-//		var checked2 = [];	//选择数组
+		var selectedOptionId = row.val("optionId");
 		var options = this.comp("options");
 		var text = "";//有文本框的
-//		options.first();
-//		
-//		options.each(function(param){
-////		debugger;
-//			var curId = param.row.val('optionId');//当前遍历的选项id
-//			optionIds2.push(curId);
-//			if (selectedOptionId ==  curId){
-//				checked2.push(1);
-//				options.setValue("checked", true);//回写数据库
-//			}else{
-//				checked2.push(0);
-//				options.setValue("checked", false);//回写数据库
-//			}
-//			
-//		});
 		
 		options.first();
 		for (var i=0; i< options.count(); i++){
 //		debugger;
-			var cur_oid = options.val("optionId");
-	    	if (cur_oid == selectedOptionId){
+	    	if (selectedOptionId == options.val("optionId")){//当前选中行的id == 数据库循环的id
 				options.setValue("checked", true);//回写数据库
 				text = options.val("text");
 			}else{
@@ -386,8 +520,9 @@ define(function(require){
 		if (text == undefined){
 			text = "";
 		}
-		this.exam_save_options(this.themeId, selectedOptionId);
+		this.exam_save_options(this.themeId, selectedOptionId + ",");
 	};
+	
 	
 	Model.prototype.getTextAndSubmit = function(event){
 		var row = event.bindingContext.$object;//获得当前行
@@ -446,15 +581,6 @@ define(function(require){
 		var row = event.bindingContext.$object;//获得当前行
 	};
 	
-	//获取单选当前行的input1控件
-	Model.prototype.li_option_singleClick = function(event){
-//	debugger;
-		var input1 = $(event.currentTarget).find("[xid='input1']");
-		var radio1 = $(event.currentTarget).find("[xid='radio1']");
-//		input1.attr("disabled","disabled");//禁用
-//		input1.attr("disabled",false);//启用
-//		radio1.checked = "checked";
-	};
 	
 	Model.prototype.showSingleTXT = function (type, checked){
 //	debugger;
@@ -468,6 +594,40 @@ define(function(require){
 	
 		
 	//多选------------------------------------------
+	//点击单行
+	Model.prototype.li_option_multiClick = function(event){
+		var row = event.bindingContext.$object;//获得当前行
+		var selectedOptionId = row.val("optionId");
+		var selectedOptionIds="";//选择的id集合
+		var options = this.comp("options");
+		var text = "";//有文本框的
+		
+		options.first();
+		selectedOptionIds = "";
+		for (var i=0; i< options.count(); i++){
+//		debugger;
+	    	if (selectedOptionId == options.val("optionId")){//当前选中行的id == 数据库循环的id
+	    		var lastChecked = options.val("checked");
+	    		if (lastChecked){
+	    			options.setValue("checked", false);//回写数据库
+	    		}else{
+	    			options.setValue("checked", true);//回写数据库
+	    			text = options.val("text");
+	    		}
+			}
+			if (options.val("checked")){
+				selectedOptionIds += options.val("optionId");	
+	    		selectedOptionIds += ",";
+			}
+			options.next();
+		}
+
+		if (text == undefined){
+			text = "";
+		}
+		this.exam_save_options(this.themeId, selectedOptionIds);
+	};
+	
 	Model.prototype.checkbox2Change = function(event){
 		//	debugger;
 		var row = event.bindingContext.$object;//获得当前行
@@ -500,13 +660,14 @@ define(function(require){
 		selectedOptionIds = "";
 		for (var i=0; i< options.count(); i++){
 //		debugger;
-			var cur_oid = options.val("optionId");
+			var cur_oid = options.val("optionId");//当前行的optionID
 	    	if (cur_oid == selectedOptionId){
 	    		if (checked){
 	    			options.setValue("checked", true);//回写数据库
 	    			text = options.val("text");
 	    			
 	    		}else{
+//	    			alert("false")
 	    			options.setValue("checked", false);//回写数据库
 	    		}
 				
@@ -524,6 +685,7 @@ define(function(require){
 		if (text == undefined){
 			text = "";
 		}
+//		alert(selectedOptionIds)
 		this.exam_save_options(this.themeId, selectedOptionIds);
 	};
 	
@@ -559,7 +721,7 @@ define(function(require){
 		$.ajax({
 	        type: "get",
 	        "async" : false,
-	        url: global.server + "/exam/inner_member/option.jspx",
+	        url: global.server + "/app/exam/option.jspx",
 //	        url: "http://192.168.1.22:8080/app/exam-save.jspx",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "jsonp",
@@ -581,7 +743,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -621,7 +783,7 @@ define(function(require){
 	         error:function (){  
 	        	 var msg = "获取数据失败";
 	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "long", "center");
+					window.plugins.toast.show(msg, "short", "bottom");
 				}else{
 					 justep.Util.hint(msg);
 				}
@@ -629,8 +791,9 @@ define(function(require){
 	    });
 	}
 
-
-
-
 	return Model;
 });
+//
+//$(function(){
+//	$(".doExam .x-panel-content li span input").attr('checked', false);
+//})

@@ -9,10 +9,9 @@
           class="x-titlebar">
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
-              label="" class="btn btn-link btn-only-icon" icon="icon-chevron-left"
-              onClick="{operation:'window.close'}" xid="backBtn"> 
+              label="返回" class="btn btn-default" onClick="{operation:'window.close'}" xid="backBtn"> 
               <i class="icon-chevron-left"/>  
-              <span></span> 
+              <span>返回</span> 
             </a> 
           </div>  
           <div class="x-titlebar-title">正在播放</div>  
@@ -24,5 +23,8 @@
   
   <div xid="div2" id="div2" bind-visible="justep.Browser.isX5App"><iframe xid="iframe1" width="1010" height="700"></iframe></div></div>
   </div> 
-<span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="120000" onTimer="timer1Timer" style="top:10px;left:45px;"></span></div>
+<span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="120000" onTimer="timer1Timer" style="top:10px;left:45px;"></span>
+  <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
+  <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource>
+</div>
 

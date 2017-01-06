@@ -22,15 +22,15 @@
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
               label="返回" onClick="{operation:'window.close'}" xid="backBtn" class="btn btn-default"> 
-              <!-- <i class="linear linear-volumehigh"/>   -->
+              <i class="linear linear-volumehigh"/>  
               <span >返回</span> 
             </a> 
           </div>  
           <div class="x-titlebar-title">正在考试</div>  
           <div class="x-titlebar-right reverse"> 
-          <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="交卷" xid="button_submit" onClick="button_submitClick">
-          <i xid="i3"></i>
-          <span xid="span3">交卷</span></a></div>
+          <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="" xid="button_submit" onClick="button_submitClick">
+          <i xid="i3" class="linear linear-bubble"></i>
+          <span xid="span3"></span></a></div>
         </div> 
       </div>  
     <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C73474F241800001944419B01C1095D0" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1">
@@ -41,12 +41,12 @@
   
   <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_single" data="options" autoLoad="true" bind-visible=" $model.showSingleGroup()">
    <ul class="x-list-template" xid="listTemplateUl2">
-    <li xid="li_option_single" bind-click="li_option_singleClick"><img alt="" xid="image_single" bind-attr-src=' $model.bindSingleImage(  $model.isChecked( val("checked")))'></img><div component="$UI/system/components/justep/output/output" class="x-output option" xid="output_single" bind-ref='ref("content")'></div><input component="$UI/system/components/justep/input/input" class="form-control" xid="input1" bind-visible='$model.showSingleTXT( val("type"), val("checked")) ' onChange="input1Change" bind-ref='ref("text")' onBlur="input1Blur"></input>
+    <li xid="li_option_single" bind-click="li_option_singleClick"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio1" bind-value='ref("optionId")' onChange="radio1Change" bind-label='ref("content")' name="single"></span>
+  <input component="$UI/system/components/justep/input/input" class="form-control" xid="input1" bind-visible='$model.showSingleTXT( val("type"), val("checked")) ' onChange="input1Change" bind-ref='ref("text")' onBlur="input1Blur"></input>
   </li></ul> </div>
   <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_multi" data="options" bind-visible=" $model.showMultiGroup()">
    <ul class="x-list-template" xid="listTemplateUl3">
-    <li xid="li_option_multi" bind-click="li_option_multiClick"><img src="" alt="" xid="image_multi" bind-attr-src=' $model.bindMultiImage(  $model.isChecked( val("checked")))'></img><div component="$UI/system/components/justep/output/output" class="x-output option" xid="output_multi" bind-ref='ref("content")'></div><input component="$UI/system/components/justep/input/input" class="form-control" xid="input2" bind-visible='$model.showSingleTXT( val("type"), val("checked")) ' bind-ref='ref("text")' onChange="input2Change"></input>
-  
+    <li xid="li_option_multi"><span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox2" bind-label='ref("content")' bind-value='ref("optionId")' checked="false" name="multi" onChange="checkbox2Change" bind-checked=' val("checked")'></span><input component="$UI/system/components/justep/input/input" class="form-control" xid="input2" bind-visible='$model.showSingleTXT( val("type"), val("checked")) ' bind-ref='ref("text")' onChange="input2Change"></input>
   </li></ul> </div>
   <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_option_text" data="options">
    <ul class="x-list-template" xid="listTemplateUl4">
@@ -64,7 +64,7 @@
     <require xid="require1" url="css!$UI/whganjiao/base"/>  
     <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"/>
   </resource>
-<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" style="top:59px;left:74px;" title="提示" message="您正在交卷，点”确定“后交卷，并计算成绩，如果需要修改，请点”取消“。" onOK="messageDialog1OK" type="OKCancel"></span>
+<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" style="top:59px;left:74px;" title="提示" message="您正在交卷，点”确定“后完成考试，并且不能再次进入，如果需要修改，请点”取消“。" onOK="messageDialog1OK" type="OKCancel"></span>
   <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
   <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource>
 </div>

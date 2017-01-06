@@ -18,7 +18,9 @@
   <data xid="default1">[]</data>
   <rule xid="rule1"></rule>
   <column label="单视频路径" name="path" type="String" xid="xid20"></column>
-  <column label="课程类型" name="shapeId" type="String" xid="xid21"></column></div>
+  <column label="课程类型" name="shapeId" type="String" xid="xid21"></column>
+  <column label="0手机，1电脑，2全部" name="platform" type="String" xid="xid22"></column>
+  <column label="0仅ie，1全部" name="browser" type="String" xid="xid23"></column></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="comment" idColumn="id"><column label="评论id" name="id" type="Integer" xid="xid6"></column>
   <column label="用户名" name="realname" type="String" xid="xid7"></column>
   <column label="用户头像" name="image" type="String" xid="xid8"></column>
@@ -32,10 +34,9 @@
           class="x-titlebar">
           <div class="x-titlebar-left"> 
             <a component="$UI/system/components/justep/button/button"
-              label="" class="btn btn-link btn-only-icon" icon="icon-chevron-left"
-              onClick="{operation:'window.close'}" xid="backBtn"> 
-              <i class="icon-chevron-left"/>  
-              <span></span> 
+              label="返回" class="btn btn-default" onClick="{operation:'window.close'}" xid="backBtn"> 
+              <!-- <i class="icon-chevron-left"/>   -->
+              <span>返回</span> 
             </a> 
           </div>  
           <div class="x-titlebar-title">课程详情</div>  
@@ -61,7 +62,10 @@
     </div>
     <span class="loading">  
                   <img src="$UI/whganjiao/img/loading.gif" alt="" xid="image_loading" bind-visible="isloading"></img>
-                </span> <span xid="span_title" bind-text='$model.course.val("name")' class="top_title"></span>    
+                </span> 
+                <div xid="div_device" class="device"><span xid="span2"><![CDATA[本课件支持：]]></span>
+  <span xid="span3" class="pc" bind-visible=' $model.isShowPC( $model.course.val("platform"))'><![CDATA[电脑]]></span>
+  <span xid="span5" class="phone" bind-visible=' $model.isShowMobile( $model.course.val("platform"))'><![CDATA[手机]]></span></div><span xid="span_title" bind-text='$model.course.val("name")' class="top_title"></span>    
     <div xid="div_info" class="div_info">
     <div xid="div_left" class="div_left"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_teacher">
    <label class="x-label" xid="label_teacher"><![CDATA[课程教师：]]></label>
@@ -69,12 +73,13 @@
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit_classify">
    <label class="x-label" xid="label_classify"><![CDATA[课程分类：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_classify" bind-text=' $model.course.val("typeName")'></div></div>
+   <div class="tip">
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 edit_time" xid="labelEdit_time">
    <label class="x-label" xid="label_time"><![CDATA[学时：]]></label>
    <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_time" bind-text=' $model.classhourToXueshi($model.course.val("classhour"))'></div></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30 schedule" xid="labelEdit_schedule">
    <label class="x-label" xid="label_schedule"><![CDATA[进度：]]></label>
-   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text=' $model.calcTime($model.course.val("times"))'></div></div>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_schedule" bind-text=' $model.calcTime($model.course.val("times"))'></div></div></div>
   </div>
   <div xid="div_right" class="div_right">
   

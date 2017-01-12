@@ -383,4 +383,5 @@
    </div></div>
  </div>
   <span component="$UI/system/components/justep/timer/timer" xid="timer1" interval="60000" onTimer="timer1Timer" style="top:8px;left:107px;"></span>
-  <span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" title="提示" type="OKCancel" onOK="messageDialog1OK"></span></div>
+  <span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" title="提示" type="OKCancel" onOK="messageDialog1OK"></span>
+  <span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog_exit" title="提示" type="OKCancel" message="是否退出当前帐号？" onOK="messageDialog_exitOK"></span></div>

@@ -232,10 +232,20 @@ define(function(require){
 			this.userid = 0;
 			this.username = "";
 			this.showLogin.set(true);
-			this.showContent.set(false);
+			this.showContent.set(false);	
+			this.showCourse.set(false);//课程
+			this.showClass.set(false);//培训班
+			this.showExam.set(false);	//考试
 		}else{
 			this.showLogin.set(false);
 			this.showContent.set(true);
+			this.comp("buttonGroup_study").set({"selected" : "button1"});
+			$(".content_study .buttonGroup_study a").removeClass("this");
+			$(".content_study .buttonGroup_study a:first-child").addClass("this");
+//			alert(this.comp("buttonGroup_study").selected);
+			this.showCourse.set(true);//课程
+			this.showClass.set(false);//培训班
+			this.showExam.set(false);	//考试
 		}
 	};
 
@@ -851,6 +861,10 @@ define(function(require){
 	};
 
 	Model.prototype.button_exitClick = function(event){
+		this.comp("messageDialog_exit").show();
+	};
+
+	Model.prototype.messageDialog_exitOK = function(event){
 		localStorage.setItem('realname',""); 
 		localStorage.setItem('username',""); 
 		localStorage.setItem('userid',""); 
@@ -895,7 +909,6 @@ define(function(require){
 	         }
 	    });
 	};
-
 
 	Model.prototype.button_moreClick = function(event){
 //		if (this.popshow == 0){

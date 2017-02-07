@@ -159,7 +159,7 @@ body{font-family: 微软雅黑}
 /*学习页新增分类按钮*/
 
 .popOver_moreCourse{height: 100%;}
-.popOver_moreCourse .x-popOver-content{height: auto;overflow: hidden;width: 100%;left: 0;position: absolute;background:#fff;}
+.popOver_moreCourse .x-popOver-content{height: auto;overflow: hidden;width: 80%;left: 0;position: absolute;background:#fff;}
 .popOver_moreCourse .x-scroll-content{z-index: 9999}
 .popOver_moreCourse .x-scroll-content ul{display: block;overflow: hidden;padding:0 3%;}
 .popOver_moreCourse .x-scroll-content li{position: relative;}

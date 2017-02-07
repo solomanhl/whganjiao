@@ -11,6 +11,7 @@ define(function(require){
 		this.callParent();
 		this.userId;
 		this.examId;
+		this.rtimes = 0;//考试剩余时间miao 
 		this.pageNo=1;
 		this.totalPage=1;
 		
@@ -36,6 +37,16 @@ define(function(require){
 		var me = this;
 		this.userId = event.params.userId;
 		this.examId = event.params.examId;
+		this.rtimes = event.params.rtimes;
+		if (this.rtimes == undefined){
+			this.rtimes = 0;
+		}
+		
+		var timer1 = this.comp("timer1");
+		timer1.set({
+			"times" : this.rtimes
+		});
+		timer1.start();
 //		alert(this.userId + "/" + this.examId);
 		
 		if (justep.Browser.isX5App) 
@@ -278,8 +289,21 @@ define(function(require){
 //		}else if (this.type == 2){//文本
 //		
 //		}
+		var data_options = this.comp("options");
+//		debugger;
+		var rows = data_options.find(["checked"], [true], false, true, true, true);
+		
 		if (this.pageNo < this.totalPage){
-			this.getThemes((this.pageNo+1), false);
+			if (rows.length > 0){//如果这题选了
+				this.getThemes((this.pageNo+1), false);
+			}else{
+				var msg = "请选择答案";
+				if ( justep.Browser.isX5App ){
+					window.plugins.toast.show(msg, "short", "bottom");
+				}else{
+					 justep.Util.hint(msg);
+				}
+			}
 		}
 	};
 	
@@ -455,41 +479,6 @@ define(function(require){
 				return false;
 			}
 		}
-	}
-	
-	//开始考试
-	Model.prototype.startExam = function (examId, userId){
-		var me = this;
-		$.ajax({
-	        type: "get",
-	        "async" : false,
-	        url: global.server + "/app/exam/start.jspx",
-//	        url: "http://192.168.1.22:8080/app/exam-save.jspx",
-	        contentType: "application/json; charset=utf-8",
-	        dataType: "jsonp",
-	        jsonp: "CallBack",
-	        data: {
-	        	"userId" : userId,
-	        	"examId" : examId,
-	        },
-	        success: function(resultData) {
-//	        	alert(JSON.stringify(resultData));
-	        	var result = resultData.result;
-	        	if (result == "true"){
-	        	
-	        	}else{
-	        	
-	        	}
-	        },
-	         error:function (){  
-	        	 var msg = "获取数据失败";
-	        	 if ( justep.Browser.isX5App ){
-					window.plugins.toast.show(msg, "short", "bottom");
-				}else{
-					 justep.Util.hint(msg);
-				}
-	         }
-	    });
 	}
 	
 	//单选题-------------
@@ -789,6 +778,32 @@ define(function(require){
 				}
 	         }
 	    });
+	}
+
+	//考试倒计时定时器
+	Model.prototype.timer1Timer = function(event){
+		this.rtimes--;
+		if (this.rtimes <=0){
+			this.rtimes = 0;
+			this.comp("timer1").stop();
+			this.comp("messageDialog_timeout").show();
+		}
+		this.comp("output_rtimes").set({
+			"value" : this.rtimesConverter(this.rtimes),
+		});
+	};
+
+	Model.prototype.messageDialog_timeoutOK = function(event){
+		this.exam_finish();
+	};
+	
+	Model.prototype.rtimesConverter = function (rtimes){
+		var h = Math.floor( rtimes / 3600 ); //向下取整
+		var h_l = rtimes % 3600;
+		var m = Math.floor( h_l / 60 );
+		var m_l = h_l % 60;
+		var s = m_l;
+		return h + " 小时 " + m + " 分钟 " + s + " 秒 ";
 	}
 
 	return Model;

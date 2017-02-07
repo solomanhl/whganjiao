@@ -248,7 +248,7 @@
               <span class="x-pull-down-label" xid="span19">下拉刷新...</span> 
             </div>  
             <div class="x-scroll-content" xid="div16"> 
-              <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_comm" data="communicate" limit="5"> 
+              <div component="$UI/system/components/justep/list/list" class="x-list" xid="list_comm" data="communicate" limit="20"> 
                 <ul class="x-list-template" xid="listTemplateUl2"> 
                   <li xid="li_comm"> 
                     <div class="media" xid="media_comm1"> 

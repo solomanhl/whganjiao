@@ -14,7 +14,7 @@
   <column label="0选项，1选项后有文本" name="type" type="Integer" xid="xid9"></column>
   <column label="文本" name="text" type="String" xid="xid11"></column>
   <column label="选中当前选项" name="checked" type="Boolean" xid="xid13"></column></div></div>  
-  <div component="$UI/system/components/justep/panel/panel" 
+  <span component="$UI/system/components/justep/timer/timer" xid="timer1" style="top:9px;left:102px;" enabled="false" onTimer="timer1Timer"></span><div component="$UI/system/components/justep/panel/panel" 
     class="x-panel x-full doExam" xid="panel1"> 
       <div class="x-panel-top" xid="top1"> 
         <div component="$UI/system/components/justep/titleBar/titleBar" title="正在考试"
@@ -35,7 +35,9 @@
       </div>  
     <div class="x-panel-content  x-scroll-view" xid="content1" _xid="C73474F241800001944419B01C1095D0" style="bottom: 0px;"><div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView" xid="scrollView1">
    
-   <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_theme" data="themes">
+   <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit1">
+   <label class="x-label" xid="label1"><![CDATA[考试剩余时间：]]></label>
+   <div component="$UI/system/components/justep/output/output" class="x-output x-edit" xid="output_rtimes"></div></div><div component="$UI/system/components/justep/list/list" class="x-list" xid="list_theme" data="themes">
    <ul class="x-list-template" xid="listTemplateUl1">
     <li xid="li_theme"><div component="$UI/system/components/justep/output/output" class="x-output title" xid="output_id"></div><div component="$UI/system/components/justep/output/output" class="x-output head" xid="output_name" bind-ref='ref("name")'></div>
   
@@ -64,7 +66,7 @@
     <require xid="require1" url="css!$UI/whganjiao/base"/>  
     <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"/>
   </resource>
-<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" style="top:59px;left:74px;" title="提示" message="您正在交卷，点”确定“后交卷，并计算成绩，如果需要修改，请点”取消“。" onOK="messageDialog1OK" type="OKCancel"></span>
-  <resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
-  <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource>
+<resource xid="resource2"><require xid="require1" url="css!$UI/whganjiao/base"></require>
+  <require xid="require2" url="$UI/whganjiao/jquery-1.10.2.min"></require></resource><span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog1" style="top:59px;left:74px;" title="提示" message="您正在交卷，点”确定“后交卷，并计算成绩，如果需要修改，请点”取消“。" onOK="messageDialog1OK" type="OKCancel"></span>
+  <span component="$UI/system/components/justep/messageDialog/messageDialog" xid="messageDialog_timeout" title="提示" message="考试时间已结束，系统自动交卷。" onOK="messageDialog_timeoutOK" style="top:11px;left:138px;"></span>
 </div>

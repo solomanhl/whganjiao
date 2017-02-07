@@ -253,12 +253,17 @@ define(function(require){
 				        from : "examActivity",
 				        examId : examId,
 				        userId : me.userId,
+				        rtimes : resultData.rtimes,//考试剩余时间
 				        data : {
 				            // 将data中的一行数据传给对话框
 			//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
 				        }
 				    }
 					justep.Shell.showPage(url, params);
+	        	}else if(resultData.status == -100){//不能考试
+	        	
+	        	}else{
+	        	
 	        	}
 	        },
 	        error: function(e){

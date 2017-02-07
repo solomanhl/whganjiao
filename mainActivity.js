@@ -1404,18 +1404,23 @@ define(function(require){
 	        	"examId" : examId,
 	        },
 	        success: function(resultData) {
-	        	if (resultData.status == 0){
+	        	if (resultData.status == 0){//可以考试
 	        		var url = require.toUrl("./doExamActivity.w");
 					var params = {
 				        from : "examActivity",
 				        examId : examId,
 				        userId : me.userid,
+				        rtimes : resultData.rtimes,//考试剩余时间
 				        data : {
 				            // 将data中的一行数据传给对话框
 			//	            data_forum : this.comp("pre_forum_forum").getCurrentRow().toJson()
 				        }
 				    }
 					justep.Shell.showPage(url, params);
+	        	}else if(resultData.status == -100){//不能考试
+	        	
+	        	}else{
+	        	
 	        	}
 	        },
 	        error: function(e){
